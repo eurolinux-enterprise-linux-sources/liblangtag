@@ -1,6 +1,6 @@
 Name: liblangtag
 Version: 0.5.1
-Release: 2%{?dist}
+Release: 4%{?dist}
 Summary: An interface library to access tags for identifying languages
 
 Group: System Environment/Libraries
@@ -91,8 +91,14 @@ rm -f %{buildroot}/%{_libdir}/*.la %{buildroot}/%{_libdir}/%{name}/*.la
 
 
 %changelog
-* Wed May 15 2013 Eike Rathke <erack@redhat.com> - 0.5.1-2
-- updated .spec licenses to include MPLv2.0 and UCD
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.5.1-4
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.5.1-3
+- Mass rebuild 2013-12-27
+
+* Thu May 16 2013 Eike Rathke <erack@redhat.com> - 0.5.1-2-UNBUILT
+- updated .spec with MPLv2.0 and UCD licenses
 
 * Tue Apr 30 2013 David Tardon <dtardon@redhat.com> - 0.5.1-1
 - fix ABI breakage
