@@ -2,30 +2,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Container - Extension</title>
+<title>Container - Extension: liblangtag Documentation</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="liblangtag Documentation">
 <link rel="up" href="Container.html" title="Container APIs">
 <link rel="prev" href="Container.html" title="Container APIs">
 <link rel="next" href="liblangtag-Container---Extlang.html" title="Container - Extlang">
-<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="Container.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="Container.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">liblangtag Documentation</th>
-<td><a accesskey="n" href="liblangtag-Container---Extlang.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#liblangtag-Container---Extension.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#liblangtag-Container---Extension.description" class="shortcut">Description</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#liblangtag-Container---Extension.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="Container.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="Container.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="liblangtag-Container---Extlang.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="liblangtag-Container---Extension"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -33,206 +29,293 @@
 <h2><span class="refentrytitle"><a name="liblangtag-Container---Extension.top_of_page"></a>Container - Extension</span></h2>
 <p>Container - Extension — A container class for Extension subtag</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv">
-<a name="liblangtag-Container---Extension.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis"><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="returnvalue">lt_extension_t</span></a> *    <a class="link" href="liblangtag-Container---Extension.html#lt-extension-ref" title="lt_extension_ref ()">lt_extension_ref</a>                    (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="liblangtag-Container---Extension.html#lt-extension-unref" title="lt_extension_unref ()">lt_extension_unref</a>                  (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);
-const <span class="returnvalue">char</span> *        <a class="link" href="liblangtag-Container---Extension.html#lt-extension-get-tag" title="lt_extension_get_tag ()">lt_extension_get_tag</a>                (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);
-<span class="returnvalue">char</span> *              <a class="link" href="liblangtag-Container---Extension.html#lt-extension-get-canonicalized-tag" title="lt_extension_get_canonicalized_tag ()">lt_extension_get_canonicalized_tag</a>  (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="liblangtag-Container---Extension.html#lt-extension-dump" title="lt_extension_dump ()">lt_extension_dump</a>                   (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);
-<a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>           <a class="link" href="liblangtag-Container---Extension.html#lt-extension-compare" title="lt_extension_compare ()">lt_extension_compare</a>                (<em class="parameter"><code>const <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *v1</code></em>,
-                                                         <em class="parameter"><code>const <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *v2</code></em>);
-<a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>           <a class="link" href="liblangtag-Container---Extension.html#lt-extension-truncate" title="lt_extension_truncate ()">lt_extension_truncate</a>               (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);
-                    <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t">lt_extension_t</a>;
-</pre>
-</div>
 <div class="refsect1">
-<a name="liblangtag-Container---Extension.description"></a><h2>Description</h2>
-<p>
-This container class provides a data access to Extension subtag entry.
-</p>
-</div>
-<div class="refsect1">
-<a name="liblangtag-Container---Extension.details"></a><h2>Details</h2>
-<div class="refsect2">
-<a name="lt-extension-ref"></a><h3>lt_extension_ref ()</h3>
-<pre class="programlisting"><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="returnvalue">lt_extension_t</span></a> *    lt_extension_ref                    (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
-<p>
-Increases the reference count of <em class="parameter"><code>extension</code></em>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
+<a name="liblangtag-Container---Extension.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
-<col align="left" valign="top">
-<col>
+<col width="150px" class="functions_return">
+<col class="functions_name">
 </colgroup>
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>extension</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</td>
+<td class="function_type">
+<a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="returnvalue">lt_extension_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Container---Extension.html#lt-extension-ref" title="lt_extension_ref ()">lt_extension_ref</a> <span class="c_punctuation">()</span>
+</td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the same <em class="parameter"><code>extension</code></em> object. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Container---Extension.html#lt-extension-unref" title="lt_extension_unref ()">lt_extension_unref</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Container---Extension.html#lt-extension-get-tag" title="lt_extension_get_tag ()">lt_extension_get_tag</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">char</span> *
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Container---Extension.html#lt-extension-get-canonicalized-tag" title="lt_extension_get_canonicalized_tag ()">lt_extension_get_canonicalized_tag</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Container---Extension.html#lt-extension-dump" title="lt_extension_dump ()">lt_extension_dump</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Container---Extension.html#lt-extension-compare" title="lt_extension_compare ()">lt_extension_compare</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Container---Extension.html#lt-extension-truncate" title="lt_extension_truncate ()">lt_extension_truncate</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 </tbody>
 </table></div>
 </div>
-<hr>
-<div class="refsect2">
-<a name="lt-extension-unref"></a><h3>lt_extension_unref ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                lt_extension_unref                  (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
-<p>
-Decreases the reference count of <em class="parameter"><code>extension</code></em>. when its reference count
-drops to 0, the object is finalized (i.e. its memory is freed).
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
+<div class="refsect1">
+<a name="liblangtag-Container---Extension.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
-<col align="left" valign="top">
-<col>
+<col width="150px" class="name">
+<col class="description">
 </colgroup>
 <tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>extension</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</td>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t">lt_extension_t</a></td>
 </tr></tbody>
 </table></div>
 </div>
-<hr>
-<div class="refsect2">
-<a name="lt-extension-get-tag"></a><h3>lt_extension_get_tag ()</h3>
-<pre class="programlisting">const <span class="returnvalue">char</span> *        lt_extension_get_tag                (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
-<p>
-Obtain the tag string.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>extension</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the tag string.</td>
-</tr>
-</tbody>
-</table></div>
+<div class="refsect1">
+<a name="liblangtag-Container---Extension.description"></a><h2>Description</h2>
+<p>This container class provides a data access to Extension subtag entry.</p>
 </div>
-<hr>
+<div class="refsect1">
+<a name="liblangtag-Container---Extension.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
-<a name="lt-extension-get-canonicalized-tag"></a><h3>lt_extension_get_canonicalized_tag ()</h3>
-<pre class="programlisting"><span class="returnvalue">char</span> *              lt_extension_get_canonicalized_tag  (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
-<p>
-Generate a canonicalized tag.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
+<a name="lt-extension-ref"></a><h3>lt_extension_ref ()</h3>
+<pre class="programlisting"><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="returnvalue">lt_extension_t</span></a> *
+lt_extension_ref (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
+<p>Increases the reference count of <em class="parameter"><code>extension</code></em>
+.</p>
+<div class="refsect3">
+<a name="lt-extension-ref.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>extension</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a string. this must be freed.</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="lt-extension-dump"></a><h3>lt_extension_dump ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                lt_extension_dump                   (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
-<p>
-Dumps the container information to the standard output.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
 </colgroup>
 <tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>extension</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</td>
+<td class="parameter_name"><p>extension</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
 </tr></tbody>
 </table></div>
 </div>
+<div class="refsect3">
+<a name="lt-extension-ref.returns"></a><h4>Returns</h4>
+<p> the same <em class="parameter"><code>extension</code></em>
+object. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
 <hr>
 <div class="refsect2">
-<a name="lt-extension-compare"></a><h3>lt_extension_compare ()</h3>
-<pre class="programlisting"><a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>           lt_extension_compare                (<em class="parameter"><code>const <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *v1</code></em>,
-                                                         <em class="parameter"><code>const <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *v2</code></em>);</pre>
-<p>
-Compare if <em class="parameter"><code>v1</code></em> and <em class="parameter"><code>v2</code></em> is the same object or not.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
+<a name="lt-extension-unref"></a><h3>lt_extension_unref ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+lt_extension_unref (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
+<p>Decreases the reference count of <em class="parameter"><code>extension</code></em>
+. when its reference count
+drops to 0, the object is finalized (i.e. its memory is freed).</p>
+<div class="refsect3">
+<a name="lt-extension-unref.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
-<col align="left" valign="top">
-<col>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>extension</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-extension-get-tag"></a><h3>lt_extension_get_tag ()</h3>
+<pre class="programlisting">const <span class="returnvalue">char</span> *
+lt_extension_get_tag (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
+<p>Obtain the tag string.</p>
+<div class="refsect3">
+<a name="lt-extension-get-tag.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>extension</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="lt-extension-get-tag.returns"></a><h4>Returns</h4>
+<p> the tag string.</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-extension-get-canonicalized-tag"></a><h3>lt_extension_get_canonicalized_tag ()</h3>
+<pre class="programlisting"><span class="returnvalue">char</span> *
+lt_extension_get_canonicalized_tag (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
+<p>Generate a canonicalized tag.</p>
+<div class="refsect3">
+<a name="lt-extension-get-canonicalized-tag.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>extension</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="lt-extension-get-canonicalized-tag.returns"></a><h4>Returns</h4>
+<p> a string. this must be freed.</p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-extension-dump"></a><h3>lt_extension_dump ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+lt_extension_dump (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
+<p>Dumps the container information to the standard output.</p>
+<div class="refsect3">
+<a name="lt-extension-dump.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>extension</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-extension-compare"></a><h3>lt_extension_compare ()</h3>
+<pre class="programlisting"><a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>
+lt_extension_compare (<em class="parameter"><code>const <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *v1</code></em>,
+                      <em class="parameter"><code>const <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *v2</code></em>);</pre>
+<p>Compare if <em class="parameter"><code>v1</code></em>
+ and <em class="parameter"><code>v2</code></em>
+ is the same object or not.</p>
+<div class="refsect3">
+<a name="lt-extension-compare.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
 </colgroup>
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>v1</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</td>
+<td class="parameter_name"><p>v1</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>v2</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if it's the same, otherwise <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>.</td>
+<td class="parameter_name"><p>v2</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
-<hr>
-<div class="refsect2">
-<a name="lt-extension-truncate"></a><h3>lt_extension_truncate ()</h3>
-<pre class="programlisting"><a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>           lt_extension_truncate               (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
-<p>
-Truncate the last extension.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>extension</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if a subtag of the extension is truncated. otherwise <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>.</td>
-</tr>
-</tbody>
-</table></div>
+<div class="refsect3">
+<a name="lt-extension-compare.returns"></a><h4>Returns</h4>
+<p> <code class="literal">TRUE</code> if it's the same, otherwise <code class="literal">FALSE</code>.</p>
+</div>
 </div>
 <hr>
+<div class="refsect2">
+<a name="lt-extension-truncate"></a><h3>lt_extension_truncate ()</h3>
+<pre class="programlisting"><a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>
+lt_extension_truncate (<em class="parameter"><code><a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> *extension</code></em>);</pre>
+<p>Truncate the last extension.</p>
+<div class="refsect3">
+<a name="lt-extension-truncate.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>extension</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="lt-extension-truncate.returns"></a><h4>Returns</h4>
+<p> <code class="literal">TRUE</code> if a subtag of the extension is truncated. otherwise <code class="literal">FALSE</code>.</p>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="liblangtag-Container---Extension.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="lt-extension-t"></a><h3>lt_extension_t</h3>
 <pre class="programlisting">typedef struct _lt_extension_t lt_extension_t;</pre>
-<p>
-All the fields in the <span class="structname">lt_extension_t</span>
-structure are private to the <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> implementation.
-</p>
+<p>All the fields in the <span class="structname">lt_extension_t</span>
+structure are private to the <a class="link" href="liblangtag-Container---Extension.html#lt-extension-t" title="lt_extension_t"><span class="type">lt_extension_t</span></a> implementation.</p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.19</div>
+<hr>Generated by GTK-Doc V1.25</div>
 </body>
 </html>

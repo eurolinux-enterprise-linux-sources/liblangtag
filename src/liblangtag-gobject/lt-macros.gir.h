@@ -2,7 +2,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /* 
  * lt-macros.h
- * Copyright (C) 2011-2012 Akira TAGOH
+ * Copyright (C) 2011-2015 Akira TAGOH
  * 
  * Authors:
  *   Akira TAGOH  <akira@tagoh.org>
@@ -18,6 +18,7 @@
 #if defined(HAVE_SYS_PARAM_H) && HAVE_SYS_PARAM_H
 #include <sys/param.h>
 #endif
+#include <stddef.h>
 
 #ifndef __LT_MACROS_H__
 #define __LT_MACROS_H__
@@ -121,11 +122,32 @@
  * It allows the compiler to type-check the arguments passed to the function.
  * See the GNU C documentation for details.
  */
+/**
+ * LT_GNUC_UNUSED:
+ *
+ * Expands to the GNU C unused function attribute if the compiler is gcc.
+ * It is used for declaring functions and arguments which may never be used.
+ * It avoids possible compiler warnings.
+ *
+ * For functions, place the attribute after the declaration, just before the
+ * semicolon. For arguments, place the attribute at the beginning of the
+ * argument declaration.
+ *
+ * |[<!-- language="C" -->
+ * void my_unused_function (LT_GNUC_UNUSED int unused_argument,
+ *                          int other argument) LT_GNUC_UNUSED;
+ * ]|
+ *
+ * See the GNU C documentation for more details.
+ */
 #if __GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ > 4)
 #  define LT_GNUC_PRINTF(format_idx, arg_idx)	\
 	__attribute__((__format__ (__printf__, format_idx, arg_idx)))
+#  define LT_GNUC_UNUSED			\
+	__attribute__((__unused__))
 #else /* !__GNUC__ */
 #  define LT_GNUC_PRINTF(format_idx, arg_idx)
+#  define LT_GNUC_UNUSED
 #endif
 /**
  * LT_GNUC_NULL_TERMINATED:
@@ -185,6 +207,51 @@
 #else
 #  define LT_LIKELY(_e_)	(_e_)
 #  define LT_UNLIKELY(_e_)	(_e_)
+#endif
+
+/**
+ * LT_GNUC_DEPRECATED:
+ *
+ * Expands to the GNU C deprecated attribute if the compiler is gcc.
+ * It can be used to mark typedefs, variables and functions as deprecated.
+ * When called with the `-Wdeprecated-declarations` option.
+ * gcc will generate warnings when deprecated interfaces are used.
+ *
+ * Place the attribute after the declaration, just before the semicolon.
+ *
+ * See the GNU C documentation for more details.
+ */
+#if __GNUC__ > 3 || (__GNUC__ == 3 && __GNUC_MINOR__ >= 1)
+#define LT_GNUC_DEPRECATED __attribute__((__deprecated__))
+#else
+#define LT_GNUC_DEPRECATED
+#endif
+#if __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 5)
+#define LT_GNUC_DEPRECATED_FOR(f) __attribute__((deprecated("Use " #f " instead")))
+#else
+#define LT_GNUC_DEPRECATED_FOR(f) LT_GNUC_DEPRECATED
+#endif
+#if __GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6)
+#define LT_GNUC_BEGIN_IGNORE_DEPRECATIONS	\
+	_Pragma ("GCC diagnostic push")		\
+	_Pragma ("GCC diagnostic ignored \"-Wdeprecated-declarations\"")
+#define LT_GNUC_END_IGNORE_DEPRECATIONS		\
+	_Pragma ("GCC diagnostic pop")
+#elif defined (_MSC_VER) && (_MSC_VER >= 1500)
+#define LT_GNUC_BEGIN_IGNORE_DEPRECATIONS	\
+	__pragma (warning (push))		\
+	__pragma (warning (disable : 4996))
+#define LT_GNUC_END_IGNORE_DEPRECATIONS		\
+	__pragma (warning (pop))
+#elif defined (__clang__)
+#define LT_GNUC_BEGIN_IGNORE_DEPRECATIONS	\
+	_Pragma("clang diagnostic push")	\
+	_Pragma("clang diagnostic ignored \"-Wdeprecated-declarations\"")
+#define LT_GNUC_END_IGNORE_DEPRECATIONS		\
+	_Pragma("clang diagnostic pop")
+#else
+#define LT_GNUC_BEGIN_IGNORE_DEPRECATIONS
+#define LT_GNUC_END_IGNORE_DEPRECATIONS
 #endif
 
 /* boolean */
@@ -260,6 +327,11 @@
 	LT_STMT_START {raise(SIGTRAP);} LT_STMT_END
 #endif
 
+/* assertion */
+#define _LT_ASSERT_STATIC1(_l_,_x_)	typedef int _static_assert_on_line_##_l_##_failed[(_x_)?1:-1] LT_GNUC_UNUSED
+#define _LT_ASSERT_STATIC0(_l_,_x_)	_LT_ASSERT_STATIC1 (_l_, (_x_))
+#define LT_ASSERT_STATIC(_x_)		_LT_ASSERT_STATIC0 (__LINE__, (_x_))
+
 LT_BEGIN_DECLS
 
 #if defined(_MSC_VER) && !defined(gssize)
@@ -270,10 +342,39 @@ typedef signed int		gssize;
 #  endif
 #endif
 
+/**
+ * LtPointer:
+ *
+ * The type of object pointer.
+ */
 typedef void *		LtPointer;
+/**
+ * LtBool:
+ *
+ * The type of boolean value.
+ */
 typedef int		LtBool;
+/**
+ * LtCopyFunc:
+ * @data: the object to be copied.
+ *
+ * The type of callback function used for copying @data.
+ */
 typedef LtPointer (* LtCopyFunc)	(LtPointer data);
+/**
+ * LtDestroyFunc:
+ * @data: the object to be destroyed.
+ *
+ * The type of callback function used for destroying @data.
+ */
 typedef void (* LtDestroyFunc)	(LtPointer data);
+/**
+ * LtCompareFunc:
+ * @v1: the object to compare with @v2.
+ * @v2: the object to compare with @v1.
+ *
+ * The type of callback function used for comparing objects.
+ */
 typedef int (* LtCompareFunc)	(const LtPointer v1,
 					 const LtPointer v2);
 

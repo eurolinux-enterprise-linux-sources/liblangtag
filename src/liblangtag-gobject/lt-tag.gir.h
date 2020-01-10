@@ -38,6 +38,36 @@ LT_BEGIN_DECLS
  */
 typedef struct _LtTag	LtTag;
 
+enum _LtTagFilter {
+	LT_TAG_FILTER_NONE          = 0,
+	LT_TAG_FILTER_LANGUAGE      = 1 << 0,
+	LT_TAG_FILTER_EXTLANG       = 1 << 1,
+	LT_TAG_FILTER_SCRIPT        = 1 << 2,
+	LT_TAG_FILTER_REGION        = 1 << 3,
+	LT_TAG_FILTER_VARIANT       = 1 << 4,
+	LT_TAG_FILTER_EXTENSION     = 1 << 5,
+	LT_TAG_FILTER_PRIVATEUSE    = 1 << 6,
+	LT_TAG_FILTER_GRANDFATHERED = 1 << 7,
+	LT_TAG_FILTER_ALL           = -1
+};
+
+/**
+ * LtTagFilter:
+ * @LT_TAG_FILTER_NONE: all of objects filtered.
+ * @LT_TAG_FILTER_LANGUAGE: include #LtLang object into the result.
+ * @LT_TAG_FILTER_EXTLANG: include #LtExtlang object into the result.
+ * @LT_TAG_FILTER_SCRIPT: include #LtScript object into the result.
+ * @LT_TAG_FILTER_REGION: include #LtRegion object into the result.
+ * @LT_TAG_FILTER_VARIANT: include #LtVariant object into the result.
+ * @LT_TAG_FILTER_EXTENSION: include #LtExtension object into the result.
+ * @LT_TAG_FILTER_PRIVATEUSE: include the privateuse object into the result.
+ * @LT_TAG_FILTER_GRANDFATHERED: include #LtGrandfathered object into the result.
+ * @LT_TAG_FILTER_ALL: no objects filtered.
+ *
+ * This is used as a binary count sequence with lt_tag_get_string_with_filter()
+ * to allow only given tags to be the outcome.
+ */
+typedef enum _LtTagFilter	LtTagFilter;
 
 LtTag                 *lt_tag_new                         (void);
 LtTag                 *lt_tag_ref                         (LtTag       *tag);
@@ -52,6 +82,8 @@ void                      lt_tag_clear                       (LtTag       *tag);
 LtTag                 *lt_tag_copy                        (const LtTag *tag);
 LtBool                 lt_tag_truncate                    (LtTag       *tag,
                                                               LtError     **error);
+const char               *lt_tag_get_string_with_filter      (LtTag       *tag,
+							      int             filter);
 const char               *lt_tag_get_string                  (LtTag       *tag);
 char                     *lt_tag_canonicalize                (LtTag       *tag,
                                                               LtError     **error);

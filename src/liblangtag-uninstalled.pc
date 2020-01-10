@@ -1,6 +1,6 @@
 Name: liblangtag Uninstalled
 Description: Interface to access tags for identifying languages
-Version: 0.5.4
+Version: 0.6.2
 Requires: glib-2.0
 Libs: ${pcfiledir}/liblangtag/liblangtag.la
 Cflags: -I${pcfiledir} -I${pcfiledir}/..

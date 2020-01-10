@@ -2,30 +2,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Database - Region</title>
+<title>Database - Region: liblangtag Documentation</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="liblangtag Documentation">
 <link rel="up" href="ch01.html#Database" title="Database APIs">
 <link rel="prev" href="liblangtag-Database---Redundant.html" title="Database - Redundant">
-<link rel="next" href="liblangtag-Database---Script.html" title="Database - Script">
-<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<link rel="next" href="liblangtag-Database---Relation.html" title="Database - Relation">
+<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="liblangtag-Database---Redundant.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="ch01.html#Database"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">liblangtag Documentation</th>
-<td><a accesskey="n" href="liblangtag-Database---Script.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#liblangtag-Database---Region.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#liblangtag-Database---Region.description" class="shortcut">Description</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#liblangtag-Database---Region.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="ch01.html#Database"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="liblangtag-Database---Redundant.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="liblangtag-Database---Relation.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="liblangtag-Database---Region"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -33,134 +29,187 @@
 <h2><span class="refentrytitle"><a name="liblangtag-Database---Region.top_of_page"></a>Database - Region</span></h2>
 <p>Database - Region — An interface to access Region Database</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv">
-<a name="liblangtag-Database---Region.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis"><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="returnvalue">lt_region_db_t</span></a> *    <a class="link" href="liblangtag-Database---Region.html#lt-region-db-new" title="lt_region_db_new ()">lt_region_db_new</a>                    (<em class="parameter"><code><span class="type">void</span></code></em>);
-<a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="returnvalue">lt_region_db_t</span></a> *    <a class="link" href="liblangtag-Database---Region.html#lt-region-db-ref" title="lt_region_db_ref ()">lt_region_db_ref</a>                    (<em class="parameter"><code><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a> *regiondb</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="liblangtag-Database---Region.html#lt-region-db-unref" title="lt_region_db_unref ()">lt_region_db_unref</a>                  (<em class="parameter"><code><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a> *regiondb</code></em>);
-<a class="link" href="liblangtag-Container---Region.html#lt-region-t" title="lt_region_t"><span class="returnvalue">lt_region_t</span></a> *       <a class="link" href="liblangtag-Database---Region.html#lt-region-db-lookup" title="lt_region_db_lookup ()">lt_region_db_lookup</a>                 (<em class="parameter"><code><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a> *regiondb</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">char</span> *language_or_code</code></em>);
-                    <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t">lt_region_db_t</a>;
-</pre>
+<div class="refsect1">
+<a name="liblangtag-Database---Region.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="returnvalue">lt_region_db_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Database---Region.html#lt-region-db-new" title="lt_region_db_new ()">lt_region_db_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="returnvalue">lt_region_db_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Database---Region.html#lt-region-db-ref" title="lt_region_db_ref ()">lt_region_db_ref</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Database---Region.html#lt-region-db-unref" title="lt_region_db_unref ()">lt_region_db_unref</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="liblangtag-Container---Region.html#lt-region-t" title="lt_region_t"><span class="returnvalue">lt_region_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Database---Region.html#lt-region-db-lookup" title="lt_region_db_lookup ()">lt_region_db_lookup</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="liblangtag-Database---Region.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody><tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t">lt_region_db_t</a></td>
+</tr></tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="liblangtag-Database---Region.description"></a><h2>Description</h2>
-<p>
-This class provides an interface to access Region database. which has been
-registered as ISO 3166-1 and UN M.49 code.
-</p>
+<p>This class provides an interface to access Region database. which has been
+registered as ISO 3166-1 and UN M.49 code.</p>
 </div>
 <div class="refsect1">
-<a name="liblangtag-Database---Region.details"></a><h2>Details</h2>
+<a name="liblangtag-Database---Region.functions_details"></a><h2>Functions</h2>
 <div class="refsect2">
-<a name="lt-region-db-new"></a><h3>lt_region_db_new ()</h3>
-<pre class="programlisting"><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="returnvalue">lt_region_db_t</span></a> *    lt_region_db_new                    (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
-<p>
-Create a new instance of a <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody><tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a new instance of <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr></tbody>
-</table></div>
+<a name="lt-region-db-new"></a><h3>lt_region_db_new ()</h3>
+<pre class="programlisting"><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="returnvalue">lt_region_db_t</span></a> *
+lt_region_db_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Create a new instance of a <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a>.</p>
+<div class="refsect3">
+<a name="lt-region-db-new.returns"></a><h4>Returns</h4>
+<p> a new instance of <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
 </div>
 <hr>
 <div class="refsect2">
-<a name="lt-region-db-ref"></a><h3>lt_region_db_ref ()</h3>
-<pre class="programlisting"><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="returnvalue">lt_region_db_t</span></a> *    lt_region_db_ref                    (<em class="parameter"><code><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a> *regiondb</code></em>);</pre>
-<p>
-Increases the reference count of <em class="parameter"><code>regiondb</code></em>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
+<a name="lt-region-db-ref"></a><h3>lt_region_db_ref ()</h3>
+<pre class="programlisting"><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="returnvalue">lt_region_db_t</span></a> *
+lt_region_db_ref (<em class="parameter"><code><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a> *regiondb</code></em>);</pre>
+<p>Increases the reference count of <em class="parameter"><code>regiondb</code></em>
+.</p>
+<div class="refsect3">
+<a name="lt-region-db-ref.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
-<col align="left" valign="top">
-<col>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>regiondb</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="lt-region-db-ref.returns"></a><h4>Returns</h4>
+<p> the same <em class="parameter"><code>regiondb</code></em>
+object. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-region-db-unref"></a><h3>lt_region_db_unref ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+lt_region_db_unref (<em class="parameter"><code><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a> *regiondb</code></em>);</pre>
+<p>Decreases the reference count of <em class="parameter"><code>regiondb</code></em>
+. when its reference count
+drops to 0, the object is finalized (i.e. its memory is freed).</p>
+<div class="refsect3">
+<a name="lt-region-db-unref.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>regiondb</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-region-db-lookup"></a><h3>lt_region_db_lookup ()</h3>
+<pre class="programlisting"><a class="link" href="liblangtag-Container---Region.html#lt-region-t" title="lt_region_t"><span class="returnvalue">lt_region_t</span></a> *
+lt_region_db_lookup (<em class="parameter"><code><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a> *regiondb</code></em>,
+                     <em class="parameter"><code>const <span class="type">char</span> *language_or_code</code></em>);</pre>
+<p>Lookup <em class="parameter"><code>lt_region_t</code></em>
+ if <em class="parameter"><code>language_or_code</code></em>
+ is valid and registered into
+the database.</p>
+<div class="refsect3">
+<a name="lt-region-db-lookup.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
 </colgroup>
 <tbody>
 <tr>
-<td><p><span class="term"><em class="parameter"><code>regiondb</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a>.</td>
+<td class="parameter_name"><p>regiondb</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 <tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the same <em class="parameter"><code>regiondb</code></em> object. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
-</td>
+<td class="parameter_name"><p>language_or_code</p></td>
+<td class="parameter_description"><p>a region code to lookup.</p></td>
+<td class="parameter_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
-<hr>
-<div class="refsect2">
-<a name="lt-region-db-unref"></a><h3>lt_region_db_unref ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                lt_region_db_unref                  (<em class="parameter"><code><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a> *regiondb</code></em>);</pre>
-<p>
-Decreases the reference count of <em class="parameter"><code>regiondb</code></em>. when its reference count
-drops to 0, the object is finalized (i.e. its memory is freed).
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>regiondb</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a>.</td>
-</tr></tbody>
-</table></div>
+<div class="refsect3">
+<a name="lt-region-db-lookup.returns"></a><h4>Returns</h4>
+<p> a <a class="link" href="liblangtag-Container---Region.html#lt-region-t" title="lt_region_t"><span class="type">lt_region_t</span></a> that meets with <em class="parameter"><code>language_or_code</code></em>
+.
+otherwise <code class="literal">NULL</code>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<hr>
-<div class="refsect2">
-<a name="lt-region-db-lookup"></a><h3>lt_region_db_lookup ()</h3>
-<pre class="programlisting"><a class="link" href="liblangtag-Container---Region.html#lt-region-t" title="lt_region_t"><span class="returnvalue">lt_region_t</span></a> *       lt_region_db_lookup                 (<em class="parameter"><code><a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a> *regiondb</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">char</span> *language_or_code</code></em>);</pre>
-<p>
-Lookup <em class="parameter"><code>lt_region_t</code></em> if <em class="parameter"><code>language_or_code</code></em> is valid and registered into
-the database.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>regiondb</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a>.</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>language_or_code</code></em> :</span></p></td>
-<td>a region code to lookup.</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Container---Region.html#lt-region-t" title="lt_region_t"><span class="type">lt_region_t</span></a> that meets with <em class="parameter"><code>language_or_code</code></em>.
-otherwise <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
 </div>
-<hr>
+</div>
+<div class="refsect1">
+<a name="liblangtag-Database---Region.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="lt-region-db-t"></a><h3>lt_region_db_t</h3>
 <pre class="programlisting">typedef struct _lt_region_db_t lt_region_db_t;</pre>
-<p>
-All the fields in the <span class="structname">lt_region_db_t</span>
-structure are private to the <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a> implementation.
-</p>
+<p>All the fields in the <span class="structname">lt_region_db_t</span>
+structure are private to the <a class="link" href="liblangtag-Database---Region.html#lt-region-db-t" title="lt_region_db_t"><span class="type">lt_region_db_t</span></a> implementation.</p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.19</div>
+<hr>Generated by GTK-Doc V1.25</div>
 </body>
 </html>

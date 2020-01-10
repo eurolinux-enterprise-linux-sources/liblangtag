@@ -1,7 +1,18 @@
 <SECTION>
+<FILE>lt-config</FILE>
+LT_HAVE_INLINE
+LT_HAVE__INLINE
+LT_HAVE__INLINE__
+LT_CAN_INLINE
+LT_POINTER_TO_INT
+</SECTION>
+
+<SECTION>
 <FILE>lt-database</FILE>
+lt_db_val_t
 lt_db_set_datadir
 lt_db_get_datadir
+lt_db_set_val
 lt_db_initialize
 lt_db_finalize
 lt_db_get_lang
@@ -11,6 +22,7 @@ lt_db_get_region
 lt_db_get_variant
 lt_db_get_grandfathered
 lt_db_get_redundant
+lt_db_get_relation
 </SECTION>
 
 <SECTION>
@@ -124,8 +136,8 @@ lt_iter_unref
 lt_iter_init
 lt_iter_finish
 lt_iter_next
-lt_iter_tmpl_t
 lt_iter_t
+lt_iter_tmpl_t
 </SECTION>
 
 <SECTION>
@@ -186,9 +198,14 @@ LT_STMT_END
 inline
 LT_INLINE_FUNC
 LT_GNUC_PRINTF
+LT_GNUC_UNUSED
 LT_GNUC_NULL_TERMINATED
 LT_LIKELY
 LT_UNLIKELY
+LT_GNUC_DEPRECATED
+LT_GNUC_DEPRECATED_FOR
+LT_GNUC_BEGIN_IGNORE_DEPRECATIONS
+LT_GNUC_END_IGNORE_DEPRECATIONS
 LT_DIR_SEPARATOR_S
 LT_DIR_SEPARATOR
 LT_SEARCHPATH_SEPARATOR_S
@@ -200,6 +217,7 @@ LT_ALIGNED_TO
 LT_ALIGNED_TO_POINTER
 LT_N_ELEMENTS
 LT_BREAKPOINT
+LT_ASSERT_STATIC
 ssize_t
 lt_pointer_t
 lt_bool_t
@@ -253,6 +271,16 @@ lt_region_db_t
 </SECTION>
 
 <SECTION>
+<FILE>lt-relation-db</FILE>
+lt_relation_db_new
+lt_relation_db_ref
+lt_relation_db_unref
+lt_relation_db_lookup_lang_from_script
+lt_relation_db_lookup_script_from_lang
+lt_relation_db_t
+</SECTION>
+
+<SECTION>
 <FILE>lt-script</FILE>
 lt_script_ref
 lt_script_unref
@@ -271,54 +299,6 @@ lt_script_db_ref
 lt_script_db_unref
 lt_script_db_lookup
 lt_script_db_t
-</SECTION>
-
-<SECTION>
-<FILE>lt-serializer</FILE>
-LT_SERIALIZER_LSB
-LT_SERIALIZER_MSB
-lt_serializer_serialize_uint8
-lt_serializer_serialize_int8
-lt_serializer_serialize_uint16
-lt_serializer_serialize_int16
-lt_serializer_serialize_uint32
-lt_serializer_serialize_int32
-lt_serializer_serialize_uint64
-lt_serializer_serialize_int64
-lt_serializer_deserialize_uint8
-lt_serializer_deserialize_int8
-lt_serializer_deserialize_uint16
-lt_serializer_deserialize_int16
-lt_serializer_deserialize_uint32
-lt_serializer_deserialize_int32
-lt_serializer_deserialize_uint64
-lt_serializer_deserialize_int64
-LT_UINT16_SWAP_LE_BE
-LT_UINT32_SWAP_LE_BE
-LT_UINT64_SWAP_LE_BE
-lt_serializer_data_type_t
-lt_serializer_get_type_func_t
-lt_serializer_serialize_func_t
-lt_serializer_deserialize_func_t
-lt_serializer_funcs_t
-lt_serialized_data_t
-lt_serializer_get_byte_order
-lt_serializer_new
-lt_serializer_ref
-lt_serializer_unref
-lt_serializer_serialize
-lt_serializer_deserialize
-lt_serializer_get_int8_serializer_funcs
-lt_serializer_get_uint8_serializer_funcs
-lt_serializer_get_int16_serializer_funcs
-lt_serializer_get_uint16_serializer_funcs
-lt_serializer_get_int32_serializer_funcs
-lt_serializer_get_uint32_serializer_funcs
-lt_serializer_get_int64_serializer_funcs
-lt_serializer_get_uint64_serializer_funcs
-lt_serializer_get_string_serializer_funcs
-lt_serializer_get_trie_serializer_funcs
-lt_serializer_t
 </SECTION>
 
 <SECTION>
@@ -341,6 +321,7 @@ lt_string_t
 
 <SECTION>
 <FILE>lt-tag</FILE>
+lt_tag_filter_t
 lt_tag_new
 lt_tag_ref
 lt_tag_unref
@@ -349,6 +330,7 @@ lt_tag_parse_with_extra_token
 lt_tag_clear
 lt_tag_copy
 lt_tag_truncate
+lt_tag_get_string_with_filter
 lt_tag_get_string
 lt_tag_canonicalize
 lt_tag_canonicalize_in_extlang_form

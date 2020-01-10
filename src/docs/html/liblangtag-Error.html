@@ -2,30 +2,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Error</title>
+<title>Error: liblangtag Documentation</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="liblangtag Documentation">
 <link rel="up" href="Utilities.html" title="Utilities APIs">
 <link rel="prev" href="liblangtag-Miscellaneous-Macros.html" title="Miscellaneous Macros">
-<link rel="next" href="liblangtag-Iterator.html" title="Iterator">
-<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
+<link rel="next" href="liblangtag-Doubly-Linked-Lists.html" title="Doubly-Linked Lists">
+<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
-<tr valign="middle">
-<td><a accesskey="p" href="liblangtag-Miscellaneous-Macros.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
-<td><a accesskey="u" href="Utilities.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
-<th width="100%" align="center">liblangtag Documentation</th>
-<td><a accesskey="n" href="liblangtag-Iterator.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
-</tr>
-<tr><td colspan="5" class="shortcuts">
-<a href="#liblangtag-Error.synopsis" class="shortcut">Top</a>
-                   | 
-                  <a href="#liblangtag-Error.description" class="shortcut">Description</a>
-</td></tr>
-</table>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
+<td width="100%" align="left" class="shortcuts">
+<a href="#" class="shortcut">Top</a><span id="nav_description">  <span class="dim">|</span> 
+                  <a href="#liblangtag-Error.description" class="shortcut">Description</a></span>
+</td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
+<td><a accesskey="u" href="Utilities.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="p" href="liblangtag-Miscellaneous-Macros.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="n" href="liblangtag-Doubly-Linked-Lists.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+</tr></table>
 <div class="refentry">
 <a name="liblangtag-Error"></a><div class="titlepage"></div>
 <div class="refnamediv"><table width="100%"><tr>
@@ -33,303 +29,400 @@
 <h2><span class="refentrytitle"><a name="liblangtag-Error.top_of_page"></a>Error</span></h2>
 <p>Error — Error handling</p>
 </td>
-<td valign="top" align="right"></td>
+<td class="gallery_image" valign="top" align="right"></td>
 </tr></table></div>
-<div class="refsynopsisdiv">
-<a name="liblangtag-Error.synopsis"></a><h2>Synopsis</h2>
-<pre class="synopsis">enum                <a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t">lt_error_type_t</a>;
-<a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *        <a class="link" href="liblangtag-Error.html#lt-error-new" title="lt_error_new ()">lt_error_new</a>                        (<em class="parameter"><code><span class="type">void</span></code></em>);
-<a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *        <a class="link" href="liblangtag-Error.html#lt-error-ref" title="lt_error_ref ()">lt_error_ref</a>                        (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="liblangtag-Error.html#lt-error-unref" title="lt_error_unref ()">lt_error_unref</a>                      (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>);
-<a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *        <a class="link" href="liblangtag-Error.html#lt-error-set" title="lt_error_set ()">lt_error_set</a>                        (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> **error</code></em>,
-                                                         <em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a> type</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">char</span> *message</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="liblangtag-Error.html#lt-error-clear" title="lt_error_clear ()">lt_error_clear</a>                      (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>);
-<a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>           <a class="link" href="liblangtag-Error.html#lt-error-is-set" title="lt_error_is_set ()">lt_error_is_set</a>                     (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>,
-                                                         <em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a> type</code></em>);
-<span class="returnvalue">void</span>                <a class="link" href="liblangtag-Error.html#lt-error-print" title="lt_error_print ()">lt_error_print</a>                      (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>,
-                                                         <em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a> type</code></em>);
-                    <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t">lt_error_t</a>;
-</pre>
+<div class="refsect1">
+<a name="liblangtag-Error.functions"></a><h2>Functions</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="functions_return">
+<col class="functions_name">
+</colgroup>
+<tbody>
+<tr>
+<td class="function_type">
+<a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Error.html#lt-error-new" title="lt_error_new ()">lt_error_new</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Error.html#lt-error-ref" title="lt_error_ref ()">lt_error_ref</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Error.html#lt-error-unref" title="lt_error_unref ()">lt_error_unref</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Error.html#lt-error-set" title="lt_error_set ()">lt_error_set</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Error.html#lt-error-clear" title="lt_error_clear ()">lt_error_clear</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Error.html#lt-error-is-set" title="lt_error_is_set ()">lt_error_is_set</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<span class="returnvalue">void</span>
+</td>
+<td class="function_name">
+<a class="link" href="liblangtag-Error.html#lt-error-print" title="lt_error_print ()">lt_error_print</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect1">
+<a name="liblangtag-Error.other"></a><h2>Types and Values</h2>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="name">
+<col class="description">
+</colgroup>
+<tbody>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t">lt_error_type_t</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword"> </td>
+<td class="function_name"><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t">lt_error_t</a></td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="refsect1">
 <a name="liblangtag-Error.description"></a><h2>Description</h2>
-<p>
-This section describes the error handling in this library.
-</p>
+<p>This section describes the error handling in this library.</p>
 </div>
 <div class="refsect1">
-<a name="liblangtag-Error.details"></a><h2>Details</h2>
+<a name="liblangtag-Error.functions_details"></a><h2>Functions</h2>
+<div class="refsect2">
+<a name="lt-error-new"></a><h3>lt_error_new ()</h3>
+<pre class="programlisting"><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *
+lt_error_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
+<p>Creates <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> object. this function is protected and not supposed
+to use in applications directly. Use <a class="link" href="liblangtag-Error.html#lt-error-set" title="lt_error_set ()"><code class="function">lt_error_set()</code></a>.</p>
+<div class="refsect3">
+<a name="lt-error-new.returns"></a><h4>Returns</h4>
+<p> a newly allocated <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a>. it has to be freed
+with <a class="link" href="liblangtag-Error.html#lt-error-unref" title="lt_error_unref ()"><code class="function">lt_error_unref()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-error-ref"></a><h3>lt_error_ref ()</h3>
+<pre class="programlisting"><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *
+lt_error_ref (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>);</pre>
+<p>Inscreases the reference count of <em class="parameter"><code>error</code></em>
+.</p>
+<div class="refsect3">
+<a name="lt-error-ref.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="lt-error-ref.returns"></a><h4>Returns</h4>
+<p> the same <em class="parameter"><code>error</code></em>
+object. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-error-unref"></a><h3>lt_error_unref ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+lt_error_unref (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>);</pre>
+<p>Decreases the reference count of <em class="parameter"><code>error</code></em>
+. when its reference count
+drops to 0, the object is finalized (i.e. its memory is freed).</p>
+<div class="refsect3">
+<a name="lt-error-unref.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-error-set"></a><h3>lt_error_set ()</h3>
+<pre class="programlisting"><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *
+lt_error_set (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> **error</code></em>,
+              <em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a> type</code></em>,
+              <em class="parameter"><code>const <span class="type">char</span> *message</code></em>);</pre>
+<p>Sets the error into <em class="parameter"><code>error</code></em>
+ according to the given parameters.</p>
+<div class="refsect3">
+<a name="lt-error-set.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>a return location for a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>type</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>message</p></td>
+<td class="parameter_description"><p>the string format to output the error messages</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>...</p></td>
+<td class="parameter_description"><p>the parameters to insert into the format string</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="lt-error-set.returns"></a><h4>Returns</h4>
+<p> an instance of <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-error-clear"></a><h3>lt_error_clear ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+lt_error_clear (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>);</pre>
+<p>Clean up all of the errors in <em class="parameter"><code>error</code></em>
+.</p>
+<div class="refsect3">
+<a name="lt-error-clear.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-error-is-set"></a><h3>lt_error_is_set ()</h3>
+<pre class="programlisting"><a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>
+lt_error_is_set (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>,
+                 <em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a> type</code></em>);</pre>
+<p>Checks if <em class="parameter"><code>error</code></em>
+ contains <em class="parameter"><code>type</code></em>
+ of errors. if <a class="link" href="liblangtag-Error.html#LT-ERR-ANY:CAPS"><span class="type">LT_ERR_ANY</span></a> is set to <em class="parameter"><code>type</code></em>
+,
+all the types of the errors are targeted. otherwise the result is filtered
+out by <em class="parameter"><code>type</code></em>
+.</p>
+<div class="refsect3">
+<a name="lt-error-is-set.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>type</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="lt-error-is-set.returns"></a><h4>Returns</h4>
+<p> <code class="literal">TRUE</code> if any, otherwise <code class="literal">FALSE</code></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-error-print"></a><h3>lt_error_print ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+lt_error_print (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>,
+                <em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a> type</code></em>);</pre>
+<p>Output the error messages in <em class="parameter"><code>error</code></em>
+ according to <em class="parameter"><code>type</code></em>
+.</p>
+<div class="refsect3">
+<a name="lt-error-print.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>type</p></td>
+<td class="parameter_description"><p>a <a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a></p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="refsect1">
+<a name="liblangtag-Error.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="lt-error-type-t"></a><h3>enum lt_error_type_t</h3>
-<pre class="programlisting">enum lt_error_type_t {
-	LT_ERR_UNKNOWN = -1,
-	LT_ERR_SUCCESS = 0,
-	LT_ERR_OOM,
-	LT_ERR_FAIL_ON_XML,
-	LT_ERR_EOT,
-	LT_ERR_FAIL_ON_SCANNER,
-	LT_ERR_NO_TAG,
-	LT_ERR_INVALID,
-	LT_ERR_ANY
-};
-</pre>
-<p>
-Error code used in this library.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
+<p>Error code used in this library.</p>
+<div class="refsect3">
+<a name="lt-error-type-t.members"></a><h4>Members</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
-<col align="left" valign="top">
-<col>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
 </colgroup>
 <tbody>
 <tr>
-<td><p><a name="LT-ERR-UNKNOWN:CAPS"></a><span class="term"><code class="literal">LT_ERR_UNKNOWN</code></span></p></td>
-<td>unknown error happened.
+<td class="enum_member_name"><p><a name="LT-ERR-UNKNOWN:CAPS"></a>LT_ERR_UNKNOWN</p></td>
+<td class="enum_member_description">
+<p>unknown error happened.</p>
 </td>
+<td class="enum_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><a name="LT-ERR-SUCCESS:CAPS"></a><span class="term"><code class="literal">LT_ERR_SUCCESS</code></span></p></td>
-<td>an operation is succeeded.
+<td class="enum_member_name"><p><a name="LT-ERR-SUCCESS:CAPS"></a>LT_ERR_SUCCESS</p></td>
+<td class="enum_member_description">
+<p>an operation is succeeded.</p>
 </td>
+<td class="enum_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><a name="LT-ERR-OOM:CAPS"></a><span class="term"><code class="literal">LT_ERR_OOM</code></span></p></td>
-<td>Out of memory occurred.
+<td class="enum_member_name"><p><a name="LT-ERR-OOM:CAPS"></a>LT_ERR_OOM</p></td>
+<td class="enum_member_description">
+<p>Out of memory occurred.</p>
 </td>
+<td class="enum_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><a name="LT-ERR-FAIL-ON-XML:CAPS"></a><span class="term"><code class="literal">LT_ERR_FAIL_ON_XML</code></span></p></td>
-<td>an error happened in libxml2.
+<td class="enum_member_name"><p><a name="LT-ERR-FAIL-ON-XML:CAPS"></a>LT_ERR_FAIL_ON_XML</p></td>
+<td class="enum_member_description">
+<p>an error happened in libxml2.</p>
 </td>
+<td class="enum_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><a name="LT-ERR-EOT:CAPS"></a><span class="term"><code class="literal">LT_ERR_EOT</code></span></p></td>
-<td>No tokens to scan.
+<td class="enum_member_name"><p><a name="LT-ERR-EOT:CAPS"></a>LT_ERR_EOT</p></td>
+<td class="enum_member_description">
+<p>No tokens to scan.</p>
 </td>
+<td class="enum_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><a name="LT-ERR-FAIL-ON-SCANNER:CAPS"></a><span class="term"><code class="literal">LT_ERR_FAIL_ON_SCANNER</code></span></p></td>
-<td>an error happened in the scanner.
+<td class="enum_member_name"><p><a name="LT-ERR-FAIL-ON-SCANNER:CAPS"></a>LT_ERR_FAIL_ON_SCANNER</p></td>
+<td class="enum_member_description">
+<p>an error happened in the scanner.</p>
 </td>
+<td class="enum_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><a name="LT-ERR-NO-TAG:CAPS"></a><span class="term"><code class="literal">LT_ERR_NO_TAG</code></span></p></td>
-<td>No tags to process.
+<td class="enum_member_name"><p><a name="LT-ERR-NO-TAG:CAPS"></a>LT_ERR_NO_TAG</p></td>
+<td class="enum_member_description">
+<p>No tags to process.</p>
 </td>
+<td class="enum_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><a name="LT-ERR-INVALID:CAPS"></a><span class="term"><code class="literal">LT_ERR_INVALID</code></span></p></td>
-<td>Invalid operation.
+<td class="enum_member_name"><p><a name="LT-ERR-INVALID:CAPS"></a>LT_ERR_INVALID</p></td>
+<td class="enum_member_description">
+<p>Invalid operation.</p>
 </td>
+<td class="enum_member_annotations"> </td>
 </tr>
 <tr>
-<td><p><a name="LT-ERR-ANY:CAPS"></a><span class="term"><code class="literal">LT_ERR_ANY</code></span></p></td>
-<td>No real error, but just a flag to query all of errors or ask
-             if any errors happen
+<td class="enum_member_name"><p><a name="LT-ERR-ANY:CAPS"></a>LT_ERR_ANY</p></td>
+<td class="enum_member_description">
+<p>No real error, but just a flag to query all of errors or ask
+             if any errors happen</p>
 </td>
+<td class="enum_member_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
-<hr>
-<div class="refsect2">
-<a name="lt-error-new"></a><h3>lt_error_new ()</h3>
-<pre class="programlisting"><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *        lt_error_new                        (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
-<p>
-Creates <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> object. this function is protected and not supposed
-to use in applications directly. Use <a class="link" href="liblangtag-Error.html#lt-error-set" title="lt_error_set ()"><code class="function">lt_error_set()</code></a>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody><tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>a newly allocated <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a>. it has to be freed
-with <a class="link" href="liblangtag-Error.html#lt-error-unref" title="lt_error_unref ()"><code class="function">lt_error_unref()</code></a>. <span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span>
-</td>
-</tr></tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="lt-error-ref"></a><h3>lt_error_ref ()</h3>
-<pre class="programlisting"><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *        lt_error_ref                        (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>);</pre>
-<p>
-Inscreases the reference count of <em class="parameter"><code>error</code></em>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the same <em class="parameter"><code>error</code></em> object. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="lt-error-unref"></a><h3>lt_error_unref ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                lt_error_unref                      (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>);</pre>
-<p>
-Decreases the reference count of <em class="parameter"><code>error</code></em>. when its reference count
-drops to 0, the object is finalized (i.e. its memory is freed).
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a>
-</td>
-</tr></tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="lt-error-set"></a><h3>lt_error_set ()</h3>
-<pre class="programlisting"><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="returnvalue">lt_error_t</span></a> *        lt_error_set                        (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> **error</code></em>,
-                                                         <em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a> type</code></em>,
-                                                         <em class="parameter"><code>const <span class="type">char</span> *message</code></em>);</pre>
-<p>
-Sets the error into <em class="parameter"><code>error</code></em> according to the given parameters.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>a return location for a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>message</code></em> :</span></p></td>
-<td>the string format to output the error messages</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>an instance of <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="lt-error-clear"></a><h3>lt_error_clear ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                lt_error_clear                      (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>);</pre>
-<p>
-Clean up all of the errors in <em class="parameter"><code>error</code></em>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a>
-</td>
-</tr></tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="lt-error-is-set"></a><h3>lt_error_is_set ()</h3>
-<pre class="programlisting"><a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>           lt_error_is_set                     (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>,
-                                                         <em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a> type</code></em>);</pre>
-<p>
-Checks if <em class="parameter"><code>error</code></em> contains <em class="parameter"><code>type</code></em> of errors. if <a class="link" href="liblangtag-Error.html#LT-ERR-ANY:CAPS"><span class="type">LT_ERR_ANY</span></a> is set to <em class="parameter"><code>type</code></em>,
-all the types of the errors are targeted. otherwise the result is filtered
-out by <em class="parameter"><code>type</code></em>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>
-<a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if any, otherwise <a href="http://library.gnome.org/devel/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a>
-</td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="lt-error-print"></a><h3>lt_error_print ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                lt_error_print                      (<em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> *error</code></em>,
-                                                         <em class="parameter"><code><a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a> type</code></em>);</pre>
-<p>
-Output the error messages in <em class="parameter"><code>error</code></em> according to <em class="parameter"><code>type</code></em>.
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>error</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>type</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Error.html#lt-error-type-t" title="enum lt_error_type_t"><span class="type">lt_error_type_t</span></a>
-</td>
-</tr>
-</tbody>
-</table></div>
 </div>
 <hr>
 <div class="refsect2">
 <a name="lt-error-t"></a><h3>lt_error_t</h3>
 <pre class="programlisting">typedef struct _lt_error_t lt_error_t;</pre>
-<p>
-All the fields in the <span class="structname">lt_error_t</span>
-structure are private to the <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> implementation.
-</p>
+<p>All the fields in the <span class="structname">lt_error_t</span>
+structure are private to the <a class="link" href="liblangtag-Error.html#lt-error-t" title="lt_error_t"><span class="type">lt_error_t</span></a> implementation.</p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>
-          Generated by GTK-Doc V1.19</div>
+<hr>Generated by GTK-Doc V1.25</div>
 </body>
 </html>

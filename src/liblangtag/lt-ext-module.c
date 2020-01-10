@@ -24,6 +24,7 @@
 #if HAVE_LIBGEN_H
 #include <libgen.h>
 #endif
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,6 +33,7 @@
 #include "lt-ext-module-data.h"
 #include "lt-ext-module.h"
 #include "lt-ext-module-private.h"
+#include "lt-lock.h"
 #include "lt-utils.h"
 
 
@@ -98,6 +100,7 @@ static const lt_ext_module_funcs_t __empty_and_wildcard_funcs = {
 	_lt_ext_eaw_get_tag,
 	_lt_ext_eaw_validate_tag,
 };
+LT_LOCK_DEFINE_STATIC (extmod);
 
 /*< private >*/
 static void
@@ -220,7 +223,7 @@ lt_ext_module_load(lt_ext_module_t *module)
 
 	if (!env) {
 		path_list = strdup(
-#ifdef GNOME_ENABLE_DEBUG
+#ifdef ENABLE_DEBUG
 			BUILDDIR LT_DIR_SEPARATOR_S "extensions" LT_SEARCHPATH_SEPARATOR_S
 			BUILDDIR LT_DIR_SEPARATOR_S "extensions" LT_DIR_SEPARATOR_S ".libs" LT_SEARCHPATH_SEPARATOR_S
 #endif
@@ -576,7 +579,7 @@ lt_ext_modules_load(void)
 		return;
 	if (!env) {
 		path_list = strdup(
-#ifdef GNOME_ENABLE_DEBUG
+#ifdef ENABLE_DEBUG
 			BUILDDIR LT_DIR_SEPARATOR_S "extensions" LT_SEARCHPATH_SEPARATOR_S
 			BUILDDIR LT_DIR_SEPARATOR_S "extensions" LT_DIR_SEPARATOR_S ".libs" LT_SEARCHPATH_SEPARATOR_S
 #endif
@@ -604,20 +607,29 @@ lt_ext_modules_load(void)
 
 		dir = opendir(path);
 		if (dir) {
-			struct dirent dent, *dresult;
-			size_t len;
+			struct dirent *dent, *p;
 
-			while (1) {
-				if (readdir_r(dir, &dent, &dresult) || dresult == NULL)
-					break;
+			LT_LOCK (extmod);
+			while ((dent = readdir (dir))) {
+				size_t len = strlen (dent->d_name);
+				size_t dentlen = offsetof (struct dirent, d_name) + len + 1;
 
-				len = strlen(dent.d_name);
-				if (len > suffix_len &&
-				    lt_strcmp0(&dent.d_name[len - suffix_len],
-					       "." LT_MODULE_SUFFIX) == 0) {
-					lt_ext_module_new(dent.d_name);
+				dentlen = ((dentlen + ALIGNOF_VOID_P - 1) & ~(ALIGNOF_VOID_P - 1));
+				p = (struct dirent *)malloc(dentlen);
+				if (!p) {
+					perror (__FUNCTION__);
+					LT_UNLOCK (extmod);
+					return;
 				}
+				memcpy(p, dent, dentlen);
+				if (len > suffix_len &&
+				    lt_strcmp0(&(p->d_name[len - suffix_len]),
+					       "." LT_MODULE_SUFFIX) == 0) {
+					lt_ext_module_new(p->d_name);
+				}
+				free(p);
 			}
+			LT_UNLOCK (extmod);
 			closedir(dir);
 		}
 	} while (1);

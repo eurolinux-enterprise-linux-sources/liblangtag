@@ -1,3 +1,84 @@
+0.6.1 -> 0.6.2
+=================
+Akira TAGOH (1):
+      Update libtool version
+
+David Tardon (2):
+      use standard function
+      fix leak in test
+
+0.6.0 -> 0.6.1
+=================
+Akira TAGOH (2):
+      Fix the build issue regarding to 'index' (fixes: issue#15)
+      Get rid of the arch-dependent code from lt-config.h
+
+David Tardon (1):
+      enum must be declared before it's used
+
+0.5.8 -> 0.6.0
+=================
+Akira TAGOH (20):
+      Initialize databases just once.
+      Fix a build fail when --enable-debug
+      Support BCP47-like locale representation
+      Add deprecation macros
+      Use deprecation macros
+      Add a lookup table to catch up a script/language from language/script
+      Update to add more files into .gitignore
+      Fix the behavior on lt_tag_transform() according to tr#35
+      Fix a segfault if no territory or script is given to lt_tag_convert_from_locale_string()
+      Add missing header file
+      Add lt_db_set_val() to change the place of database
+      Fix memory leaks
+      missing gobject function for lt_relation_db thing
+      Support the language alias for the canonicalization
+      Fix lt_trie_keys() not working
+      Fix OOM handling
+      Improve the bootup time
+      Get rid of deprecated macro
+      Add docs
+      Update the library versioning
+
+0.5.7 -> 0.5.8
+=================
+Akira TAGOH (6):
+      Fix the build fail on MSVC 14 (fixes issue#13)
+      Drop the word of GNOME from the ifdef'd variable for debugging
+      Fix the build requirement in pkgconfig file
+      Make some header files public (fixes: issue#14)
+      Fix test fail on SunOS
+      Fix unknown node issue
+
+0.5.6 -> 0.5.7
+=================
+Akira TAGOH (3):
+      add missing sys/types.h in lt-string.h
+      missing docs
+      Update gtk-doc to be modernized
+
+David Tardon (1):
+      avoid accidental (and surprising) memory leaks
+
+0.5.5 -> 0.5.6
+=================
+Akira TAGOH (1):
+      Fix distcheck error
+
+David Tardon (2):
+      install lt-config.h: it's included from langtag.h
+      remove stray LT_END_DECLS
+
+0.5.4 -> 0.5.5
+=================
+Akira TAGOH (6):
+      Fix a memory leak
+      Fix a typo
+      Fix configure error on specifying --disable-modules
+      Fix a build issue with inline keyword
+      Fix warning on bootstrap
+      Update revision
+
 0.5.3 -> 0.5.4
 =================
 Akira TAGOH (5):

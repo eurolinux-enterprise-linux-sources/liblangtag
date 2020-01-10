@@ -1,12 +1,18 @@
 #ifndef __LT_CONFIG_H__
 #define __LT_CONFIG_H__
 
-#include "lt-macros.h"
+#ifdef __cplusplus
+#define LT_HAVE_INLINE	1
+#else /* !__cplusplus */
+#define LT_HAVE_INLINE	1
+#define LT_HAVE__INLINE	1
+#define LT_HAVE__INLINE__	1
+#endif /* !__cplusplus */
 
-LT_BEGIN_DECLS
+#ifdef __cplusplus
+#define LT_CAN_INLINE	1
+#endif
 
-#define LT_POINTER_TO_INT(p)	((int) (long) (p))
-
-LT_END_DECLS
+#include <liblangtag/lt-macros.h>
 
 #endif /* __LT_CONFIG_H__ */

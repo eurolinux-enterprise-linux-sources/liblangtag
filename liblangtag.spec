@@ -1,9 +1,9 @@
 %global girname LangTag
-%global girapiversion 0.5
+%global girapiversion 0.6
 
 Name: liblangtag
-Version: 0.5.4
-Release: 8%{?dist}
+Version: 0.6.2
+Release: 1.1%{?dist}
 Summary: An interface library to access tags for identifying languages
 
 License: (LGPLv3+ or MPLv2.0) and UCD
@@ -77,6 +77,10 @@ sed -i \
     -e 's/lt_pointer_t/LtPointer/' \
     -e 's/lt_grandfathered_t/LtGrandfathered/' \
     -e 's/lt_redundant_t/LtRedundant/' \
+    -e 's/lt_variant_t/LtVariant/' \
+    -e 's/lt_extlang_t/LtExtlang/' \
+    -e 's/lt_script_t/LtScript/' \
+    -e 's/lt_lang_t/LtLang/' \
     liblangtag-gobject/%{girname}-%{girapiversion}.gir
 
 %install
@@ -114,6 +118,12 @@ make %{?_smp_mflags} check
 %{_datadir}/gtk-doc/html/%{name}
 
 %changelog
+* Mon Sep 11 2017 Akira TAGOH <tagoh@redhat.com> - 0.6.2-1.1
+- Resolves: rhbz#1477212 Fix multilib issue.
+
+* Mon Sep 11 2017 Akira TAGOH <tagoh@redhat.com> - 0.6.2-1
+- Resolves: rhbz#1477212 Rebase to 0.6.2.
+
 * Fri Nov 07 2014 David Tardon <dtardon@redhat.com> - 0.5.4-8
 - Related: rhbz#1132077 really resolve multilib conflict in -devel
 

@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /* 
  * lt-trie.c
- * Copyright (C) 2011-2012 Akira TAGOH
+ * Copyright (C) 2011-2016 Akira TAGOH
  * 
  * Authors:
  *   Akira TAGOH  <akira@tagoh.org>
@@ -37,6 +37,7 @@ struct _lt_trie_iter_t {
 	lt_iter_t    parent;
 	lt_list_t   *stack;
 	lt_string_t *pos_str;
+	char        *last_key;
 };
 
 /*< private >*/
@@ -165,19 +166,20 @@ _lt_trie_iter_init(lt_iter_tmpl_t *tmpl)
 	int i;
 
 	trie_iter = malloc(sizeof (lt_trie_iter_t));
-	if (trie_iter) {
-		trie_iter->pos_str = lt_string_new(NULL);
-		trie_iter->stack = NULL;
-		if (trie->root) {
-			lt_trie_node_t *node = trie->root;
+	if (!trie_iter)
+		return NULL;
+	trie_iter->pos_str = lt_string_new(NULL);
+	trie_iter->last_key = NULL;
+	trie_iter->stack = NULL;
+	if (trie->root) {
+		lt_trie_node_t *node = trie->root;
 
-			for (i = 0; i < 255; i++) {
-				if (node->node[i])
-					trie_iter->stack = lt_list_append(trie_iter->stack, node->node[i], NULL);
-			}
-			/* add a terminator */
-			trie_iter->stack = lt_list_append(trie_iter->stack, NULL, NULL);
+		for (i = 0; i < 255; i++) {
+			if (node->node[i])
+				trie_iter->stack = lt_list_append(trie_iter->stack, node->node[i], NULL);
 		}
+		/* add a terminator */
+		trie_iter->stack = lt_list_append(trie_iter->stack, NULL, NULL);
 	}
 
 	return &trie_iter->parent;
@@ -191,6 +193,7 @@ _lt_trie_iter_fini(lt_iter_t *iter)
 	if (trie_iter->stack)
 		lt_list_free(trie_iter->stack);
 	lt_string_unref(trie_iter->pos_str);
+	free(trie_iter->last_key);
 }
 
 static lt_bool_t
@@ -225,7 +228,9 @@ _lt_trie_iter_next(lt_iter_t    *iter,
 		trie_iter->stack = lt_list_first(base);
 		if (node->data) {
 			if (key) {
-				*key = strdup(lt_string_value(trie_iter->pos_str));
+				free(trie_iter->last_key);
+				trie_iter->last_key = strdup(lt_string_value(trie_iter->pos_str));
+				*key = trie_iter->last_key;
 			}
 			if (value)
 				*value = node->data;
@@ -246,10 +251,7 @@ lt_trie_new(void)
 	lt_trie_t *retval = lt_mem_alloc_object(sizeof (lt_trie_t));
 
 	if (retval) {
-		lt_iter_tmpl_init(&retval->parent);
-		retval->parent.init = _lt_trie_iter_init;
-		retval->parent.fini = _lt_trie_iter_fini;
-		retval->parent.next = _lt_trie_iter_next;
+		LT_ITER_TMPL_INIT(&retval->parent, _lt_trie);
 	}
 
 	return retval;
@@ -347,13 +349,13 @@ lt_trie_keys(lt_trie_t *trie)
 
 	lt_return_val_if_fail (trie != NULL, NULL);
 
-	if (trie->root)
+	if (!trie->root)
 		return NULL;
 
 	iter = (lt_trie_iter_t *)lt_iter_init(&trie->parent);
 
-	while (lt_iter_next((lt_iter_t *)&iter, &key, NULL)) {
-		retval = lt_list_append(retval, key, free);
+	while (lt_iter_next((lt_iter_t *)iter, &key, NULL)) {
+		retval = lt_list_append(retval, strdup(key), free);
 	}
 
 	lt_iter_finish((lt_iter_t *)iter);

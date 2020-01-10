@@ -5,6 +5,6 @@ includedir=${prefix}/include
 
 Name: liblangtag-gobject
 Description: GObject based interface to access tags for identifying languages
-Version: 0.5.4
+Version: 0.6.2
 Requires: gobject-2.0 liblangtag
 Libs: -L${libdir} -llangtag-gobject

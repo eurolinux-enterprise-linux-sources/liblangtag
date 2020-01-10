@@ -27,6 +27,7 @@
       <xi:include href="xml/lt-lang-db.xml"/>
       <xi:include href="xml/lt-redundant-db.xml"/>
       <xi:include href="xml/lt-region-db.xml"/>
+      <xi:include href="xml/lt-relation-db.xml"/>
       <xi:include href="xml/lt-script-db.xml"/>
       <xi:include href="xml/lt-variant-db.xml"/>
     </section>
@@ -51,9 +52,9 @@
       <title>Utilities APIs</title>
       <xi:include href="xml/lt-macros.xml"/>
       <xi:include href="xml/lt-error.xml"/>
-      <xi:include href="xml/lt-iter.xml"/>
       <xi:include href="xml/lt-list.xml"/>
       <xi:include href="xml/lt-string.xml"/>
+      <xi:include href="xml/lt-iter.xml"/>
     </section>
 
   </chapter>

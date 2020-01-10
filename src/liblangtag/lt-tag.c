@@ -1,7 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /* 
  * lt-tag.c
- * Copyright (C) 2011-2012 Akira TAGOH
+ * Copyright (C) 2011-2015 Akira TAGOH
  * 
  * Authors:
  *   Akira TAGOH  <akira@tagoh.org>
@@ -53,6 +53,7 @@ struct _lt_tag_t {
 	lt_mem_t            parent;
 	int32_t             wildcard_map;
 	lt_tag_state_t      state;
+	int                 tag_string_filter;
 	lt_string_t        *tag_string;
 	lt_lang_t          *language;
 	lt_extlang_t       *extlang;
@@ -197,7 +198,7 @@ static int
 _lt_tag_variant_compare(const lt_pointer_t a,
 			const lt_pointer_t b)
 {
-	return LT_POINTER_TO_INT (a) - LT_POINTER_TO_INT (b);
+	return a != b;
 }
 
 #define DEFUNC_TAG_FREE(__func__)					\
@@ -1122,20 +1123,20 @@ static lt_tag_t *
 _lt_tag_convert_from_locale_string(const char  *locale,
 				   lt_error_t **error)
 {
-	char *s, *territory, *codeset, *modifier;
+	char *s, *territory, *codeset, *modifier, *script = NULL, *p;
 	lt_tag_t *tag;
 	lt_error_t *err = NULL;
 
 	s = strdup(locale);
 	tag = lt_tag_new();
 	if (!s || s[0] == 0 ||
-	    lt_strcmp0(s, "C") == 0 ||
-	    lt_strcmp0(s, "POSIX") == 0) {
+	    lt_strcasecmp(s, "C") == 0 ||
+	    lt_strcasecmp(s, "POSIX") == 0) {
 		if (!lt_tag_parse(tag, "en-US-u-va-posix", &err))
 			goto bail;
 	} else {
 		lt_string_t *tag_string;
-		const char *script = NULL, *variant = NULL, *privateuse = NULL;
+		const char *sscript = NULL, *variant = NULL, *privateuse = NULL;
 		char *transform;
 
 		modifier = strchr(s, '@');
@@ -1148,10 +1149,22 @@ _lt_tag_convert_from_locale_string(const char  *locale,
 			*codeset = 0;
 			codeset++;
 		}
-		territory = strchr(s, '_');
-		if (territory) {
-			*territory = 0;
-			territory++;
+		p = strchr(s, '_');
+		if (p) {
+			*p = 0;
+			p++;
+
+			/* For platforms where represent locale as BCP47 */
+			territory = strchr(p, '_');
+			if (territory) {
+				*territory = 0;
+				territory++;
+				script = p;
+			} else {
+				territory = p;
+			}
+		} else {
+			territory = p;
 		}
 		if (codeset &&
 		    (lt_strcasecmp(codeset, "utf-8") == 0 ||
@@ -1161,6 +1174,7 @@ _lt_tag_convert_from_locale_string(const char  *locale,
 		/* check if the language is a locale alias */
 		if (strlen(s) > 3 &&
 		    !territory &&
+		    !script &&
 		    !codeset &&
 		    !modifier) {
 			const char *loc = lt_tag_get_locale_from_locale_alias(s);
@@ -1172,12 +1186,14 @@ _lt_tag_convert_from_locale_string(const char  *locale,
 				goto bail;
 			}
 		}
-		if (!_lt_tag_convert_script_from_locale_modifier(modifier, &script))
+		if (!_lt_tag_convert_script_from_locale_modifier(modifier, &sscript))
 			if (!_lt_tag_convert_variant_from_locale_modifier(modifier, &variant))
 				privateuse = _lt_tag_convert_privaseuse_from_locale_modifier(modifier);
 
 		tag_string = lt_string_new(s);
-		if (script)
+		if (sscript)
+			lt_string_append_printf(tag_string, "-%s", sscript);
+		else if (script)
 			lt_string_append_printf(tag_string, "-%s", script);
 		if (territory)
 			lt_string_append_printf(tag_string, "-%s", territory);
@@ -1226,6 +1242,147 @@ _lt_tag_convert_from_locale_string(const char  *locale,
 	return tag;
 }
 
+static lt_tag_t *
+_lt_tag_canonicalize_alias(lt_tag_t    *tag,
+			   lt_error_t **error)
+{
+	lt_xml_t *xml;
+	lt_string_t *s = NULL;
+	lt_tag_t *retval = NULL;
+	lt_script_t *script;
+	lt_region_t *region;
+	lt_list_t *l, *ll;
+	lt_extension_t *extension;
+	lt_error_t *err = NULL;
+	xmlDocPtr doc;
+	xmlXPathContextPtr xctxt = NULL;
+	xmlXPathObjectPtr xobj = NULL;
+	xmlNodePtr ent;
+	char *q;
+	const char *tag_string;
+	int n, i, retry, filter;
+	xmlChar *rep;
+	size_t len;
+
+	xml = lt_xml_new();
+	doc = lt_xml_get_cldr(xml, LT_XML_CLDR_SUPPLEMENTAL_SUPPLEMENTAL_METADATA);
+	xctxt = xmlXPathNewContext(doc);
+	if (!xctxt) {
+		lt_error_set(&err, LT_ERR_OOM,
+			     "Unable to create an instance of xmlXPathContextPtr.");
+		goto bail;
+	}
+	for (retry = 4, n = 0; retry > 0; retry--) {
+		switch (retry) {
+		    case 1:
+			    filter = LT_TAG_FILTER_LANGUAGE|LT_TAG_FILTER_GRANDFATHERED;
+			    break;
+		    case 2:
+			    filter = LT_TAG_FILTER_LANGUAGE|LT_TAG_FILTER_SCRIPT|LT_TAG_FILTER_GRANDFATHERED;
+			    break;
+		    case 3:
+			    filter = LT_TAG_FILTER_LANGUAGE|LT_TAG_FILTER_REGION|LT_TAG_FILTER_GRANDFATHERED;
+			    break;
+		    default:
+			    filter = LT_TAG_FILTER_LANGUAGE|LT_TAG_FILTER_SCRIPT|LT_TAG_FILTER_REGION|LT_TAG_FILTER_GRANDFATHERED;
+			    break;
+		}
+		tag_string = lt_tag_get_string_with_filter(tag, filter);
+		lt_debug(LT_MSGCAT_TAG, "alias lookup: %s", tag_string);
+		/* explicitly exclude 'macrolanguage' alias so that we deal with it in the canonicalization for extlang form */
+		q = lt_strdup_printf("/supplementalData/metadata/alias/languageAlias[translate(@type,'_','-') = '%s' and @reason != 'macrolanguage']",
+				     tag_string);
+		xobj = xmlXPathEvalExpression((const xmlChar *)q, xctxt);
+		free(q);
+		if (!xobj) {
+			lt_error_set(&err, LT_ERR_FAIL_ON_XML,
+				     "No valid elements for %s",
+				     doc->name);
+			goto bail;
+		}
+		n = xmlXPathNodeSetGetLength(xobj->nodesetval);
+		if (n != 0)
+			break;
+		xmlXPathFreeObject(xobj);
+		xobj = NULL;
+	}
+	if (n == 0)
+		goto bail;
+	if (n > 1)
+		lt_warning("Multiple subtag data to be canonicalized against alias metadata: %s: %d",
+			   tag_string, n);
+	ent = xmlXPathNodeSetItem(xobj->nodesetval, 0);
+	if (!ent) {
+		lt_error_set(&err, LT_ERR_FAIL_ON_XML,
+			     "Unable to obtain the xml node via XPath.");
+		goto bail;
+	}
+	rep = xmlGetProp(ent, (const xmlChar *)"replacement");
+	s = lt_string_new((const char *)rep);
+	xmlFree(rep);
+	lt_debug(LT_MSGCAT_TAG, "alias replacement: %s", lt_string_value(s));
+	len = lt_string_length(s);
+	for (i = 0; i < len; i++) {
+		if (lt_string_at(s, i) == '_')
+			lt_string_replace_c(s, i, '-');
+	}
+	retval = lt_tag_new();
+	if (!lt_tag_parse(retval, lt_string_value(s), &err)) {
+		lt_tag_unref(retval);
+		retval = NULL;
+		goto bail;
+	}
+
+	switch (retry) {
+	    case 1:
+	    case 3:
+		    script = (lt_script_t *)lt_tag_get_script(tag);
+		    if (script)
+			    lt_tag_set_script(retval, lt_script_ref(script));
+		    if (retry == 3)
+			    goto copies_variants;
+	    case 2:
+		    region = (lt_region_t *)lt_tag_get_region(tag);
+		    if (region)
+			    lt_tag_set_region(retval, lt_region_ref(region));
+	    default:
+	    copies_variants:
+		    l = (lt_list_t *)lt_tag_get_variants(tag);
+		    for (ll = l; ll; ll = lt_list_next(ll)) {
+			    lt_tag_set_variant(retval, lt_variant_ref(lt_list_value(ll)));
+		    }
+		    break;
+	}
+	extension = (lt_extension_t *)lt_tag_get_extension(tag);
+	if (extension)
+		lt_tag_set_extension(retval, lt_extension_ref(extension));
+	if (tag->privateuse && lt_string_length(tag->privateuse) > 0)
+		lt_string_append(retval->privateuse, lt_string_value(tag->privateuse));
+	if (lt_tag_compare(tag, retval)) {
+		lt_tag_unref(retval);
+		retval = NULL;
+	}
+
+  bail:
+	if (s)
+		lt_string_unref(s);
+	if (xobj)
+		xmlXPathFreeObject(xobj);
+	if (xctxt)
+		xmlXPathFreeContext(xctxt);
+	if (xml)
+		lt_xml_unref(xml);
+	if (lt_error_is_set(err, LT_ERR_ANY)) {
+		if (error)
+			*error = lt_error_ref(err);
+		else
+			lt_error_print(err, LT_ERR_ANY);
+		lt_error_unref(err);
+	}
+
+	return retval;
+}
+
 static char *
 _lt_tag_canonicalize(lt_tag_t    *tag,
 		     lt_bool_t    extlang_form,
@@ -1237,10 +1394,13 @@ _lt_tag_canonicalize(lt_tag_t    *tag,
 	lt_list_t *l;
 	lt_redundant_db_t *rdb = NULL;
 	lt_redundant_t *r = NULL;
-	lt_tag_t *ctag = NULL;
+	lt_tag_t *ctag = NULL, *alias;
 
 	lt_return_val_if_fail (tag != NULL, NULL);
 
+	alias = _lt_tag_canonicalize_alias(tag, &err);
+	if (alias)
+		tag = alias;
 	string = lt_string_new(NULL);
 	if (tag->grandfathered) {
 		lt_string_append(string, lt_grandfathered_get_better_tag(tag->grandfathered));
@@ -1302,8 +1462,8 @@ _lt_tag_canonicalize(lt_tag_t    *tag,
 					lt_string_append_printf(string, "%s-", prefix);
 				lt_extlang_unref(e);
 			}
-			lt_extlang_db_unref(edb);
 		}
+		lt_extlang_db_unref(edb);
 
 		lt_string_append(string, lt_lang_get_better_tag(tag->language));
 		if (tag->extlang) {
@@ -1357,6 +1517,8 @@ _lt_tag_canonicalize(lt_tag_t    *tag,
 			     "No tag to convert.");
 	}
   bail1:
+	if (alias)
+		lt_tag_unref(alias);
 	if (ctag)
 		lt_tag_unref(ctag);
 	if (rdb)
@@ -1420,6 +1582,7 @@ lt_tag_new(void)
 
 	if (retval) {
 		retval->state = STATE_NONE;
+		retval->tag_string_filter = LT_TAG_FILTER_NONE;
 		retval->privateuse = lt_string_new(NULL);
 		lt_mem_add_ref(&retval->parent, retval->privateuse,
 			       (lt_destroy_func_t)lt_string_unref);
@@ -1557,11 +1720,8 @@ lt_tag_copy(const lt_tag_t *tag)
 	if (tag->variants) {
 		lt_list_t *l;
 
-		for (l = tag->variants; l != NULL; l = lt_list_next(l)) {
-			retval->variants = lt_list_append(retval->variants,
-							  lt_variant_ref(lt_list_value(l)),
-							  (lt_destroy_func_t)lt_variant_unref);
-		}
+		for (l = tag->variants; l != NULL; l = lt_list_next(l))
+			lt_tag_set_variant(retval, lt_variant_ref(lt_list_value(l)));
 	}
 	if (tag->extension) {
 		lt_tag_set_extension(retval, lt_extension_copy(tag->extension));
@@ -1672,6 +1832,65 @@ lt_tag_truncate(lt_tag_t    *tag,
 }
 
 /**
+ * lt_tag_get_string_with_filter:
+ * @tag: a #lt_tag_t.
+ * @filter: a binary count sequence of #lt_tag_filter_t.
+ *
+ * Obtains a language tag in string against @filter.
+ *
+ * Returns: a language tag string.
+ */
+const char *
+lt_tag_get_string_with_filter(lt_tag_t *tag,
+			      int       filter)
+{
+	lt_list_t *l;
+
+	if (tag->tag_string_filter != filter)
+		lt_tag_free_tag_string(tag);
+	else if (tag->tag_string)
+		return lt_string_value(tag->tag_string);
+
+	tag->tag_string_filter = filter;
+	if (tag->grandfathered) {
+		if ((filter & LT_TAG_FILTER_GRANDFATHERED))
+			lt_tag_add_tag_string(tag, lt_grandfathered_get_tag(tag->grandfathered));
+	} else if (tag->language) {
+		if ((filter & LT_TAG_FILTER_LANGUAGE))
+			lt_tag_add_tag_string(tag, lt_lang_get_tag(tag->language));
+		if (tag->extlang)
+			if ((filter & LT_TAG_FILTER_EXTLANG))
+				lt_tag_add_tag_string(tag, lt_extlang_get_tag(tag->extlang));
+		if (tag->script)
+			if ((filter & LT_TAG_FILTER_SCRIPT))
+				lt_tag_add_tag_string(tag, lt_script_get_tag(tag->script));
+		if (tag->region)
+			if ((filter & LT_TAG_FILTER_REGION))
+				lt_tag_add_tag_string(tag, lt_region_get_tag(tag->region));
+		if ((filter & LT_TAG_FILTER_VARIANT)) {
+			l = tag->variants;
+			while (l != NULL) {
+				lt_tag_add_tag_string(tag, lt_variant_get_tag(lt_list_value(l)));
+				l = lt_list_next(l);
+			}
+		}
+		if (tag->extension)
+			if ((filter & LT_TAG_FILTER_EXTENSION))
+				lt_tag_add_tag_string(tag, lt_extension_get_tag(tag->extension));
+		if (tag->privateuse && lt_string_length(tag->privateuse) > 0)
+			if ((filter & LT_TAG_FILTER_PRIVATEUSE))
+				lt_tag_add_tag_string(tag, lt_string_value(tag->privateuse));
+	} else if (tag->privateuse && lt_string_length(tag->privateuse) > 0) {
+		if ((filter & LT_TAG_FILTER_PRIVATEUSE))
+			lt_tag_add_tag_string(tag, lt_string_value(tag->privateuse));
+	} else {
+		return NULL;
+	}
+
+	return lt_string_value(tag->tag_string);
+}
+
+/**
  * lt_tag_get_string:
  * @tag: a #lt_tag_t.
  *
@@ -1682,37 +1901,7 @@ lt_tag_truncate(lt_tag_t    *tag,
 const char *
 lt_tag_get_string(lt_tag_t *tag)
 {
-	lt_list_t *l;
-
-	if (tag->tag_string)
-		return lt_string_value(tag->tag_string);
-
-	if (tag->grandfathered)
-		lt_tag_add_tag_string(tag, lt_grandfathered_get_tag(tag->grandfathered));
-	else if (tag->language) {
-		lt_tag_add_tag_string(tag, lt_lang_get_tag(tag->language));
-		if (tag->extlang)
-			lt_tag_add_tag_string(tag, lt_extlang_get_tag(tag->extlang));
-		if (tag->script)
-			lt_tag_add_tag_string(tag, lt_script_get_tag(tag->script));
-		if (tag->region)
-			lt_tag_add_tag_string(tag, lt_region_get_tag(tag->region));
-		l = tag->variants;
-		while (l != NULL) {
-			lt_tag_add_tag_string(tag, lt_variant_get_tag(lt_list_value(l)));
-			l = lt_list_next(l);
-		}
-		if (tag->extension)
-			lt_tag_add_tag_string(tag, lt_extension_get_tag(tag->extension));
-		if (tag->privateuse && lt_string_length(tag->privateuse) > 0)
-			lt_tag_add_tag_string(tag, lt_string_value(tag->privateuse));
-	} else if (tag->privateuse && lt_string_length(tag->privateuse) > 0) {
-		lt_tag_add_tag_string(tag, lt_string_value(tag->privateuse));
-	} else {
-		return NULL;
-	}
-
-	return lt_string_value(tag->tag_string);
+	return lt_tag_get_string_with_filter(tag, LT_TAG_FILTER_ALL);
 }
 
 /**
@@ -2094,6 +2283,10 @@ lt_tag_transform(lt_tag_t    *tag,
 	char *retval = NULL, *s;
 	lt_error_t *err = NULL;
 	lt_tag_t *canoned_tag = NULL;
+	lt_list_t *lv = NULL;
+	const lt_list_t *l;
+	lt_extension_t *ext = NULL;
+	lt_string_t *priv = NULL;
 
 	lt_return_val_if_fail (tag != NULL, NULL);
 
@@ -2118,6 +2311,14 @@ lt_tag_transform(lt_tag_t    *tag,
 	} else {
 		goto bail1;
 	}
+	l = lt_tag_get_variants(canoned_tag);
+	for ( ; l; l = lt_list_next(l)) {
+		lv = lt_list_append(lv, lt_variant_ref(lt_list_value(l)), (lt_destroy_func_t)lt_variant_unref);
+	}
+	ext = (lt_extension_t *)lt_tag_get_extension(canoned_tag);
+	if (ext)
+		lt_extension_ref(ext);
+	priv = lt_string_new(lt_string_value(canoned_tag->privateuse));
 	/* clean up for lookup */
 	lt_tag_free_variants(canoned_tag);
 	lt_tag_free_extension(canoned_tag);
@@ -2134,6 +2335,11 @@ lt_tag_transform(lt_tag_t    *tag,
 		xmlNodePtr ent;
 		int retry;
 		lt_tag_t *wt;
+		lt_lang_t *und;
+		lt_lang_db_t *langdb = lt_db_get_lang();
+
+		und = lt_lang_db_lookup(langdb, "und");
+		lt_lang_db_unref(langdb);
 
 		xml = lt_xml_new();
 		doc = lt_xml_get_cldr(xml, LT_XML_CLDR_SUPPLEMENTAL_LIKELY_SUBTAGS);
@@ -2144,7 +2350,7 @@ lt_tag_transform(lt_tag_t    *tag,
 			goto bail2;
 		}
 
-		for (retry = 4; retry > 0; retry--) {
+		for (retry = 5; retry > 0; retry--) {
 			xmlChar *to;
 			char *xpath_string = NULL;
 			int n;
@@ -2155,14 +2361,19 @@ lt_tag_transform(lt_tag_t    *tag,
 			wt = lt_tag_copy(canoned_tag);
 			switch (retry) {
 			    case 1:
-				    lt_tag_free_script(wt);
+				    lt_tag_free_language(wt);
 				    lt_tag_free_region(wt);
+				    lt_tag_set_language(wt, lt_lang_ref(und));
 				    break;
 			    case 2:
 				    lt_tag_free_script(wt);
+				    lt_tag_free_region(wt);
 				    break;
 			    case 3:
 				    lt_tag_free_region(wt);
+				    break;
+			    case 4:
+				    lt_tag_free_script(wt);
 				    break;
 			    default:
 				    break;
@@ -2216,15 +2427,22 @@ lt_tag_transform(lt_tag_t    *tag,
 
 					switch (retry) {
 					    case 1:
+						    r = (lt_region_t *)lt_tag_get_region(canoned_tag);
+						    if (r)
+							    lt_tag_set_region(wt, lt_region_ref(r));
+						    goto copies_variants;
 					    case 2:
+					    case 4:
 						    sc = (lt_script_t *)lt_tag_get_script(canoned_tag);
-						    lt_tag_set_script(wt, lt_script_ref(sc));
-						    if (retry == 2)
+						    if (sc)
+							    lt_tag_set_script(wt, lt_script_ref(sc));
+						    if (retry == 4)
 							    goto copies_variants;
 					    case 3:
 						    r = (lt_region_t *)lt_tag_get_region(canoned_tag);
-						    lt_tag_set_region(wt, lt_region_ref(r));
-					    case 4:
+						    if (r)
+							    lt_tag_set_region(wt, lt_region_ref(r));
+					    case 5:
 					    copies_variants:
 						    l = lt_tag_get_variants(canoned_tag);
 						    for (ll = l; ll != NULL; ll = lt_list_next(ll)) {
@@ -2234,6 +2452,13 @@ lt_tag_transform(lt_tag_t    *tag,
 						    }
 						    break;
 					}
+					for (l = lv; l; l = lt_list_next(l)) {
+						lt_tag_set_variant(wt, lt_variant_ref(lt_list_value(l)));
+					}
+					if (ext)
+						lt_tag_set_extension(wt, lt_extension_ref(ext));
+					if (priv)
+						lt_string_append(wt->privateuse, lt_string_value(priv));
 					lt_tag_free_tag_string(wt);
 					retval = strdup(lt_tag_get_string(wt));
 				} else {
@@ -2248,9 +2473,16 @@ lt_tag_transform(lt_tag_t    *tag,
 	  bail2:
 		if (xctxt)
 			xmlXPathFreeContext(xctxt);
+		lt_lang_unref(und);
 		lt_xml_unref(xml);
 	} LT_STMT_END;
   bail1:
+	if (priv)
+		lt_string_unref(priv);
+	if (ext)
+		lt_extension_unref(ext);
+	if (lv)
+		lt_list_free(lv);
 	if (canoned_tag)
 		lt_tag_unref(canoned_tag);
 
@@ -2259,6 +2491,8 @@ lt_tag_transform(lt_tag_t    *tag,
 			*error = lt_error_ref(err);
 		else
 			lt_error_print(err, LT_ERR_ANY);
+		lt_error_unref(err);
+	} else if (err) {
 		lt_error_unref(err);
 	}
 

@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.62)
-AC_INIT([liblangtag], 0.5.4, [http://github.com/tagoh/liblangtag/issues])
+AC_INIT([liblangtag], 0.6.2, [http://github.com/tagoh/liblangtag/issues])
 
 . `dirname $0`/requires
 
@@ -12,19 +12,20 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 m4_pattern_allow(^LT_.*_DECLS$)
 m4_pattern_allow(^LT_POINTER_.*$)
+m4_pattern_allow(^LT_HAVE_.*$)
 
 AM_MAINTAINER_MODE
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4macros])
+
+AX_CHECK_ENABLE_DEBUG([no], [ENABLE_DEBUG])
+AM_CONDITIONAL(ENABLE_DEBUG, test $ax_enable_debug = yes)
 
 AC_USE_SYSTEM_EXTENSIONS
 AC_PROG_CC
 AM_PROG_AR
 
 GNOME_COMPILE_WARNINGS
-
-GNOME_COMMON_INIT
-GNOME_DEBUG_CHECK
 GNOME_MAINTAINER_MODE_DEFINES
 
 LT_PREREQ([2.2])
@@ -51,9 +52,9 @@ dnl    then set CURRENT to the so number +1 and set AGE to 0.
 dnl
 
 dnl for liblangtag.la
-LT_CURRENT=4
-LT_REVISION=0
-LT_AGE=3
+LT_CURRENT=5
+LT_REVISION=1
+LT_AGE=4
 
 AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)
@@ -203,6 +204,14 @@ AC_TYPE_SSIZE_T
 dnl ---alignment---
 AC_CHECK_ALIGNOF(void *)
 
+dnl ---check build env---
+if test -f $srcdir/data/common/bcp47/variant.xml; then
+	TEST_DATADIR="\\\"\$(abs_top_srcdir)/data/\\\""
+else
+	TEST_DATADIR="\\\"\$(abs_top_builddir)/data/\\\""
+fi
+AC_SUBST(TEST_DATADIR)
+
 dnl ======================================================================
 dnl functions testing
 dnl ======================================================================
@@ -211,10 +220,12 @@ AC_CHECK_HEADERS([dirent.h execinfo.h libgen.h sys/param.h])
 AC_CHECK_FUNCS([backtrace getegid geteuid getgid getuid __secure_getenv secure_getenv strndup vasprintf vsnprintf])
 AC_CHECK_VA_COPY
 
-if test "x$ac_cv_func_vsnprintf" = xyes; then
-	AC_CACHE_CHECK([Whether vsnprintf is C99-compliant], [lt_cv_c99_vsnprintf],
-		[AC_RUN_IFELSE([AC_LANG_SOURCE([[
+AC_CACHE_CHECK([Whether vsnprintf is C99-compliant], [lt_cv_c99_vsnprintf],
+	[AC_RUN_IFELSE([AC_LANG_SOURCE([[
+#include <sys/types.h>
+#include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 int
 foo(char *format, ...)
 {
@@ -237,10 +248,9 @@ main(void)
 
 	return foo("foo: %s", "bar");
 }]])],
-		[lt_cv_c99_vsnprintf=yes],[lt_cv_c99_vsnprintf=no],[lt_cv_c99_vsnprintf=no])])
-	if test "x$lt_cv_c99_vsnprintf" = xyes; then
-		AC_DEFINE(LT_HAVE_C99_VSNPRINTF, 1, [Have C99-compliant vsnprintf])
-	fi
+	[lt_cv_c99_vsnprintf=yes],[lt_cv_c99_vsnprintf=no],[lt_cv_c99_vsnprintf=no])])
+if test "x$lt_cv_c99_vsnprintf" = xyes; then
+	AC_DEFINE(LT_HAVE_C99_VSNPRINTF, 1, [Have C99-compliant vsnprintf])
 fi
 
 dnl ======================================================================
@@ -334,7 +344,7 @@ if test "x$enable_modules" != "xno"; then
 	AC_DEFINE_UNQUOTED(ENABLE_MODULE, $use_modules, [Use modules])
 	AC_DEFINE_UNQUOTED(LT_MODULE_SUFFIX, "$lt_module_suffix", [Shared library suffix])
 fi
-AM_CONDITIONAL(ENABLE_MODULE, test $use_modules = 1)
+AM_CONDITIONAL(ENABLE_MODULE, test x$use_modules = x1)
 
 dnl ======================================================================
 dnl options - rebuild-data
@@ -373,7 +383,11 @@ if test "x$enable_introspection" != "xyes"; then
 	has_gobject=no
 fi
 AM_CONDITIONAL(ENABLE_GOBJECT, test x$has_gobject != xno)
-GTK_DOC_CHECK(1.0)
+m4_ifdef([GTK_DOC_CHECK], [
+GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
+],[
+AM_CONDITIONAL([ENABLE_GTK_DOC], false)
+])
 
 dnl ======================================================================
 dnl output
@@ -382,30 +396,34 @@ CFLAGS="$CFLAGS $WARN_CFLAGS"
 
 AC_CONFIG_COMMANDS([liblangtag/lt-config.h],[
 	outfile=liblangtag/lt-config.h-tmp
-	cat > $outfile <<\____EOS
+	cat > $outfile <<____EOS
 #ifndef __LT_CONFIG_H__
 #define __LT_CONFIG_H__
 
-#include "lt-macros.h"
+#ifdef __cplusplus
+#define LT_HAVE_INLINE	1
+#else /* !__cplusplus */
+$lt_inline
+#endif /* !__cplusplus */
+
+#ifdef __cplusplus
+#define LT_CAN_INLINE	1
 ____EOS
 
-	cat >> $outfile <<____EOS
-
-LT_BEGIN_DECLS
+	if test x$lt_can_inline = xyes; then
+		cat >>$outfile <<____EOS
+#else /* !__cplusplus */
+#define LT_CAN_INLINE	1
 ____EOS
-
-	if test -z "$unknown_sizeof_void_p"; then
-	cat >> $outfile<<____EOS
-
-#define LT_POINTER_TO_INT(p)	((int) ${ptoi_cast} (p))
-____EOS
-	else
-		echo "#error SIZEOF_VOID_P unknown"
 	fi
 
-	cat >> $outfile<<____EOS
+	cat >>$outfile <<____EOS
+#endif
 
-LT_END_DECLS
+#include <liblangtag/lt-macros.h>
+____EOS
+
+	cat >> $outfile<<____EOS
 
 #endif /* __LT_CONFIG_H__ */
 ____EOS
@@ -417,20 +435,17 @@ ____EOS
 		mv $outfile liblangtag/lt-config.h
 	fi
 ],[
-	case $ac_cv_sizeof_void_p in
-	$ac_cv_sizeof_int)
-		ptoi_cast=''
-		;;
-	$ac_cv_sizeof_long)
-		ptoi_cast='(long)'
-		;;
-	$ac_cv_sizeof_long_long)
-		ptoi_cast='(long long)'
-		;;
-	*)
-		unknown_sizeof_void_p=yes
-		;;
-	esac
+	if test x$lt_cv_hasinline = xyes; then
+	   lt_inline="#define LT_HAVE_INLINE	1"
+	fi
+	if test x$lt_cv_has__inline = xyes; then
+	   lt_inline="\$lt_inline
+#define LT_HAVE__INLINE	1"
+	fi
+	if test x$lt_cv_has__inline__ = xyes; then
+	   lt_inline="\$lt_inline
+#define LT_HAVE__INLINE__	1"
+	fi
 ])
 
 AC_CONFIG_FILES([

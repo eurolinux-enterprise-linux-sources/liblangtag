@@ -42,8 +42,10 @@ bcp47_xml_files =				\
 	common/bcp47/transform_private_use.xml	\
 	common/bcp47/variant.xml		\
 	$(NULL)
-supplemental_xml_files =		\
-	common/supplemental/likelySubtags.xml	\
+supplemental_xml_files =				\
+	common/supplemental/likelySubtags.xml		\
+	common/supplemental/supplementalData.xml	\
+	common/supplemental/supplementalMetadata.xml	\
 	$(NULL)
 stamp_files =		\
 	stamp-core-zip	\
@@ -112,6 +114,7 @@ reg2xml_SOURCES =	\
 	$(NULL)
 reg2xml_CFLAGS =			\
 	$(LIBXML2_CFLAGS)		\
+	-I$(top_srcdir)			\
 	-I$(top_srcdir)/liblangtag	\
 	-D__LANGTAG_COMPILATION		\
 	$(NULL)

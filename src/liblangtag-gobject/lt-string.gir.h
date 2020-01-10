@@ -19,6 +19,7 @@
 #define __LT_STRING_H__
 
 #include <liblangtag-gobject/lt-macros.gir.h>
+#include <sys/types.h>
 
 LT_BEGIN_DECLS
 

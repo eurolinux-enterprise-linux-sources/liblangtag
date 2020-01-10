@@ -29,7 +29,6 @@ struct _lt_localealias_t {
 
 static lt_localealias_t __lt_localealias_tables[] = {
 	{"bokmal", "nb_NO.ISO-8859-1"},
-	{"bokmål", "nb_NO.ISO-8859-1"},
 	{"catalan", "ca_ES.ISO-8859-1"},
 	{"croatian", "hr_HR.ISO-8859-2"},
 	{"czech", "cs_CZ.ISO-8859-2"},
@@ -40,7 +39,6 @@ static lt_localealias_t __lt_localealias_tables[] = {
 	{"eesti", "et_EE.ISO-8859-1"},
 	{"estonian", "et_EE.ISO-8859-1"},
 	{"finnish", "fi_FI.ISO-8859-1"},
-	{"français", "fr_FR.ISO-8859-1"},
 	{"french", "fr_FR.ISO-8859-1"},
 	{"galego", "gl_ES.ISO-8859-1"},
 	{"galician", "gl_ES.ISO-8859-1"},

@@ -11,6 +11,9 @@ AM_CPPFLAGS =					\
 	-D__LANGTAG_COMPILATION			\
 	$(GOBJECT_CFLAGS)			\
 	$(NULL)
+if ENABLE_DEBUG
+CFLAGS += -Wno-error=cpp -Wcpp
+endif
 DEPS =							\
 	$(top_builddir)/liblangtag/liblangtag.la	\
 	$(NULL)
@@ -79,6 +82,7 @@ liblangtag_gobject_built_private_headers =	\
 	lt-redundant.gir.h			\
 	lt-region-db.gir.h			\
 	lt-region.gir.h				\
+	lt-relation-db.gir.h			\
 	lt-script-db.gir.h			\
 	lt-script.gir.h				\
 	lt-string.gir.h				\
@@ -104,6 +108,7 @@ liblangtag_gobject_built_sources =	\
 	lt-redundant.gir.c		\
 	lt-region-db.gir.c		\
 	lt-region.gir.c			\
+	lt-relation-db.gir.c		\
 	lt-script-db.gir.c		\
 	lt-script.gir.c			\
 	lt-string.gir.c			\
@@ -168,27 +173,27 @@ gir.deps: $(srcdir)/gendeps.sh Makefile
 
 -include gir.deps
 
-LangTag-0.5.gir: gir.deps liblangtag-gobject.la Makefile
-LangTag_0_5_gir_INCLUDES =		\
+LangTag-0.6.gir: gir.deps liblangtag-gobject.la Makefile
+LangTag_0_6_gir_INCLUDES =		\
 	GLib-2.0			\
 	GObject-2.0			\
 	$(NULL)
-LangTag_0_5_gir_SCANNERFLAGS =		\
+LangTag_0_6_gir_SCANNERFLAGS =		\
 	--symbol-prefix=lt		\
 	--identifier-prefix=Lt		\
 	-v				\
 	$(NULL)
-LangTag_0_5_gir_CFLAGS =		\
+LangTag_0_6_gir_CFLAGS =		\
 	$(AM_CPPFLAGS)			\
 	$(NULL)
-LangTag_0_5_gir_LIBS =			\
+LangTag_0_6_gir_LIBS =			\
 	liblangtag-gobject.la		\
 	$(NULL)
-LangTag_0_5_gir_FILES =			\
+LangTag_0_6_gir_FILES =			\
 	$(introspection_sources)	\
 	$(NULL)
 
-INTROSPECTION_GIRS += LangTag-0.5.gir
+INTROSPECTION_GIRS += LangTag-0.6.gir
 
 girdir = $(datadir)/gir-1.0
 gir_DATA = $(INTROSPECTION_GIRS)
