@@ -1,0 +1,99 @@
+<!-- ##### SECTION Title ##### -->
+lt-grandfathered
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### FUNCTION lt_grandfathered_compare ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_grandfathered_dump ##### -->
+<para>
+
+</para>
+
+@grandfathered: 
+
+
+<!-- ##### FUNCTION lt_grandfathered_get_better_tag ##### -->
+<para>
+
+</para>
+
+@grandfathered: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_grandfathered_get_name ##### -->
+<para>
+
+</para>
+
+@grandfathered: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_grandfathered_get_preferred_tag ##### -->
+<para>
+
+</para>
+
+@grandfathered: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_grandfathered_get_tag ##### -->
+<para>
+
+</para>
+
+@grandfathered: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_grandfathered_ref ##### -->
+<para>
+
+</para>
+
+@grandfathered: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_grandfathered_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION lt_grandfathered_unref ##### -->
+<para>
+
+</para>
+
+@grandfathered: 
+
+

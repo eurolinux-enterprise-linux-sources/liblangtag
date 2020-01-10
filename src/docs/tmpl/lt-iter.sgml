@@ -1,0 +1,87 @@
+<!-- ##### SECTION Title ##### -->
+lt-iter
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### MACRO LT_ITER_INIT ##### -->
+<para>
+
+</para>
+
+@_obj_: 
+
+
+<!-- ##### FUNCTION lt_iter_finish ##### -->
+<para>
+
+</para>
+
+@iter: 
+
+
+<!-- ##### FUNCTION lt_iter_init ##### -->
+<para>
+
+</para>
+
+@tmpl: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_iter_next ##### -->
+<para>
+
+</para>
+
+@iter: 
+@key: 
+@val: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_iter_ref ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_iter_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT lt_iter_tmpl_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION lt_iter_unref ##### -->
+<para>
+
+</para>
+
+@iter: 
+
+

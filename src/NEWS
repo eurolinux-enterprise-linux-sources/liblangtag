@@ -1,0 +1,60 @@
+0.5.0 -> 0.5.1
+=================
+* Fix ABI breakage.
+
+0.4.0 -> 0.5.0
+=================
+* Enhancements:
+  * Iterator support
+  * Add lt_tag_convert_from_locale_string()
+* Bug Fixes:
+  * Fix wrong traversal on keys
+  * Fix xml parser for tags in range
+  * Improve portability
+  * Fix broken lt_tag_transform()
+  * Fix the build issue when builddir != srcdir
+  * Fix broken lt_tag_convert_from_locale()
+  * Fix memory leaks
+  * Fix linker issue
+  * Use secure_getenv if available
+  * more
+
+0.3 -> 0.4
+=============
+* Dual-licensing with LGPLv3+ and MPLv2.
+* No GLib required to build anymore.
+* SONAME bumped
+* Bug Fixes:
+  * Fix various bashisms.
+  * Fix 'make check' fails without --enable-debug.
+  * Fix the broken output of language-subtag-registry.xml
+  * Fix broken .pc files.
+  * Do not call xmlCleanupParser().
+  * Fix detecting locale.alias
+* Enhancements:
+  * Add --disable-test option to configure
+  * Add --disable-modules option to configure
+  * Update CLDR data.
+  * Support IME/Keyboard/Machine Translation/Private Use transform tags
+
+0.2 -> 0.3
+=============
+* Bug Fix:
+  * Fix a memory leak on copy.
+* Enhancements:
+  * Add a support to generate the language tag from current locale.
+  * Add a likelySubtags transformation support.
+  * Add -t- extension support.
+  * Allow to override the database directory.
+
+0.1 -> 0.2
+=============
+* Bug Fixes:
+  * Fix typos.
+  * Fix the behavior on canonicalizing a tag.
+* Enhancement:
+  * Support the redundant database.
+  * Modularize the Extension database.
+  * Support -u- Extension in LDML (http://unicode.org/reports/tr35/)
+  * Improve the performance.
+

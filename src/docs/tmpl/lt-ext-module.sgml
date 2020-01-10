@@ -1,0 +1,200 @@
+<!-- ##### SECTION Title ##### -->
+lt-ext-module
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### MACRO LT_EXT_MODULE_VERSION ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO LT_MODULE_SYMBOL ##### -->
+<para>
+
+</para>
+
+@__sym__: 
+
+
+<!-- ##### MACRO LT_MODULE_SYMBOL_ ##### -->
+<para>
+
+</para>
+
+@__prefix__: 
+@__sym__: 
+
+
+<!-- ##### MACRO LT_MODULE_SYMBOL__ ##### -->
+<para>
+
+</para>
+
+@__prefix__: 
+@__sym__: 
+
+
+<!-- ##### USER_FUNCTION lt_ext_module_data_new_func_t ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_ext_module_funcs_t ##### -->
+<para>
+
+</para>
+
+@get_singleton: 
+@create_data: 
+@precheck_tag: 
+@parse_tag: 
+@get_tag: 
+@validate_tag: 
+
+<!-- ##### USER_FUNCTION lt_ext_module_get_funcs_func_t ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION lt_ext_module_get_tag_func_t ##### -->
+<para>
+
+</para>
+
+@data: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION lt_ext_module_parse_func_t ##### -->
+<para>
+
+</para>
+
+@data: 
+@subtag: 
+@error: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION lt_ext_module_precheck_func_t ##### -->
+<para>
+
+</para>
+
+@data: 
+@tag: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_ext_module_ref ##### -->
+<para>
+
+</para>
+
+@module: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION lt_ext_module_singleton_func_t ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_ext_module_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION lt_ext_module_unref ##### -->
+<para>
+
+</para>
+
+@module: 
+
+
+<!-- ##### USER_FUNCTION lt_ext_module_validate_func_t ##### -->
+<para>
+
+</para>
+
+@data: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION lt_ext_module_version_func_t ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_ext_modules_load ##### -->
+<para>
+
+</para>
+
+@void: 
+
+
+<!-- ##### FUNCTION lt_ext_modules_unload ##### -->
+<para>
+
+</para>
+
+@void: 
+
+
+<!-- ##### FUNCTION module_get_funcs ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION module_get_version ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+

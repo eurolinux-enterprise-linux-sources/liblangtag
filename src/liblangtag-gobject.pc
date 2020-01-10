@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: liblangtag-gobject
+Description: GObject based interface to access tags for identifying languages
+Version: 0.5.1
+Requires: gobject-2.0 liblangtag
+Libs: -L${libdir} -llangtag-gobject

@@ -1,0 +1,64 @@
+<!-- ##### SECTION Title ##### -->
+lt-variant-db
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### FUNCTION lt_variant_db_lookup ##### -->
+<para>
+
+</para>
+
+@variantdb: 
+@subtag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_variant_db_new ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_variant_db_ref ##### -->
+<para>
+
+</para>
+
+@variantdb: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_variant_db_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION lt_variant_db_unref ##### -->
+<para>
+
+</para>
+
+@variantdb: 
+
+

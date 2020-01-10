@@ -1,0 +1,3246 @@
+commit 1ebcff7332831e2989235dc9f36d67f76dcea8ca
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Apr 26 11:56:08 2013 +0900
+
+    Bump the version to 0.5.0
+
+ NEWS                           | 11 ++++++++++-
+ configure.ac                   | 10 +++++-----
+ liblangtag-gobject/Makefile.am | 14 +++++++-------
+ 3 files changed, 22 insertions(+), 13 deletions(-)
+
+commit ab3e13ffdf9f5c035d97f38101fff218947786a6
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Apr 22 18:09:43 2013 +0900
+
+    Revert "API CHANGED: lt_tag_transform() returns lt_tag_t instead of
+    char *"
+
+    This reverts commit d981ad02346c9e2ca389c647446a25ce83644a9c.
+
+    We still need to do further work to clean up APIs though, also need to
+    make a new release for various fixes/improvements in git right now.
+    So reverting this one which prevents it so far.
+
+ liblangtag/lt-tag.c | 58
+ ++++++++++++++++++++++++++---------------------------
+ liblangtag/lt-tag.h |  2 +-
+ tests/check-tag.c   | 39 +++++++++++++++++++----------------
+ tests/tag.c         |  6 +++---
+ 4 files changed, 55 insertions(+), 50 deletions(-)
+
+commit 7c61464746b79b18fb8884a5707e976c413b714a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Apr 22 17:38:10 2013 +0900
+
+    Fix a memory leak on error
+
+    reported at https://bugzilla.redhat.com/show_bug.cgi?id=952119
+
+ liblangtag/lt-string.c | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
+
+commit c153b7b0184145d6843bf3fe3522075578607546
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Apr 22 17:29:39 2013 +0900
+
+    Fix signedness issue
+
+    reported at https://bugzilla.redhat.com/show_bug.cgi?id=952137
+
+ liblangtag/lt-trie.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 9f9713ad1d4a6deea7d6aa6b4ef54d197680cfcd
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Apr 22 17:29:26 2013 +0900
+
+    Fix a regression issue introduced by
+    873a71abe30b023ebd04d26a832bb250807a84c6
+
+ liblangtag/lt-extension.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+commit fa46de35aaf45cd5b857acf1a3579fe59777a8f8
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Apr 15 17:16:17 2013 +0900
+
+    Use secure_getenv instead if available
+
+    or emulated one
+
+ configure.ac               |  2 +-
+ liblangtag/lt-ext-module.c |  4 ++--
+ liblangtag/lt-messages.c   |  3 ++-
+ liblangtag/lt-utils.c      | 25 +++++++++++++++++++++++++
+ liblangtag/lt-utils.h      |  1 +
+ 5 files changed, 31 insertions(+), 4 deletions(-)
+
+commit 338a5a1e8daea4eedf9d0949cb7a421fc6f4fac0
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Thu Apr 4 18:02:03 2013 +0900
+
+    Move g-ir-scanner flags into SCANNERFLAGS
+
+ liblangtag-gobject/Makefile.am | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 14a27729c872b1d05bf9528ebd6c592273572571
+Author: Bjoern Michaelsen <bjoern.michaelsen@canonical.com>
+Date:   Thu Apr 4 17:58:55 2013 +0900
+
+    calling the generic error reporting from memory management is a hazard
+
+    - the error reporting is pluggable with function pointers doing all
+    kinds of
+      funky stuff (including calling back into memory mngmt.)
+    - this introduces a high risk of stack smashing circular calls
+    - better silently return here
+
+ liblangtag/lt-mem.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+commit 6c61f671c95d62664f09f4c418ef623a9d375228
+Author: Bjoern Michaelsen <bjoern.michaelsen@canonical.com>
+Date:   Wed Apr 3 01:48:19 2013 +0200
+
+    fixes for -Wformat
+
+ liblangtag/lt-ext-module.c | 4 ++--
+ tests/main.c               | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 1aef1a9a969dc7196a2a29a9117b31c928c610a8
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Mar 13 11:22:31 2013 +0900
+
+    Minor
+
+ Makefile.am | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit a0d942c8e8dfdaff8e20ebf7f17ed06dbe5fa8f4
+Author: Peter Foley <pefoley2@verizon.net>
+Date:   Tue Mar 12 17:29:54 2013 -0400
+
+    use AM_PROG_AR macro
+
+    Makes libtool work proberly with the Visual Studio toolchain
+
+ configure.ac | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 873a71abe30b023ebd04d26a832bb250807a84c6
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Thu Feb 7 18:43:09 2013 +0900
+
+    minor improvement
+
+ liblangtag/lt-extension.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+commit 219785bd4dc5917368a48a4eaafdef9dad80b011
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Feb 5 15:17:28 2013 +0900
+
+    Fix typos
+
+ liblangtag/lt-error.c      | 2 +-
+ liblangtag/lt-ext-module.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 1bfd1fe0859ba884be576db9475d43ac44e70fee
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Feb 5 15:13:25 2013 +0900
+
+    Use AM_MISSING_PROG instead of hardcoding missing
+
+ Makefile.am  | 14 +++++++-------
+ configure.ac |  2 ++
+ 2 files changed, 9 insertions(+), 7 deletions(-)
+
+commit ff006c8ac7701ba847e01a51063db22407610c82
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Jan 18 19:02:45 2013 +0900
+
+    Fix memory leaks and erroneous code
+
+ data/reg2xml.c             |  5 ++++-
+ liblangtag/lt-error.c      |  7 +++++--
+ liblangtag/lt-ext-module.c |  1 +
+ liblangtag/lt-extension.c  |  1 +
+ liblangtag/lt-string.c     | 11 +++++++----
+ liblangtag/lt-tag.c        |  4 +---
+ 6 files changed, 19 insertions(+), 10 deletions(-)
+
+commit 003827f76e3dd4e0b3157c9c1c6e041127272744
+Merge: 20cecee 66ad52e
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Thu Jan 17 14:22:05 2013 +0900
+
+    Merged in jlec/liblangtag (pull request #1: underlinking fix -
+    missing link against libdl.so)
+
+commit 66ad52e184b32ee4b3d61c441b1a41650e8c000b
+Author: Justin Lecher <jlec@gentoo.org>
+Date:   Wed Jan 16 22:18:28 2013 +0100
+
+    Make sure liblangtag.so is linked against libdl.so with modules
+
+    fixes underlinking, see https://bugs.gentoo.org/show_bug.cgi?id=451546
+
+    Signed-off-by: Justin Lecher <jlec@gentoo.org>
+
+ liblangtag/Makefile.am | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 20ceceef700f4184f439f7cf370d4883addad1b3
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Dec 19 17:11:59 2012 +0900
+
+    Update doc
+
+ liblangtag/lt-iter.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit d611876eb2910691129801eeba5390ab63de881b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Dec 19 17:07:18 2012 +0900
+
+    Do not export the iterator structures' implementation
+
+ liblangtag/lt-iter-private.h | 4 ++++
+ liblangtag/lt-iter.h         | 4 ----
+ liblangtag/lt-trie.c         | 5 +++++
+ liblangtag/lt-trie.h         | 5 -----
+ 4 files changed, 9 insertions(+), 9 deletions(-)
+
+commit b327b9548136f6ec2ca2afa6bf0c4654b6b3a989
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Dec 19 16:28:20 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-error.c  | 10 ++++++++
+ liblangtag/lt-iter.c   | 65
+ ++++++++++++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-list.c   | 10 ++++++++
+ liblangtag/lt-macros.h | 54 ++++++++++++++++++++++++++++++++++++++++-
+ 4 files changed, 138 insertions(+), 1 deletion(-)
+
+commit 37cb3080ab49ecbb279381e54295fa69ddb31dd9
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Dec 19 16:24:43 2012 +0900
+
+    Define LT_ITER_INIT
+
+ liblangtag/lt-extlang-db.c       |  2 +-
+ liblangtag/lt-grandfathered-db.c |  2 +-
+ liblangtag/lt-iter.h             | 14 ++++++++++++++
+ liblangtag/lt-lang-db.c          |  2 +-
+ liblangtag/lt-redundant-db.c     |  2 +-
+ liblangtag/lt-region-db.c        |  2 +-
+ liblangtag/lt-script-db.c        |  2 +-
+ liblangtag/lt-variant-db.c       |  2 +-
+ tests/extlang-db.c               |  4 ++--
+ tests/grandfathered-db.c         |  4 ++--
+ tests/lang-db.c                  |  4 ++--
+ tests/redundant-db.c             |  4 ++--
+ tests/region-db.c                |  4 ++--
+ tests/script-db.c                |  4 ++--
+ tests/variant-db.c               |  4 ++--
+ 15 files changed, 35 insertions(+), 21 deletions(-)
+
+commit 1a8956a617579dbecbe4c51cc689161707354809
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Dec 19 16:22:15 2012 +0900
+
+    add missing files to be ignored in docs
+
+ docs/Makefile.am | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit ae2ce9dd644f757f2925f1a881f1e612611481db
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Dec 19 15:01:34 2012 +0900
+
+    remove the debugging code
+
+ liblangtag/lt-ext-module.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+commit 8bcdf54202e278cb915724b1d97a2c486f5ef862
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Dec 12 18:41:50 2012 +0900
+
+    Update .gitignore even if srcdir != builddir
+
+    When srcdir != builddir, autotools sets VPATH = @srcdir@.
+    due to this and unfortunately the top directory has same name to
+    liblangtag, where contains the library's source code, make confuses
+    the top directory is the target directory for 'liblangtag'.
+    .gitignore is already available since building is performed at the top
+    therefore .gitignore considered available.
+
+    To avoid this confusion on make, abs_srcdir has to be used for target.
+
+ git.mk | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit ae81a0a326fe9a8bb0fce8c1e63a6884ab9e2518
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Dec 12 16:30:27 2012 +0900
+
+    Fix to be able to enable modules and a build issue with modules
+    enabled. sigh
+
+ configure.ac               | 12 +++++-------
+ liblangtag/Makefile.am     |  1 +
+ liblangtag/lt-ext-module.c |  6 +++---
+ 3 files changed, 9 insertions(+), 10 deletions(-)
+
+commit eb8036f43db8d8367a971f1b90e6622bfbf9cf12
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Dec 12 12:21:43 2012 +0900
+
+    Fix warnings on building liblangtag-gobject
+
+ liblangtag-gobject/gengir.sh    |  4 +++-
+ liblangtag-gobject/lt-gobject.c |  1 +
+ liblangtag-gobject/lt-gobject.h |  2 ++
+ liblangtag/lt-iter.c            | 21 +++++++++++++++++++++
+ liblangtag/lt-iter.h            |  2 ++
+ 5 files changed, 29 insertions(+), 1 deletion(-)
+
+commit 684837c1352ddaf0887b34a28989cdfb679a1ef6
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Dec 12 12:21:07 2012 +0900
+
+    Update doc
+
+ liblangtag/lt-list.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit d981ad02346c9e2ca389c647446a25ce83644a9c
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Wed Dec 12 11:55:11 2012 +0900
+
+    API CHANGED: lt_tag_transform() returns lt_tag_t instead of char *
+
+    to reduce the duplicate work on the tag parser and possibly in
+    applications
+
+ liblangtag/lt-tag.c | 58
+ ++++++++++++++++++++++++++---------------------------
+ liblangtag/lt-tag.h |  2 +-
+ tests/check-tag.c   | 39 ++++++++++++++++-------------------
+ tests/tag.c         |  6 +++---
+ 4 files changed, 50 insertions(+), 55 deletions(-)
+
+commit 12fe0b91273ba0563059cbbb180100c20b660b0a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Dec 11 19:03:43 2012 +0900
+
+    Fix lt_tag_convert_from_locale() to get correct result
+
+    also added lt_tag_convert_from_locale_string()
+
+ liblangtag/lt-tag.c | 29 ++++++++++++++++++++
+ liblangtag/lt-tag.h | 78
+ +++++++++++++++++++++++++++--------------------------
+ tests/check-tag.c   | 31 +++++++++++++++++++++
+ 3 files changed, 100 insertions(+), 38 deletions(-)
+
+commit 03cab7237e38ef6213ab0d024d33f1fee74b2cc8
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Dec 10 19:24:14 2012 +0900
+
+    Fix the matching algorithm on lt_tag_transform()
+
+ liblangtag/lt-messages.c |   1 +
+ liblangtag/lt-messages.h |   1 +
+ liblangtag/lt-tag.c      | 187
+ ++++++++++++++++++++++++++++++++++++-----------
+ tests/check-tag.c        |  35 +++++++++
+ 4 files changed, 180 insertions(+), 44 deletions(-)
+
+commit 7f8d0f04d42128c3810906ccfef36ef85872b17c
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Dec 10 19:22:47 2012 +0900
+
+    Fix the file open error in the debugging mode when srcdir != builddir
+
+ liblangtag/lt-xml.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
+
+commit a9bee062439fa6992919d964832415fdd67f8d09
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Dec 10 19:03:08 2012 +0900
+
+    Don't output an error message even if no data is set in lt_error_t
+
+ liblangtag/lt-error.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 5793da78b90c819e9b7192877faf4f5f2e085adf
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Dec 7 16:49:01 2012 +0900
+
+    Use AC_USE_SYSTEM_EXTENSIONS instead of defining _GNU_SOURCE
+
+ configure.ac          | 3 ++-
+ liblangtag/lt-utils.c | 4 ----
+ 2 files changed, 2 insertions(+), 5 deletions(-)
+
+commit 205d8e0af3d939350d5fb8d69bc5557be8f938de
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Dec 3 17:55:09 2012 +0900
+
+    Replace '_' to '-' in lt_tag_transform()
+
+    likelySubtags.xml contains '_', which isn't impossible to match
+    the tags
+    in lt_tag_t. this usually means lt_tag_transform() doesn't work
+    without
+    this fix.
+
+    After this fix, following code just works:
+
+    lt_tag_t *tag;
+    char *s;
+
+    lt_tag_parse(tag, "zh-TW", NULL);
+    s = lt_tag_transform(tag, NULL));
+    printf("%s\n", s);
+    free(s);
+    --
+    zh-Hant-TW
+
+ liblangtag/lt-tag.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 6af8dd1015917d572b43a6f0ed2cf00ac69abe72
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Dec 3 17:09:28 2012 +0900
+
+    Fix portability issue in vsnprintf
+
+ configure.ac          | 33 ++++++++++++++++++++++-
+ liblangtag/lt-utils.c | 74
+ ++++++++++++++++++++++++++++++++++++++++++---------
+ 2 files changed, 94 insertions(+), 13 deletions(-)
+
+commit f23cacb49328af91eccd29bed5211997edf05257
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Thu Nov 29 14:32:09 2012 +0900
+
+    Fix build issue when srcdir != builddir
+
+ data/Makefile.am               | 2 +-
+ extensions/Makefile.am         | 1 +
+ liblangtag-gobject/Makefile.am | 2 ++
+ 3 files changed, 4 insertions(+), 1 deletion(-)
+
+commit 7e72434beeb3f78d80b1e2f7db76b11565d8a776
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Nov 27 20:27:13 2012 +0900
+
+    Use native atomic functions for Win32 instead of Mutex-version
+
+    Patch from
+    http://cgit.freedesktop.org/libreoffice/core/tree/liblangtag/liblangtag-0.4.0-windows.patch
+
+ liblangtag/lt-atomic.h | 29 +++++++++++++++++++++++++++--
+ 1 file changed, 27 insertions(+), 2 deletions(-)
+
+commit 2c036937e874126de3593b63d2022cfe5755cb0b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Nov 27 17:50:55 2012 +0900
+
+    Fix another potability issues about stdint.h and va_copy
+
+ Makefile.am                    |   4 +-
+ configure.ac                   |   4 +-
+ extensions/lt-ext-ldml-u.c     |   3 +-
+ liblangtag/Makefile.am         |   9 +
+ liblangtag/lt-tag.c            |   3 +-
+ liblangtag/lt-utils.c          |   2 +-
+ liblangtag/lt-utils.h          |   8 -
+ m4macros/ax_create_stdint_h.m4 | 695
+ +++++++++++++++++++++++++++++++++++++++++
+ m4macros/va_copy.m4            | 117 +++++++
+ 9 files changed, 832 insertions(+), 13 deletions(-)
+
+commit 9bd2af7d17e6cd082af05bf85e2e404719731021
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Nov 27 14:15:48 2012 +0900
+
+    Fix broken -uninsgtalled.pc
+
+ liblangtag-gobject-uninstalled.pc.in | 4 ++--
+ liblangtag-uninstalled.pc.in         | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+commit dbc55e3686077e465ab519f823b9fd428f229d4b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Nov 26 13:03:11 2012 +0900
+
+    Fix typos
+
+ Makefile.am            |  4 +---
+ configure.ac           |  4 ++++
+ liblangtag/Makefile.am | 12 +++++++++---
+ 3 files changed, 14 insertions(+), 6 deletions(-)
+
+commit 2e1eb9e4c79b192c44894e1167ee71965c0d989c
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Nov 26 11:45:24 2012 +0900
+
+    Fix portability issue
+
+ configure.ac           | 66
+ +++++++++++++++++++++++++++++++++++++++++++++++---
+ liblangtag/Makefile.am |  6 +++++
+ liblangtag/lt-tag.c    |  3 ++-
+ liblangtag/lt-utils.c  |  7 +++++-
+ liblangtag/lt-utils.h  | 14 +++++++++++
+ 5 files changed, 91 insertions(+), 5 deletions(-)
+
+commit 89108f5856b455640e288e2ce29d8c5904c12a3b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Sun Nov 25 17:49:56 2012 +0900
+
+    Fix build issues with MSVC
+
+ configure.ac               | 12 +++++++++++-
+ data/Makefile.am           |  9 ++++++++-
+ liblangtag/lt-ext-module.c |  6 +++++-
+ liblangtag/lt-macros.h     | 11 +++++++++++
+ liblangtag/lt-messages.h   |  7 +++++++
+ 5 files changed, 42 insertions(+), 3 deletions(-)
+
+commit bba0eec8d2f5a439be4169fa4b454bea4028e2ae
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Sun Nov 25 02:05:13 2012 +0900
+
+    Fix array subscript type issues
+
+ extensions/lt-ext-ldml-t.c |  2 +-
+ liblangtag/lt-ext-module.c |  6 +++---
+ liblangtag/lt-tag.c        | 10 +++++-----
+ liblangtag/lt-utils.c      | 10 +++++-----
+ 4 files changed, 14 insertions(+), 14 deletions(-)
+
+commit ee0ddbeee72b4efda6074e949b82ea645b67b104
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Sat Nov 24 17:28:06 2012 +0900
+
+    ifdef'd config.h
+
+ liblangtag/lt-messages.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 5ee4d8750e9a6d80e12e3ace5dc490db769ee69d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Sat Nov 24 17:02:41 2012 +0900
+
+    Use native mutex lock for Win32
+
+ NEWS                   |  8 ++++++++
+ configure.ac           |  7 ++++++-
+ liblangtag/Makefile.am |  1 +
+ liblangtag/lt-atomic.h | 16 ++++++++--------
+ liblangtag/lt-lock.h   | 46
+ ++++++++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-xml.c    | 10 +++++-----
+ 6 files changed, 74 insertions(+), 14 deletions(-)
+
+commit ec6f15c913c2cde030f4f49b9bd6b705e7f4140f
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Sat Nov 24 16:47:22 2012 +0900
+
+    duplicate header file check
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 4372494fb8230cbf3a9d7de0b979d31bfda0da51
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Sat Nov 24 16:27:04 2012 +0900
+
+    Fix the build issues on MinGW
+
+ configure.ac               |  8 ++++++++
+ data/Makefile.am           |  9 +++++++--
+ data/reg2xml.c             |  4 ++--
+ liblangtag/lt-error.c      | 13 +++++++++++--
+ liblangtag/lt-ext-module.c |  2 +-
+ liblangtag/lt-messages.c   |  4 ++++
+ liblangtag/lt-tag.c        |  7 +++----
+ liblangtag/lt-utils.c      | 25 +++++++++++++++++++++++++
+ liblangtag/lt-utils.h      |  2 ++
+ 9 files changed, 63 insertions(+), 11 deletions(-)
+
+commit 3d17b41abb82488842b99e0485357089ef3a4aa9
+Merge: 616ec7c ee6c2a6
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Nov 23 16:50:07 2012 +0900
+
+    Merge branch 'master' of github.com:tagoh/liblangtag
+
+commit 616ec7c0fc816b4aa293009f56f75a708c34ae5a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Nov 23 16:44:24 2012 +0900
+
+    Fix typos
+
+ configure.ac           | 7 +++++--
+ liblangtag/lt-atomic.h | 2 +-
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+
+commit ee6c2a6003edeb19b4f43148a54ed15a167051bc
+Merge: 2c6feaa 5eeaf1f
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Thu Nov 22 19:08:24 2012 -0800
+
+    Merge pull request #8 from stbergmann/master
+
+    Use xmlDocCopyNode to merge nodes into different docs
+
+commit 5eeaf1ff12788e37338a36f32b6f067f754e9deb
+Author: Stephan Bergmann <sbergman@redhat.com>
+Date:   Thu Nov 22 22:47:18 2012 +0100
+
+    Use xmlDocCopyNode to merge nodes into different docs
+
+    (See
+    <http://cgit.freedesktop.org/libreoffice/core/commit/?id=08ac75fce3cffc0457455b56d6bf8ead285a0dde>
+    "Use xmlDocCopyNode to merge nodes into different docs in liblangtag"
+    for a
+    situation where this caused problems.)
+
+ liblangtag/lt-xml.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2c6feaaa6afe18f969df24f7acf1954013362130
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Oct 29 14:05:21 2012 +0900
+
+    Fix wrong xml data for tags in range
+
+ data/reg2xml.c | 65
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 59 insertions(+), 6 deletions(-)
+
+commit d9ec445eb81fa8ad64bb5a3eea694949301db582
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Oct 29 11:38:11 2012 +0900
+
+    Add iterator support to lt_variant_db_t
+
+ liblangtag/lt-variant-db.c | 57
+ ++++++++++++++++++++++++++++++++++++++++------
+ tests/variant-db.c         | 25 ++++++++++++++++++--
+ 2 files changed, 73 insertions(+), 9 deletions(-)
+
+commit eaeafdf16de8ce23700ad9f376452d0cf0ce36d3
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Oct 29 11:34:17 2012 +0900
+
+    Add iterator support to lt_script_db_t
+
+ liblangtag/lt-script-db.c | 57
+ +++++++++++++++++++++++++++++++++++++++++------
+ tests/script-db.c         | 25 +++++++++++++++++++--
+ 2 files changed, 73 insertions(+), 9 deletions(-)
+
+commit 74728884295dcfb909a989c98ab5eeb95b192104
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Oct 29 11:29:14 2012 +0900
+
+    Add iterator support to lt_region_db_t
+
+ liblangtag/lt-region-db.c | 58
+ ++++++++++++++++++++++++++++++++++++++++-------
+ tests/region-db.c         | 25 ++++++++++++++++++--
+ 2 files changed, 73 insertions(+), 10 deletions(-)
+
+commit f51408314e1ecc17c141681fe98a262a9f02482d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Oct 29 11:26:16 2012 +0900
+
+    Add a convenient macro to initialize iter
+
+ liblangtag/lt-extlang-db.c       | 5 +----
+ liblangtag/lt-grandfathered-db.c | 5 +----
+ liblangtag/lt-iter-private.h     | 8 ++++++++
+ liblangtag/lt-lang-db.c          | 5 +----
+ liblangtag/lt-redundant-db.c     | 5 +----
+ 5 files changed, 12 insertions(+), 16 deletions(-)
+
+commit 12fc211468356d37cf4054b5f8aef02b22abfa94
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Oct 29 11:13:21 2012 +0900
+
+    Add iterator support to lt_redundant_db_t
+
+ liblangtag/langtag.h         |  1 +
+ liblangtag/lt-redundant-db.c | 60 ++++++++++++++++++++++++++++++++-----
+ tests/Makefile.am            |  5 ++++
+ tests/redundant-db.c         | 70
+ ++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 129 insertions(+), 7 deletions(-)
+
+commit 41fe4861540f39c5c7a9507c7cdda032604afe0d
+Merge: b8d3d84 8ad34ca
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 26 20:16:17 2012 +0900
+
+    Merge branch 'master' of github.com:tagoh/liblangtag
+
+commit b8d3d84fa62095aa62fa11818c82f295e5e83a0d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 26 20:12:59 2012 +0900
+
+    Add iterator support to lt_grandfathered_db_t
+
+ liblangtag/lt-grandfathered-db.c | 60
+ +++++++++++++++++++++++++++++++++++-----
+ tests/grandfathered-db.c         | 25 +++++++++++++++--
+ 2 files changed, 76 insertions(+), 9 deletions(-)
+
+commit 70a8dae1085ef7d4183487a2a60e42658d130dba
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 26 19:55:50 2012 +0900
+
+    Add iterator support to lt_extlang_db_t
+
+ liblangtag/lt-extlang-db.c | 60
+ ++++++++++++++++++++++++++++++++++++++++------
+ tests/extlang-db.c         | 25 +++++++++++++++++--
+ 2 files changed, 76 insertions(+), 9 deletions(-)
+
+commit 8ad34cacc555d33cd7378e858ef6d1638277b80b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 26 19:55:50 2012 +0900
+
+    Add iterator support to lt_extlang_db_t
+
+ liblangtag/lt-extlang-db.c | 60
+ ++++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 53 insertions(+), 7 deletions(-)
+
+commit 2858bc34ee05e12db44d0428772458532e679dcc
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 26 19:55:27 2012 +0900
+
+    Add a magic code to check if the object support the iteration
+
+ liblangtag/lt-iter-private.h |  3 +++
+ liblangtag/lt-iter.c         | 10 ++++++++++
+ liblangtag/lt-lang-db.c      |  2 +-
+ liblangtag/lt-trie.c         |  1 +
+ 4 files changed, 15 insertions(+), 1 deletion(-)
+
+commit a67281d1981cdbd2f4577721b75abb9957e1e47f
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 26 19:29:10 2012 +0900
+
+    free iter on destroy
+
+ liblangtag/lt-lang-db.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit f172b992ebcba638aae3e9faa32ced9ac36e8980
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 26 19:21:53 2012 +0900
+
+    no need to export local iter class...
+
+ liblangtag/lt-lang-db.c | 4 ++++
+ liblangtag/lt-lang-db.h | 6 ------
+ 2 files changed, 4 insertions(+), 6 deletions(-)
+
+commit 9086c088b1f6e3e361132904846cb9fb939960bc
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 26 19:16:32 2012 +0900
+
+    Add iterator support to lt_lang_db_t
+
+ liblangtag/lt-lang-db.c | 55
+ ++++++++++++++++++++++++++++++++++++++++++-------
+ liblangtag/lt-lang-db.h |  6 ++++++
+ tests/lang-db.c         | 22 +++++++++++++++++++-
+ 3 files changed, 75 insertions(+), 8 deletions(-)
+
+commit 768767b2a1807673f49e366ab38bcc16db69bd3d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 26 19:14:42 2012 +0900
+
+    Fix wrong traversal on keys
+
+ liblangtag/lt-list.c | 27 ++++++++++++++++++++++++++-
+ liblangtag/lt-list.h |  3 +++
+ liblangtag/lt-trie.c | 46 +++++++++++++++++++++++++++-------------------
+ 3 files changed, 56 insertions(+), 20 deletions(-)
+
+commit fc35c4a2cea8989a8b40038338ae86c0a249d782
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 26 17:55:51 2012 +0900
+
+    Add an abstract iterator class
+
+ liblangtag-gobject/Makefile.am |   2 +
+ liblangtag/Makefile.am         |   3 +
+ liblangtag/langtag.h           |   1 +
+ liblangtag/lt-iter-private.h   |  36 +++++++++
+ liblangtag/lt-iter.c           |  62 +++++++++++++++
+ liblangtag/lt-iter.h           |  39 +++++++++
+ liblangtag/lt-trie.c           | 174
+ +++++++++++++++++++++--------------------
+ liblangtag/lt-trie.h           |   9 +--
+ 8 files changed, 235 insertions(+), 91 deletions(-)
+
+commit 5addf31e407999c758e7fb4a7bcaefc00061582a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 26 17:54:39 2012 +0900
+
+    Fix a typo
+
+ liblangtag/lt-list.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit fc0f01770047b9ecd5407dbb2e7712090fb9fe5e
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Oct 22 14:01:19 2012 +0900
+
+    fix distcheck error
+
+ configure.ac          | 2 +-
+ liblangtag/lt-utils.h | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit 74b626b94941f553d2f92aaffdb04de66757f67c
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Oct 22 14:01:03 2012 +0900
+
+    Fix a double-free issue
+
+ liblangtag/lt-trie.c | 18 +++++++-----------
+ 1 file changed, 7 insertions(+), 11 deletions(-)
+
+commit a3d0b68f99d264012f8ebd1615a608cb3f98a9d4
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Oct 22 12:41:28 2012 +0900
+
+    Bump the version to 0.4.0
+
+ NEWS                           | 18 ++++++++++++++++++
+ README                         |  3 +++
+ configure.ac                   |  8 ++++----
+ liblangtag-gobject/Makefile.am | 12 ++++++------
+ 4 files changed, 31 insertions(+), 10 deletions(-)
+
+commit 808e0018499725ddf38bedd0addc337d94cfe9ab
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Mon Oct 22 12:28:11 2012 +0900
+
+    disable builds/install for liblangtag-gobject related things when
+    gi is disabled.
+
+ Makefile.am  | 4 +++-
+ configure.ac | 5 ++++-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+commit 34d479747c4ae1087a48e1e614d89a24f16ad999
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 16 16:40:12 2012 +0900
+
+    Add a license file for CLDR
+
+ COPYING.Unicode | 50 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+
+commit 78b7f86de918d8a67b84141567b0eb1ae19a183b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 16 16:28:39 2012 +0900
+
+    Add -t-x0- support
+
+ extensions/lt-ext-ldml-t.c | 17 ++++++++++++++++-
+ liblangtag/lt-xml.c        |  6 ++++++
+ 2 files changed, 22 insertions(+), 1 deletion(-)
+
+commit 68333d06b53d5e0d43b15ec705b0bea4bde2d792
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 16 16:06:44 2012 +0900
+
+    Support -t-k0-, -t-i0-, and -t-t0- subtags
+
+ data/Makefile.am    |  20 +++++---
+ liblangtag/lt-xml.c | 140
+ +++++++++++++++++++++++++++++++++++++++-------------
+ liblangtag/lt-xml.h |   1 +
+ 3 files changed, 120 insertions(+), 41 deletions(-)
+
+commit 94e5d68e0803790e6515d571d660bc79a8874374
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 16 16:05:38 2012 +0900
+
+    Fix API to match the name and behavior
+
+ liblangtag/lt-extension.c     |  8 ++++----
+ liblangtag/lt-extlang.c       | 10 +++++-----
+ liblangtag/lt-grandfathered.c |  6 +++---
+ liblangtag/lt-lang.c          | 12 ++++++------
+ liblangtag/lt-mem.c           |  4 ++--
+ liblangtag/lt-redundant.c     |  6 +++---
+ liblangtag/lt-region.c        |  6 +++---
+ liblangtag/lt-script.c        |  4 ++--
+ liblangtag/lt-tag.c           |  6 +++---
+ liblangtag/lt-trie.c          |  4 ++--
+ liblangtag/lt-variant.c       |  9 ++++-----
+ 11 files changed, 37 insertions(+), 38 deletions(-)
+
+commit 56356c1b1b9a86e754a8c0b886373e32e6044427
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 16 16:03:48 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-ext-module-data.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7c6495bdd2ffa5289fda943afa430e3c222df36f
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 16 16:03:32 2012 +0900
+
+    Update against API change
+
+ liblangtag/lt-ext-module.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
+
+commit ad59c9fc68461a0744923e51b9b86957b34ec352
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 16 16:02:57 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-error.h | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+commit 9dfc8725f96472aa2f4be3207beccb4ee2edd477
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 16 16:02:34 2012 +0900
+
+    Update docs
+
+ docs/liblangtag-docs.sgml |   8 +-
+ liblangtag/lt-error.c     |  53 +++++++++++-
+ liblangtag/lt-list.c      | 213
+ ++++++++++++++++++++++++++++++++++++++++------
+ liblangtag/lt-list.h      |  15 ++--
+ liblangtag/lt-macros.h    |  41 +++++++++
+ liblangtag/lt-messages.c  |  51 -----------
+ liblangtag/lt-string.c    | 193 +++++++++++++++++++++++++++++++++++------
+ liblangtag/lt-string.h    |  14 ++-
+ 8 files changed, 471 insertions(+), 117 deletions(-)
+
+commit 571b55d84665afa09d27eba259af4d882d987e98
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 16 12:05:14 2012 +0900
+
+    ignore more private header files to generate docs
+
+ docs/Makefile.am | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 3c68c77af2c53d1de7371a6bed813d653ae4ec25
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 16 12:04:36 2012 +0900
+
+    fix scripts to generate gi-friendly source code much more
+
+ liblangtag-gobject/gengir.sh | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+commit fca57e3a517b89b0cd7d8167137407aeab9edd16
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 12 19:19:35 2012 +0900
+
+    do not generate .gir.[ch] everytime
+
+ liblangtag-gobject/Makefile.am | 21 +++++++++++++--------
+ liblangtag-gobject/gendeps.sh  | 13 +++++++++++++
+ 2 files changed, 26 insertions(+), 8 deletions(-)
+
+commit 2fbee01733d7a005b884f5974f5d5020a17eb1f3
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 12 11:56:57 2012 +0900
+
+    fix the duplicate / at the head
+
+ liblangtag/lt-string.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 90ebe3a08a54962f56ce3cdaadea42a6ec86497d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 12 11:40:49 2012 +0900
+
+    Add a feature to include extensions into the library
+
+ extensions/Makefile.am     |  6 +++---
+ extensions/lt-ext-ldml-t.c |  3 +++
+ extensions/lt-ext-ldml-u.c |  7 +++++--
+ liblangtag/Makefile.am     | 23 ++++++++++++++++++++++-
+ liblangtag/lt-ext-module.c | 27 ++++++++++++++++++++++++---
+ liblangtag/lt-ext-module.h |  7 ++++---
+ 6 files changed, 61 insertions(+), 12 deletions(-)
+
+commit ee708316f2c35bb5ae5fc6f50f8c2ced443c0b6b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Thu Oct 11 19:19:40 2012 +0900
+
+    Update dependencies in README
+
+ README | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 6462bd360f2e55607a7f151a55b7e949d206572f
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Thu Oct 11 19:18:58 2012 +0900
+
+    convert lt_pointer_t to gpointer
+
+ liblangtag-gobject/gengir.sh | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit d741da7487636aaf10d57ffa2ac084cc155c6c78
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Thu Oct 11 19:18:36 2012 +0900
+
+    Fix warnings about invalid non-constant return
+
+ liblangtag-gobject/lt-gobject.c | 3 +++
+ liblangtag-gobject/lt-gobject.h | 6 ++++++
+ 2 files changed, 9 insertions(+)
+
+commit 8efe65de87718d23dd7959e6ae65782ecad02068
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Thu Oct 11 14:22:28 2012 +0900
+
+    Get rid of all of glib dependencies
+
+ configure.ac                    |  64 +++++++++++++++---------
+ liblangtag/Makefile.am          |   2 +-
+ liblangtag/lt-atomic.h          | 108
+ ++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-ext-module-data.c |   4 +-
+ liblangtag/lt-mem.c             |   6 +--
+ requires                        |   1 -
+ 6 files changed, 155 insertions(+), 30 deletions(-)
+
+commit 0c2bcc5d94eb2d5fdef9c39cf009c0be5b9be2c5
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 9 20:40:35 2012 +0900
+
+    another try to clean up glib dependencies
+
+ Makefile.am                     |  5 +---
+ configure.ac                    | 33 +++++++++++++++++++----
+ data/Makefile.am                |  2 --
+ data/reg2xml.c                  | 58
+ ++++++++++++++++++++---------------------
+ extensions/Makefile.am          | 17 +++++++++++-
+ extensions/lt-ext-ldml-t.c      |  4 +--
+ liblangtag/Makefile.am          |  2 --
+ liblangtag/lt-ext-module-data.c |  2 +-
+ liblangtag/lt-ext-module.c      | 54
+ +++++++++++++++++++-------------------
+ liblangtag/lt-ext-module.h      |  7 +++++
+ liblangtag/lt-mem.c             |  2 +-
+ tests/Makefile.am               |  1 -
+ tests/check-list.c              |  1 -
+ tests/check-trie.c              |  1 -
+ 14 files changed, 112 insertions(+), 77 deletions(-)
+
+commit 92f9db00d710c2b7e312f1c7f49bfbb3be6cec17
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 9 18:57:29 2012 +0900
+
+    another try to clean up glib dependencies
+
+ Makefile.am                           |   4 +-
+ configure.ac                          |   5 +-
+ extensions/Makefile.am                |  62 +++++
+ extensions/lt-ext-ldml-t.c            | 410
+ ++++++++++++++++++++++++++++++++
+ extensions/lt-ext-ldml-u.c            | 429
+ ++++++++++++++++++++++++++++++++++
+ liblangtag/Makefile.am                |   6 +-
+ liblangtag/extensions/Makefile.am     |  65 ------
+ liblangtag/extensions/lt-ext-ldml-t.c | 410
+ --------------------------------
+ liblangtag/extensions/lt-ext-ldml-u.c | 429
+ ----------------------------------
+ liblangtag/lt-error.h                 |   2 +-
+ liblangtag/lt-ext-module.c            |  10 +-
+ liblangtag/lt-macros.h                |  16 ++
+ liblangtag/lt-messages.h              |   2 +-
+ liblangtag/lt-string.h                |   4 +-
+ liblangtag/lt-utils.h                 |   5 +-
+ liblangtag/lt-xml.c                   |  11 +-
+ m4macros/ax_pthread.m4                | 309 ++++++++++++++++++++++++
+ tests/Makefile.am                     |  16 +-
+ 18 files changed, 1258 insertions(+), 937 deletions(-)
+
+commit 3c95a8c7114cf4aec0635d156bed9bd7132d0454
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 9 16:57:45 2012 +0900
+
+    fix hangup on generating .gir.c
+
+ liblangtag-gobject/gengir.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 894261eae118349fa9f1f390e656047f75b1f706
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Tue Oct 9 16:57:22 2012 +0900
+
+    another try to clean up glib dependencies
+
+ liblangtag/lt-database.c         |   2 -
+ liblangtag/lt-error.c            |   1 -
+ liblangtag/lt-extension.c        |   1 -
+ liblangtag/lt-extlang-db.c       |   1 -
+ liblangtag/lt-extlang.c          |   1 -
+ liblangtag/lt-grandfathered-db.c |   1 -
+ liblangtag/lt-grandfathered.c    |   1 -
+ liblangtag/lt-lang-db.c          |   1 -
+ liblangtag/lt-lang.c             |   1 -
+ liblangtag/lt-list.c             |  15 +++-
+ liblangtag/lt-list.h             |   2 +
+ liblangtag/lt-mem.c              | 190
+ +++++++++++++++++++++++++++++++--------
+ liblangtag/lt-mem.h              |   6 +-
+ liblangtag/lt-redundant-db.c     |   1 -
+ liblangtag/lt-redundant.c        |   1 -
+ liblangtag/lt-region-db.c        |   1 -
+ liblangtag/lt-region.c           |   1 -
+ liblangtag/lt-script-db.c        |   1 -
+ liblangtag/lt-script.c           |   1 -
+ liblangtag/lt-string.c           |   6 +-
+ liblangtag/lt-string.h           |   2 +-
+ liblangtag/lt-tag.c              |   1 -
+ liblangtag/lt-trie.c             | 146 ++++++++++++++++++++++++++----
+ liblangtag/lt-trie.h             |  44 +++++----
+ liblangtag/lt-variant-db.c       |   1 -
+ liblangtag/lt-variant.c          |   1 -
+ 26 files changed, 336 insertions(+), 94 deletions(-)
+
+commit 876c1044a1d7d3721bdc2ba2efc7012734c9d864
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 5 21:33:01 2012 +0900
+
+    another try to clean up glib dependencies
+
+ liblangtag/Makefile.am           |   2 +
+ liblangtag/lt-database.c         |   2 +-
+ liblangtag/lt-extlang-db.c       |  42 +++----
+ liblangtag/lt-grandfathered-db.c |  28 ++---
+ liblangtag/lt-lang-db.c          |  33 +++---
+ liblangtag/lt-redundant-db.c     |  28 ++---
+ liblangtag/lt-region-db.c        |  42 +++----
+ liblangtag/lt-script-db.c        |  42 +++----
+ liblangtag/lt-trie.c             | 234
+ +++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-trie.h             |  40 +++++++
+ liblangtag/lt-variant-db.c       |  42 +++----
+ tests/Makefile.am                |   6 +
+ tests/check-trie.c               | 130 ++++++++++++++++++++++
+ 13 files changed, 546 insertions(+), 125 deletions(-)
+
+commit ade8ccaa16a6acb91816e48ca467a125b5c16141
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 5 14:49:17 2012 +0900
+
+    another try to clean up glib dependencies
+
+ liblangtag/langtag.h       |  3 ++
+ liblangtag/lt-error.h      |  4 ++
+ liblangtag/lt-ext-module.c | 93
+ ++++++++++++++++++++++++++++------------------
+ liblangtag/lt-list.h       |  4 ++
+ liblangtag/lt-macros.h     | 12 ++++--
+ tests/Makefile.am          |  1 -
+ tests/main.c               | 61 +++++++++---------------------
+ tests/main.h               | 15 ++++----
+ 8 files changed, 100 insertions(+), 93 deletions(-)
+
+commit 0a1d171e6d3c22f0829db0464e82bf3dccc07bb8
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Oct 5 12:49:48 2012 +0900
+
+    another try to clean up glib dependencies
+
+ configure.ac                          |  90 ++++
+ liblangtag-gobject/Makefile.am        |   4 +
+ liblangtag/Makefile.am                |   6 +
+ liblangtag/extensions/lt-ext-ldml-t.c | 225 +++++-----
+ liblangtag/extensions/lt-ext-ldml-u.c | 271 ++++++------
+ liblangtag/lt-database.c              |   1 +
+ liblangtag/lt-error.c                 | 152 ++++++-
+ liblangtag/lt-error.h                 |  36 +-
+ liblangtag/lt-ext-module-data.c       |   9 +-
+ liblangtag/lt-ext-module-data.h       |   3 +-
+ liblangtag/lt-ext-module-private.h    |   6 +-
+ liblangtag/lt-ext-module.c            | 207 ++++-----
+ liblangtag/lt-ext-module.h            |  10 +-
+ liblangtag/lt-extension-private.h     |   5 +-
+ liblangtag/lt-extension.c             | 186 ++++----
+ liblangtag/lt-extlang-db.c            | 105 ++---
+ liblangtag/lt-extlang-db.h            |   8 +-
+ liblangtag/lt-extlang.c               | 110 ++---
+ liblangtag/lt-grandfathered-db.c      |  91 ++--
+ liblangtag/lt-grandfathered-db.h      |   8 +-
+ liblangtag/lt-grandfathered.c         |  68 +--
+ liblangtag/lt-lang-db.c               | 111 ++---
+ liblangtag/lt-lang-db.h               |   8 +-
+ liblangtag/lt-lang.c                  | 131 +++---
+ liblangtag/lt-list.c                  | 307 +++++++++++++
+ liblangtag/lt-list.h                  |  52 +++
+ liblangtag/lt-macros.h                | 130 +++++-
+ liblangtag/lt-mem.c                   |  64 +--
+ liblangtag/lt-mem.h                   |  11 +-
+ liblangtag/lt-messages.c              | 305 +++++++++++++
+ liblangtag/lt-messages.h              | 308 +++++++++++++
+ liblangtag/lt-redundant-db.c          |  92 ++--
+ liblangtag/lt-redundant-db.h          |   8 +-
+ liblangtag/lt-redundant.c             |  68 +--
+ liblangtag/lt-region-db.c             |  96 ++--
+ liblangtag/lt-region-db.h             |   8 +-
+ liblangtag/lt-region.c                |  66 +--
+ liblangtag/lt-region.h                |   2 +-
+ liblangtag/lt-script-db.c             |  90 ++--
+ liblangtag/lt-script-db.h             |   8 +-
+ liblangtag/lt-script.c                |  42 +-
+ liblangtag/lt-string.c                | 257 +++++++++++
+ liblangtag/lt-string.h                |  54 +++
+ liblangtag/lt-tag-private.h           |   2 +-
+ liblangtag/lt-tag.c                   | 803
+ +++++++++++++++++-----------------
+ liblangtag/lt-tag.h                   |  24 +-
+ liblangtag/lt-utils.c                 | 106 ++++-
+ liblangtag/lt-utils.h                 |  15 +-
+ liblangtag/lt-variant-db.c            | 111 ++---
+ liblangtag/lt-variant-db.h            |   8 +-
+ liblangtag/lt-variant.c               | 130 +++---
+ liblangtag/lt-variant.h               |  21 +-
+ liblangtag/lt-xml.c                   | 199 +++++----
+ tests/Makefile.am                     |   6 +
+ tests/check-list.c                    |  97 ++++
+ tests/check-tag.c                     |  66 +--
+ tests/extlang-db.c                    |  12 +-
+ tests/grandfathered-db.c              |  10 +-
+ tests/lang-db.c                       |  14 +-
+ tests/region-db.c                     |   8 +-
+ tests/script-db.c                     |  12 +-
+ tests/tag.c                           |  59 +--
+ tests/variant-db.c                    |  16 +-
+ 63 files changed, 3736 insertions(+), 1802 deletions(-)
+
+commit 51b09234169fb3409994b4f661e7c7b20a09d551
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Sep 21 21:01:50 2012 +0900
+
+    clean up to reduce glib dependencies
+
+ data/Makefile.am                      |   1 +
+ liblangtag-gobject/Makefile.am        |   1 +
+ liblangtag/Makefile.am                |   1 +
+ liblangtag/buildaliastbl.sh           |  10 +-
+ liblangtag/lt-database.c              |  10 +-
+ liblangtag/lt-database.h              |  10 +-
+ liblangtag/lt-ext-module-data.c       |   4 +-
+ liblangtag/lt-ext-module-data.h       |   9 +-
+ liblangtag/lt-ext-module-private.h    |  31 ++---
+ liblangtag/lt-ext-module.c            | 124 ++++++++---------
+ liblangtag/lt-ext-module.h            |  25 ++--
+ liblangtag/lt-extension-private.h     |  19 +--
+ liblangtag/lt-extension.c             |  44 +++---
+ liblangtag/lt-extension.h             |  14 +-
+ liblangtag/lt-extlang-private.h       |  16 +--
+ liblangtag/lt-extlang.c               |  41 +++---
+ liblangtag/lt-extlang.h               |  18 +--
+ liblangtag/lt-grandfathered-private.h |  12 +-
+ liblangtag/lt-grandfathered.c         |  26 ++--
+ liblangtag/lt-grandfathered.h         |  16 +--
+ liblangtag/lt-lang-private.h          |  30 ++---
+ liblangtag/lt-lang.c                  |  64 ++++-----
+ liblangtag/lt-lang.h                  |  32 ++---
+ liblangtag/lt-macros.h                |  35 +++++
+ liblangtag/lt-mem.c                   |  28 ++--
+ liblangtag/lt-mem.h                   |  43 +++---
+ liblangtag/lt-redundant-private.h     |  12 +-
+ liblangtag/lt-redundant.c             |  26 ++--
+ liblangtag/lt-redundant.h             |  16 +--
+ liblangtag/lt-region-private.h        |  12 +-
+ liblangtag/lt-region.c                |  28 ++--
+ liblangtag/lt-region.h                |  14 +-
+ liblangtag/lt-script-private.h        |  10 +-
+ liblangtag/lt-script.c                |  24 ++--
+ liblangtag/lt-script.h                |  14 +-
+ liblangtag/lt-tag-private.h           |  10 +-
+ liblangtag/lt-tag.c                   | 245
+ +++++++++++++++++-----------------
+ liblangtag/lt-tag.h                   |  34 ++---
+ liblangtag/lt-utils.c                 |   9 +-
+ liblangtag/lt-utils.h                 |   8 +-
+ liblangtag/lt-variant-private.h       |  14 +-
+ liblangtag/lt-variant.c               |  32 ++---
+ liblangtag/lt-variant.h               |  16 +--
+ liblangtag/lt-xml.h                   |   6 +-
+ 44 files changed, 620 insertions(+), 574 deletions(-)
+
+commit 692bc1aa08ef788410f128cbc7e57feacc9f05e7
+Merge: 7045dc2 56c8c76
+Author: Akira TAGOH <akira@tagoh.org>
+Date:   Fri Sep 21 20:56:27 2012 +0900
+
+    Merge branch 'master' of github.com:tagoh/liblangtag
+
+    Conflicts:
+	liblangtag-gobject/gengir.sh
+
+commit 7045dc2e75b4d016b289eb560f6e21d1c8cb6748
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Sep 21 18:30:50 2012 +0900
+
+    Fix a script to generate proper source code for gir
+
+ liblangtag-gobject/gengir.sh | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+commit 56c8c766dcb29adc1054bcbbf396f718aaae82c4
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Sep 21 18:30:50 2012 +0900
+
+    Fix a script to generate proper source code for gir
+
+ liblangtag-gobject/gengir.sh | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+commit 0478217f8223e8718219a16e0f83f42d0b1171a9
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Sep 21 13:37:31 2012 +0900
+
+    Add the license file for MPLv2
+
+ COPYING.MPL | 373
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 373 insertions(+)
+
+commit 7eadc2a2da29e526c6f7d5f4840b8e132a5be597
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Sep 21 13:30:39 2012 +0900
+
+    Changed to the dual-licensing with MPLv2
+
+ README				       | 26 ++++++++++++++++++++++++++
+ data/reg2xml.c			       | 15 +++------------
+ liblangtag-gobject/lt-gobject.c       | 15 +++------------
+ liblangtag-gobject/lt-gobject.h       | 15 +++------------
+ liblangtag/buildaliastbl.sh	       | 34
+ ++++++++--------------------------
+ liblangtag/extensions/lt-ext-ldml-t.c | 15 +++------------
+ liblangtag/extensions/lt-ext-ldml-u.c | 15 +++------------
+ liblangtag/langtag.h		       | 15 +++------------
+ liblangtag/lt-database.c	       | 15 +++------------
+ liblangtag/lt-database.h	       | 15 +++------------
+ liblangtag/lt-error.c		       | 15 +++------------
+ liblangtag/lt-error.h		       | 15 +++------------
+ liblangtag/lt-ext-module-data.c       | 17 +++--------------
+ liblangtag/lt-ext-module-data.h       | 17 +++--------------
+ liblangtag/lt-ext-module-private.h    | 15 +++------------
+ liblangtag/lt-ext-module.c	       | 15 +++------------
+ liblangtag/lt-ext-module.h	       | 15 +++------------
+ liblangtag/lt-extension-private.h     | 15 +++------------
+ liblangtag/lt-extension.c	       | 15 +++------------
+ liblangtag/lt-extension.h	       | 15 +++------------
+ liblangtag/lt-extlang-db.c	       | 15 +++------------
+ liblangtag/lt-extlang-db.h	       | 15 +++------------
+ liblangtag/lt-extlang-private.h       | 15 +++------------
+ liblangtag/lt-extlang.c	       | 15 +++------------
+ liblangtag/lt-extlang.h	       | 15 +++------------
+ liblangtag/lt-grandfathered-db.c      | 15 +++------------
+ liblangtag/lt-grandfathered-db.h      | 15 +++------------
+ liblangtag/lt-grandfathered-private.h | 15 +++------------
+ liblangtag/lt-grandfathered.c	       | 15 +++------------
+ liblangtag/lt-grandfathered.h	       | 15 +++------------
+ liblangtag/lt-lang-db.c	       | 15 +++------------
+ liblangtag/lt-lang-db.h	       | 15 +++------------
+ liblangtag/lt-lang-private.h	       | 15 +++------------
+ liblangtag/lt-lang.c		       | 15 +++------------
+ liblangtag/lt-lang.h		       | 15 +++------------
+ liblangtag/lt-mem.c		       | 15 +++------------
+ liblangtag/lt-mem.h		       | 15 +++------------
+ liblangtag/lt-redundant-db.c	       | 15 +++------------
+ liblangtag/lt-redundant-db.h	       | 15 +++------------
+ liblangtag/lt-redundant-private.h     | 15 +++------------
+ liblangtag/lt-redundant.c	       | 15 +++------------
+ liblangtag/lt-redundant.h	       | 15 +++------------
+ liblangtag/lt-region-db.c	       | 15 +++------------
+ liblangtag/lt-region-db.h	       | 15 +++------------
+ liblangtag/lt-region-private.h        | 15 +++------------
+ liblangtag/lt-region.c		       | 15 +++------------
+ liblangtag/lt-region.h		       | 15 +++------------
+ liblangtag/lt-script-db.c	       | 15 +++------------
+ liblangtag/lt-script-db.h	       | 15 +++------------
+ liblangtag/lt-script-private.h        | 15 +++------------
+ liblangtag/lt-script.c		       | 15 +++------------
+ liblangtag/lt-script.h		       | 15 +++------------
+ liblangtag/lt-tag-private.h	       | 15 +++------------
+ liblangtag/lt-tag.c		       | 15 +++------------
+ liblangtag/lt-tag.h		       | 15 +++------------
+ liblangtag/lt-utils.c		       | 15 +++------------
+ liblangtag/lt-utils.h		       | 15 +++------------
+ liblangtag/lt-variant-db.c	       | 15 +++------------
+ liblangtag/lt-variant-db.h	       | 15 +++------------
+ liblangtag/lt-variant-private.h       | 15 +++------------
+ liblangtag/lt-variant.c	       | 15 +++------------
+ liblangtag/lt-variant.h	       | 15 +++------------
+ liblangtag/lt-xml.c		       | 15 +++------------
+ liblangtag/lt-xml.h		       | 15 +++------------
+ tests/check-extlang.c		       | 17 +++--------------
+ tests/check-grandfathered.c	       | 17 +++--------------
+ tests/check-lang.c		       | 17 +++--------------
+ tests/check-region.c		       | 17 +++--------------
+ tests/check-script.c		       | 17 +++--------------
+ tests/check-tag.c		       | 17 +++--------------
+ tests/check-variant.c		       | 17 +++--------------
+ tests/extlang-db.c		       | 15 +++------------
+ tests/grandfathered-db.c	       | 15 +++------------
+ tests/lang-db.c		       | 15 +++------------
+ tests/main.c			       | 17 +++--------------
+ tests/main.h			       | 17 +++--------------
+ tests/region-db.c		       | 15 +++------------
+ tests/script-db.c		       | 15 +++------------
+ tests/tag.c			       | 15 +++------------
+ tests/variant-db.c		       | 15 +++------------
+ 80 files changed, 268 insertions(+), 984 deletions(-)
+
+commit 8f6b38157fc7efcda252fecdb7329bba07484ac0
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Sep 21 13:30:01 2012 +0900
+
+    Fix failing of locale.alias file detection
+
+ configure.ac | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+commit 6431f77913e152f87a28ac79c7a7493a7bc31fc5
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Sep 21 12:55:25 2012 +0900
+
+    Do not generate lt-localealias.h if failed
+
+ liblangtag/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f11c34cf6ec1cebc735369db1fdb4cc3d882dd7a
+Merge: 3b57803 a80f37b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Sep 20 18:52:15 2012 -0700
+
+    Merge pull request #7 from stbergmann/master
+
+    Do not call xmlCleanupParser from liblangtag
+
+commit a80f37b0c393a72630760df60877544c3f0e0167
+Author: Stephan Bergmann <sbergman@redhat.com>
+Date:	Thu Sep 20 15:21:57 2012 +0200
+
+    Do not call xmlCleanupParser from liblangtag
+
+    Despite its name, it is a cleanup function for libxml2 that must
+    only be called
+    when the process as a whole no longer needs libxml2.  Calling it
+    from a library
+    like liblangtag is not appropriate (just like liblangtag does not call
+    xmlInitParser, either).
+
+    In LibreOffice, this caused confusion about pthread keys for
+    thread-local
+    storage (xmlCleanupParser calls pthread_key_delete, but apparently
+    if libxml2 is
+    later used by unrelated code in LibreOffice again, it still uses
+    the stale key,
+    and if that key is now reused via an unrelated pthread_key_create,
+    arbitrary
+    crashes happen during thread termination in pthread's
+    __nptl_deallocate_tsd),
+    cf. <http://cgit.freedesktop.org/libreoffice/core/commit/
+    ?id=5e6c595e9d698caf23ae68d38b9cab30ff9c9b94> "Do not call
+    xmlCleanupParser from
+    liblangtag."
+
+ liblangtag/lt-xml.c | 6 ------
+ 1 file changed, 6 deletions(-)
+
+commit 3b57803395aef6a9d4d62963d9b53ec616015fde
+Author: Tomas Chvatal <tchvatal@suse.cz>
+Date:	Thu Sep 20 10:58:45 2012 +0200
+
+    Use correct brackets in pc files to avoid linking issues. (closes #6)
+
+ liblangtag-gobject.pc.in | 2 +-
+ liblangtag.pc.in	  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+commit a40168c887760e3ba30dd523aecd329e8ba489b3
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Sep 5 13:57:09 2012 +0900
+
+    Add --disable-test configure option
+
+    This seems required to address the automagic dependencies in Gentoo.
+    (closes #3)
+
+ configure.ac | 85
+ +++++++++++++++++++++++++++++++++---------------------------
+ 1 file changed, 47 insertions(+), 38 deletions(-)
+
+commit 71e2b41a366ecd150700025058364c7dbf3576a7
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Aug 16 15:41:53 2012 +0900
+
+    Fix the broken output
+
+    I'm not sure what's wrong. but using xmlSaveFormatFileEnc()
+    instead of xmlDocDumpFormatMemory() seems fixing this issue.
+    (closes #5)
+
+ data/Makefile.am |  2 +-
+ data/reg2xml.c   | 17 ++++++-----------
+ 2 files changed, 7 insertions(+), 12 deletions(-)
+
+commit e41b87790ccc953b2cb52363d391bd9affeeeb59
+Merge: ad80fce 1d3e950
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Aug 13 19:04:14 2012 -0700
+
+    Merge pull request #4 from pevik/master
+
+    one more bashism fixed
+
+commit 1d3e95014d56120bfa8dbde42b48b86ab0bb5d6d
+Author: Petr Vorel <petr.vorel@gmail.com>
+Date:	Fri Aug 10 21:30:14 2012 +0200
+
+    Fix another bashism. Now it should be working under dash as well.
+
+ liblangtag-gobject/gengir.sh | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit ad80fce200f57d3b68057f9366665a5fb5d4acc2
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Aug 8 11:52:16 2012 +0900
+
+    Fix another fail on make check without --enable-debug
+
+ tests/Makefile.am | 13 +++++++------
+ tests/check-tag.c |  1 +
+ 2 files changed, 8 insertions(+), 6 deletions(-)
+
+commit e3ae851c3cc500286dbf502672f09666a62fbc2e
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Aug 8 11:27:24 2012 +0900
+
+    read xml files on the builddir for unit tests
+
+    This change allows to run "make check" without --enable-debug. (closes
+    #2)
+
+ tests/Makefile.am	     | 11 ++++++-----
+ tests/check-extlang.c	     |	1 +
+ tests/check-grandfathered.c |	1 +
+ tests/check-lang.c	     |	1 +
+ tests/check-region.c	     |	1 +
+ tests/check-script.c	     |	1 +
+ tests/check-tag.c	     |	1 +
+ tests/check-variant.c	     |	1 +
+ tests/extlang-db.c	     |	1 +
+ tests/grandfathered-db.c    |	1 +
+ tests/lang-db.c	     |	1 +
+ tests/region-db.c	     |	1 +
+ tests/script-db.c	     |	1 +
+ tests/tag.c		     |	1 +
+ tests/variant-db.c	     |	1 +
+ 15 files changed, 20 insertions(+), 5 deletions(-)
+
+commit 1c06ed56d14f1a04df8c069b3fe619e908e374f7
+Merge: fc860aa 4ffc146
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Aug 7 10:16:05 2012 +0900
+
+    Merge branch 'master' of github.com:tagoh/liblangtag
+
+commit 4ffc146f04633ebfcd222dc95e7672f8f787ad4d
+Merge: 255a824 cefa70d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Aug 6 18:12:02 2012 -0700
+
+    Merge pull request #1 from pevik/master
+
+    fix bashisms
+
+commit cefa70da9e5ae2d48181fab8bb7aa9ef6855d2e4
+Author: Petr Vorel <petr.vorel@gmail.com>
+Date:	Mon Aug 6 23:48:39 2012 +0200
+
+    remove bashisms
+
+ liblangtag-gobject/gengir.sh | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit fc860aa452c60bdbb7bedb07fc9338f2457e2879
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jun 15 15:19:28 2012 +0900
+
+    Bump version to 0.3
+
+ NEWS	      | 10 ++++++++++
+ configure.ac |  2 +-
+ 2 files changed, 11 insertions(+), 1 deletion(-)
+
+commit a6de293e40593598d8b11568d0bd1ec85d670f4e
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jun 15 15:18:51 2012 +0900
+
+    Bump the libtool revision
+
+ configure.ac | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 8faf54b2192e1c37da8be65d7f06389558fcae8e
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jun 15 15:18:05 2012 +0900
+
+    Fix distcheck fail
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 255a824592eb927406f3a48ad565e2468f81956b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jun 15 14:49:59 2012 +0900
+
+    docs: Ignore lt-localealias.h
+
+ docs/Makefile.am | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit fcc1871df84d0623e20e643984020b3ae4de88cd
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jun 15 14:49:12 2012 +0900
+
+    Add lt_db_get/set_datadir()
+
+    Both functions will overrides the builtin datadir.
+    The idea and the original patch was written by Eike Rathke.
+
+ liblangtag/lt-database.c | 41 +++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-database.h |  2 ++
+ liblangtag/lt-utils.h	  |  3 +++
+ liblangtag/lt-xml.c	  |  7 ++++---
+ 4 files changed, 50 insertions(+), 3 deletions(-)
+
+commit 134f7c994c58e9c6364d1668290bee144e8bfeab
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Mar 19 19:06:34 2012 +0900
+
+    Improve the locale modifier handling
+
+ liblangtag/lt-tag.c | 242
+ ++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 235 insertions(+), 7 deletions(-)
+
+commit b2981ba8864ca2bc04898375762014c206458353
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Mar 16 19:50:23 2012 +0900
+
+    Deal with the locale alias in lt_tag_convert_from_locale()
+
+ configure.ac		     |	33 +++++++++
+ liblangtag/Makefile.am      |	13 +++-
+ liblangtag/buildaliastbl.sh |	81 ++++++++++++++++++++++
+ liblangtag/lt-tag.c	     | 160
+ ++++++++++++++++++++++++++++----------------
+ 4 files changed, 226 insertions(+), 61 deletions(-)
+
+commit 20dc02e62d95a03483ee7e1f7dfa7d5c94a162ce
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Mar 13 21:12:17 2012 +0900
+
+    Add a reference for RFC6497
+
+ README | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 1edeb4b43c2121dd884825f1eee56bfa7c0ea878
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Mar 5 21:55:38 2012 +0900
+
+    Add -t- extension - transformed content support
+
+ data/Makefile.am		       |   1 +
+ liblangtag/extensions/Makefile.am     |  12 +
+ liblangtag/extensions/lt-ext-ldml-t.c | 428
+ ++++++++++++++++++++++++++++++++++
+ liblangtag/lt-tag.c		       | 240 +++++++++++--------
+ liblangtag/lt-tag.h		       |  73 +++---
+ liblangtag/lt-xml.c		       |   7 +
+ liblangtag/lt-xml.h		       |   1 +
+ tests/check-tag.c		       |  12 +
+ 8 files changed, 644 insertions(+), 130 deletions(-)
+
+commit cf8dfcf1604e534f4c9eccbd9a05571c8a9dc74d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Mar 5 18:10:10 2012 +0900
+
+    Fix invalid memory access
+
+ liblangtag/lt-extension.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit fb51a565eee62470d0b31263b684fa9c2d8cf267
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Mar 5 17:57:35 2012 +0900
+
+    Fix a typo
+
+ liblangtag/lt-tag.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 1492f1e3f380cdb73275d642e13153a075bc6175
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Mar 5 14:22:16 2012 +0900
+
+    clean up the duplicate code
+
+ liblangtag/lt-mem.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit 7db668018bead098c994941f8012306fad7f5faf
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Mar 5 14:21:32 2012 +0900
+
+    Fix a typo
+
+ liblangtag/lt-tag-private.h | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
+
+commit d2c2baaf21d9b871e16137d7bd53c6009c57fb0e
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Mar 5 14:21:17 2012 +0900
+
+    clean up the duplicate code
+
+ liblangtag/lt-extension.c | 7 +------
+ liblangtag/lt-mem.h	   | 3 +++
+ liblangtag/lt-tag.c	   | 8 +-------
+ 3 files changed, 5 insertions(+), 13 deletions(-)
+
+commit d8d9bd8816d92dcf893f9e78cfc2f462a60406a8
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Feb 29 19:03:53 2012 +0900
+
+    trivial fix to adjust the alignment
+
+ data/Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 19e991a7aa0eca5853a82f935a40e6299dd18084
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Feb 29 19:02:57 2012 +0900
+
+    fails when downloading/generating a file is failed
+
+ data/Makefile.am | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+commit b304a56a179918f3c5852c435cd920536bcfcaf0
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Feb 29 18:38:48 2012 +0900
+
+    rename for coming another extension
+
+ liblangtag/extensions/Makefile.am     |  14 +-
+ liblangtag/extensions/lt-ext-ldml-u.c | 451
+ ++++++++++++++++++++++++++++++++++
+ liblangtag/extensions/lt-ext-ldml.c   | 451
+ ----------------------------------
+ 3 files changed, 458 insertions(+), 458 deletions(-)
+
+commit cc2204d13be874bf7206e0b46c55145c4b0d8456
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Feb 29 18:36:56 2012 +0900
+
+    Add more reference
+
+ README | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 2a0ff17e483e1499c0cfa0281c5673cf9a12362b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Feb 28 19:27:12 2012 +0900
+
+    Enable the silent build rules by default
+
+ configure.ac			| 5 +++++
+ liblangtag-gobject/Makefile.am | 4 ++--
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+commit 1db07ce3e9e74f0941baa975097ede0c0b99383f
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Feb 17 18:15:21 2012 +0900
+
+    Drop the unnecessary files from repo
+
+ ChangeLog |   0
+ INSTALL   | 365
+ --------------------------------------------------------------
+ 2 files changed, 365 deletions(-)
+
+commit e80bad7c397c016284e451765870a4bda11cca92
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Feb 17 15:23:53 2012 +0900
+
+    Add lt_tag_transform() to substitute tags according to likelySubtags
+    database
+
+ data/Makefile.am		     | 41 ++++++++++++-----
+ liblangtag/extensions/lt-ext-ldml.c |	8 ++--
+ liblangtag/lt-tag.c		     | 87
+ +++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-tag.h		     |	2 +
+ liblangtag/lt-xml.c		     | 68 ++++++++++++++++++++++++++++-
+ liblangtag/lt-xml.h		     | 11 +++--
+ tests/tag.c			     | 10 ++++-
+ 7 files changed, 207 insertions(+), 20 deletions(-)
+
+commit 36a31e0ee7d2f12b3ec1e23a1a3207ae3fd7fb7d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Feb 17 12:39:03 2012 +0900
+
+    add missing files for cleanup
+
+ Makefile.am	  | 1 +
+ docs/Makefile.am | 4 ++++
+ 2 files changed, 5 insertions(+)
+
+commit 5d5c0b3a1127b02f9d7d5da376c04924659f4176
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Feb 17 12:38:31 2012 +0900
+
+    get rid of .gitignore
+
+ .gitignore | 68
+ --------------------------------------------------------------
+ 1 file changed, 68 deletions(-)
+
+commit f77cc4e1b6f3cb44019b592a531e10d1f73e0fbe
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Feb 17 12:33:15 2012 +0900
+
+    Add git.mk from http://github.com/behdad/git.mk
+
+ .gitignore			   | 136 ++++++++++++-------------
+ Makefile.am			   |  44 +++++---
+ git.mk				   | 206
+ ++++++++++++++++++++++++++++++++++++++
+ liblangtag-gobject/Makefile.am    |   2 +
+ liblangtag/Makefile.am		   |   2 +
+ liblangtag/extensions/Makefile.am |   2 +
+ tests/Makefile.am		   |   2 +
+ 7 files changed, 314 insertions(+), 80 deletions(-)
+
+commit 1a9e162ab5eb725406ff34c3fc1f7926cc14d8f9
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Feb 7 12:03:39 2012 +0900
+
+    Add an API to generate lang tag from current locale
+
+ liblangtag/lt-tag.c | 79
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-tag.h | 65 +++++++++++++++++++++----------------------
+ tests/tag.c	     | 35 ++++++++++++++++++------
+ 3 files changed, 138 insertions(+), 41 deletions(-)
+
+commit 132170753ea9cbd63cda8f3a80498c144f75b8ba
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Feb 6 16:38:37 2012 +0900
+
+    Fix a memory leak
+
+ liblangtag/lt-extension.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+commit 5d4548798d85c660a390f6aead67ab8330d3533d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 21:32:05 2012 +0900
+
+    bump to 0.2
+
+ NEWS				| 11 +++++++++++
+ README				| 22 +++++++++++++++++++++-
+ configure.ac			|  2 +-
+ liblangtag-gobject/Makefile.am | 12 ++++++------
+ 4 files changed, 39 insertions(+), 8 deletions(-)
+
+commit d9e04416c198b1faf307cde7327395fd82d02804
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 19:10:10 2012 +0900
+
+    Fix the behavior on canonicalizing extension
+
+ liblangtag/extensions/lt-ext-ldml.c | 23 ++++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
+
+commit cdd35c2dad5c222d025161616e63938cdf3a09df
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 18:47:11 2012 +0900
+
+    missing changes for extension support
+
+ configure.ac | 20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
+
+commit 70ec395f31d7705fb63acd08e7aca7e430ab316d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 18:45:59 2012 +0900
+
+    add a testcase for u extension
+
+ tests/check-tag.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit ae0748090eb94ce8a60726d33834f61ca115e623
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 18:45:41 2012 +0900
+
+    Add an exception to deal with the codepoints...
+
+ liblangtag/extensions/lt-ext-ldml.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+commit 56004d23cd1cbabc7119b516163cffb0cb49445a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 18:03:07 2012 +0900
+
+    Fix a distcheck error
+
+ .gitignore		|  1 +
+ data/Makefile.am	| 26 ++++++++++++++++++++++++++
+ liblangtag/Makefile.am |  1 +
+ liblangtag/lt-xml.c	|  2 +-
+ 4 files changed, 29 insertions(+), 1 deletion(-)
+
+commit 42b5bdf6cb287dc36b8da1b82dd0a7a370fbcfd6
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 18:02:00 2012 +0900
+
+    Add a LDML support
+
+ liblangtag/extensions/lt-ext-ldml.c | 410
+ ++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-xml.c		     | 129 +++++++++++-
+ liblangtag/lt-xml.h		     |	18 +-
+ 3 files changed, 547 insertions(+), 10 deletions(-)
+
+commit 132eecbbb304381dd5e6e56ffbb1bbf440846692
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 16:03:49 2012 +0900
+
+    Add an API to precheck tags for extension.
+
+ liblangtag/lt-ext-module-private.h |  4 +++
+ liblangtag/lt-ext-module.c	    | 53
+ ++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-ext-module.h	    | 18 +++++++++++++
+ liblangtag/lt-extension-private.h  |  4 ++-
+ liblangtag/lt-extension.c	    | 41 ++++++++++++++++++++++++-----
+ liblangtag/lt-tag.c		    | 12 ++++-----
+ 6 files changed, 118 insertions(+), 14 deletions(-)
+
+commit d742f6dead06f345f897e2dfde43c0c30268fbe9
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 13:54:17 2012 +0900
+
+    Add APIs to obtain the subtag container instances.
+
+ liblangtag/lt-tag.c | 84
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-tag.h | 62 ++++++++++++++++++++++++---------------
+ 2 files changed, 122 insertions(+), 24 deletions(-)
+
+commit cbebccfbf838478316b0e52f423ed7eb12887410
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 13:53:34 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-ext-module.h | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+commit b3d6eacfd30788377a8d4edb0a4b1a97ed7dbc44
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 13:53:20 2012 +0900
+
+    Fix to generate the capitalized class name for const.
+
+ liblangtag-gobject/gengir.sh | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 3cc6b55defae22b3c7859d9629b959b923e51784
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 10:12:43 2012 +0900
+
+    renaming...
+
+ liblangtag/lt-tag.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit f4e2d17fe1e39e84870c858d2b1bb75a78e19715
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 10:12:21 2012 +0900
+
+    renaming...
+
+ liblangtag/lt-extension-private.h | 22 +++++++++++-----------
+ liblangtag/lt-extension.c	   |  2 +-
+ 2 files changed, 12 insertions(+), 12 deletions(-)
+
+commit 82e635f8b8ffb599bbfcf84b009cb0799e699b56
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Feb 2 10:10:11 2012 +0900
+
+    Add an API to validate tag state.
+
+ liblangtag/extensions/Makefile.am  | 51
+ ++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-ext-module-private.h |  2 ++
+ liblangtag/lt-ext-module.c	    | 48
+ +++++++++++++++++++++++++++--------
+ liblangtag/lt-ext-module.h	    | 11 ++++++++
+ liblangtag/lt-extension-private.h  |  1 +
+ liblangtag/lt-extension.c	    | 15 +++++++++++
+ liblangtag/lt-tag.c		    |  3 ++-
+ 7 files changed, 120 insertions(+), 11 deletions(-)
+
+commit eb27fa7570b59123369dcc3000e0c8f006a43e2c
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Feb 1 16:58:04 2012 +0900
+
+    external module support for Extension
+
+ docs/Makefile.am		    |	3 +
+ docs/liblangtag-docs.sgml	    |	6 +
+ liblangtag-gobject/Makefile.am     |	6 +
+ liblangtag-gobject/gengir.sh	    |	2 +-
+ liblangtag-gobject/lt-gobject.c    |	3 +
+ liblangtag-gobject/lt-gobject.h    |	6 +
+ liblangtag/Makefile.am		    |  31 +-
+ liblangtag/langtag.h		    |	2 +
+ liblangtag/lt-database.c	    |	3 +
+ liblangtag/lt-error.h		    |	2 +
+ liblangtag/lt-ext-module-data.c    | 124 ++++++++
+ liblangtag/lt-ext-module-data.h    |  56 ++++
+ liblangtag/lt-ext-module-private.h |  50 ++++
+ liblangtag/lt-ext-module.c	    | 584
+ +++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-ext-module.h	    | 144 +++++++++
+ liblangtag/lt-extension-private.h  |  44 +++
+ liblangtag/lt-extension.c	    | 428 +++++++++++++++++++++++++++
+ liblangtag/lt-extension.h	    |  53 ++++
+ liblangtag/lt-tag.c		    | 220 +++++---------
+ 19 files changed, 1607 insertions(+), 160 deletions(-)
+
+commit 51c0f56cbe3c105ee312f10f0afe8086cd3fd269
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Feb 1 16:53:56 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-extlang-db.h	  | 3 +++
+ liblangtag/lt-extlang.h	  | 3 +++
+ liblangtag/lt-grandfathered-db.h | 3 +++
+ liblangtag/lt-grandfathered.h	  | 3 +++
+ liblangtag/lt-lang-db.h	  | 3 +++
+ liblangtag/lt-lang.h		  | 3 +++
+ liblangtag/lt-redundant-db.h	  | 3 +++
+ liblangtag/lt-redundant.h	  | 3 +++
+ liblangtag/lt-region-db.h	  | 3 +++
+ liblangtag/lt-region.h		  | 3 +++
+ liblangtag/lt-script-db.h	  | 3 +++
+ liblangtag/lt-script.h		  | 3 +++
+ liblangtag/lt-tag.h		  | 3 +++
+ liblangtag/lt-variant-db.h	  | 3 +++
+ liblangtag/lt-variant.h	  | 5 ++++-
+ 15 files changed, 46 insertions(+), 1 deletion(-)
+
+commit 2b4a54c033d1702504c8e6301478f9f5432ae627
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Jan 30 22:49:13 2012 +0900
+
+    Use common instance for xml files.
+
+ liblangtag/Makefile.am		  |   2 +
+ liblangtag/lt-extlang-db.c	  |  44 ++++--------
+ liblangtag/lt-grandfathered-db.c |  45 ++++--------
+ liblangtag/lt-lang-db.c	  |  45 ++++--------
+ liblangtag/lt-redundant-db.c	  |  45 ++++--------
+ liblangtag/lt-region-db.c	  |  45 ++++--------
+ liblangtag/lt-script-db.c	  |  45 ++++--------
+ liblangtag/lt-variant-db.c	  |  45 ++++--------
+ liblangtag/lt-xml.c		  | 152
+ +++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-xml.h		  |  39 ++++++++++
+ 10 files changed, 283 insertions(+), 224 deletions(-)
+
+commit 24f17cb052df9bf67fa10eec79bae050afcb0fac
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 27 12:33:33 2012 +0900
+
+    canonicalize the tag before converting to the locale
+
+ liblangtag/lt-tag.c | 23 +++++++++++++++--------
+ 1 file changed, 15 insertions(+), 8 deletions(-)
+
+commit 07bfd0526b9b697c80f0c07c8bec38c38d155d12
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Jan 26 20:36:55 2012 +0900
+
+    Update for docs
+
+ docs/Makefile.am	   | 1 +
+ docs/liblangtag-docs.sgml | 2 ++
+ 2 files changed, 3 insertions(+)
+
+commit baddf29533a77f9bb74d7e0f189e8c2f52a9adfc
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Jan 26 20:36:41 2012 +0900
+
+    missing function for redundant handlers
+
+ liblangtag-gobject/lt-gobject.c |  2 ++
+ liblangtag-gobject/lt-gobject.h | 28 ++++++++++++++++------------
+ 2 files changed, 18 insertions(+), 12 deletions(-)
+
+commit b4cc70ed5c5ea4d92fce96c82fb6bda71e03cafd
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Jan 26 20:29:05 2012 +0900
+
+    * clean up
+    * add some new APIs
+    * correct the behavior on canonicalizing tags
+
+ liblangtag/lt-tag.c | 552
+ ++++++++++++++++++++++++++++++++++++++--------------
+ liblangtag/lt-tag.h |	 3 +
+ tests/check-tag.c   |	29 +++
+ 3 files changed, 436 insertions(+), 148 deletions(-)
+
+commit d433b284f2a01b4165dbbc9aed3f36de699c500a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Jan 26 20:25:57 2012 +0900
+
+    Add redundant database handler
+
+ liblangtag-gobject/Makefile.am    |   4 +
+ liblangtag/Makefile.am		   |   5 +
+ liblangtag/lt-database.c	   |  25 +++-
+ liblangtag/lt-database.h	   |   2 +
+ liblangtag/lt-redundant-db.c	   | 296
+ ++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-redundant-db.h	   |  48 +++++++
+ liblangtag/lt-redundant-private.h |  40 ++++++
+ liblangtag/lt-redundant.c	   | 248 ++++++++++++++++++++++++++++++++
+ liblangtag/lt-redundant.h	   |  51 +++++++
+ 9 files changed, 713 insertions(+), 6 deletions(-)
+
+commit e98597a7278159a3e9440c296c22e24d9decf35a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 25 19:04:21 2012 +0900
+
+    declare ref_count as volatile
+
+ liblangtag/lt-mem.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit b68f868c69f7992f0d64d0556874c71b821af2ae
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 18 13:49:17 2012 +0900
+
+    Fix distcheck error
+
+ Makefile.am			|  1 +
+ data/Makefile.am		|  5 +++--
+ liblangtag-gobject/Makefile.am | 12 ++++++------
+ 3 files changed, 10 insertions(+), 8 deletions(-)
+
+commit f0e15856438cf25b7e09f30cc8ceb299a8cdc1f8
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 18 12:48:50 2012 +0900
+
+    Generate document from gtk-doc
+
+ Makefile.am		       |   2 +-
+ configure.ac		       |   2 +
+ docs/Makefile.am	       | 124
+ ++++++++++++++++++++++++++++++++++++++++++
+ docs/liblangtag-docs.sgml     |  59 ++++++++++++++++++++
+ docs/liblangtag-overrides.txt |   0
+ docs/liblangtag.types	       |   0
+ docs/version.xml.in	       |   1 +
+ 7 files changed, 187 insertions(+), 1 deletion(-)
+
+commit 3b504f69232fe821d792e5d3013d7dd65b42b699
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 18 12:43:28 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-error.h		  |   3 ++
+ liblangtag/lt-extlang-db.h	  |   3 ++
+ liblangtag/lt-extlang.h	  |   3 ++
+ liblangtag/lt-grandfathered-db.h |   3 ++
+ liblangtag/lt-grandfathered.h	  |   3 ++
+ liblangtag/lt-lang-db.h	  |   3 ++
+ liblangtag/lt-lang.h		  |   3 ++
+ liblangtag/lt-region-db.h	  |   3 ++
+ liblangtag/lt-region.h		  |   3 ++
+ liblangtag/lt-script-db.h	  |   3 ++
+ liblangtag/lt-script.h		  |   3 ++
+ liblangtag/lt-tag.c		  | 109
+ +++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-tag.h		  |   5 +-
+ liblangtag/lt-variant-db.h	  |   3 ++
+ liblangtag/lt-variant.h	  |   3 ++
+ 15 files changed, 152 insertions(+), 1 deletion(-)
+
+commit 846edfd9445a22eb4994f0e45235d08d1cffc860
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 18 12:01:27 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-variant.c | 83
+ +++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 83 insertions(+)
+
+commit f8ce7dc5c694f6a4e26fd3386999cbf6709b68e6
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 18 11:46:03 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-lang.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8afcdf2bfb95dc38e1b53ba0ae1806fece6e2ba4
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 18 11:43:01 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-extlang-db.c	  |  1 +
+ liblangtag/lt-grandfathered-db.c |  1 +
+ liblangtag/lt-lang-db.c	  |  1 +
+ liblangtag/lt-region-db.c	  |  1 +
+ liblangtag/lt-script-db.c	  |  1 +
+ liblangtag/lt-script.c		  | 61
+ ++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-variant-db.c	  | 40 ++++++++++++++++++++++++++
+ 7 files changed, 106 insertions(+)
+
+commit 5d72b031d8eb68277a98afeb907273b304e4c4f2
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 18 11:26:12 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-script-db.c | 63
+ ++++++++++++++++++++++++++++++++++++++---------
+ liblangtag/lt-script-db.h |  3 +--
+ 2 files changed, 52 insertions(+), 14 deletions(-)
+
+commit 1dc33080f6272a8fccde50349ac97ed7512b5974
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 20:07:37 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-region.c | 71
+ ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 71 insertions(+)
+
+commit dc81cb83eac605247d79f1077e85a4fc872f5725
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 20:00:03 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-region-db.c | 58
+ +++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 49 insertions(+), 9 deletions(-)
+
+commit 24fc623dd927922269157609b5e677c4da5f5c3f
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 19:10:53 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-extlang.c       | 4 ++--
+ liblangtag/lt-grandfathered.c | 4 ++--
+ liblangtag/lt-lang.c	       | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
+
+commit 39b39b828d762cdf4fb27fd1d633f03f29eb1413
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 19:08:16 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-lang.c | 99
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 99 insertions(+)
+
+commit 819a9c2c9ad46c38a3efa30e1c1324ca636bde5e
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 19:03:42 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-extlang.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 8470ef352d13b8b39ee81ab83fe4be97e73347ca
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 18:58:18 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-grandfathered.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 5ded88d83d42f4eec8d206a810bd13f778840c7d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 18:52:35 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-lang-db.c | 63
+ +++++++++++++++++++++++++++++++++++++++----------
+ liblangtag/lt-lang-db.h |  2 +-
+ 2 files changed, 52 insertions(+), 13 deletions(-)
+
+commit 1d9d4dd1101c6f18005350a6d6b61ee4be7904fe
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 18:47:36 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-extlang-db.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit de1df4973dead5c94d45411de0ccc0490c956d40
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 18:39:06 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-grandfathered.c | 71
+ +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 71 insertions(+)
+
+commit e8b17b67ba46ea6f366819fbd8ab1cdbfd2aafd0
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 18:39:02 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-grandfathered-db.c | 39
+ +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+
+commit 96fe037adb619ab0163f822c8aa4e103b4fb4b64
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 18:38:58 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-extlang.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b94dd262f4341618627de3c08783cbb6ad0e147b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 18:22:05 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-database.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9b1e16d07855c189f8c33ed178ada801674b86cf
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 18:09:13 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-extlang.c | 82
+ +++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 82 insertions(+)
+
+commit 3ca9153d616cd66a837d6420cc37c63457f29dcb
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 17:08:53 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-extlang-db.c | 39 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+
+commit 78a27fe18ade62ab296e8dd66fc6971b8bcbe2f4
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 15:51:26 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-error.c | 15 +++++++++++++++
+ liblangtag/lt-error.h | 15 +++++++++++++++
+ 2 files changed, 30 insertions(+)
+
+commit d39e87aea41a8be49d726b918cfb4ac4d9baf356
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 15:51:21 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-database.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
+
+commit 0b4619108cb007840533c39a4c539adcc188be59
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 14:41:55 2012 +0900
+
+    Update docs
+
+ liblangtag/lt-database.c | 74
+ ++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+
+commit c69d71d8ec49b9336b224e362b10c4cb5c16d2e4
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 14:05:49 2012 +0900
+
+    Add lt_tag_lookup API
+
+ liblangtag/lt-tag.c | 223
+ +++++++++++++++++++++++++++++++++++++++++++---------
+ liblangtag/lt-tag.h |	 6 +-
+ tests/tag.c	     |	 9 +++
+ 3 files changed, 197 insertions(+), 41 deletions(-)
+
+commit ea11bada5f76faab258ac13c57b5dafa547e055d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Jan 17 12:22:15 2012 +0900
+
+    Fix wildcard bug
+
+ liblangtag/lt-tag-private.h |	1 +
+ liblangtag/lt-tag.c	     | 27 +++++++++++++++------------
+ 2 files changed, 16 insertions(+), 12 deletions(-)
+
+commit 72b72daea33cf1e824e074412028085dbd756b8a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Jan 16 19:51:19 2012 +0900
+
+    Update
+
+ README | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+commit 93b98b431394ac5945661270096b4e952b6929d0
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Jan 16 19:49:59 2012 +0900
+
+    Add the unit tests
+
+ .gitignore		     |	 2 +
+ configure.ac		     |	 4 +
+ requires		     |	 1 +
+ tests/Makefile.am	     |	52 +++++++++++
+ tests/check-extlang.c	     |	86 ++++++++++++++++++
+ tests/check-grandfathered.c |	83 ++++++++++++++++++
+ tests/check-lang.c	     |	85 ++++++++++++++++++
+ tests/check-region.c	     |	90 +++++++++++++++++++
+ tests/check-script.c	     |	86 ++++++++++++++++++
+ tests/check-tag.c	     | 209
+ ++++++++++++++++++++++++++++++++++++++++++++
+ tests/check-variant.c	     |	86 ++++++++++++++++++
+ tests/main.c		     | 125 ++++++++++++++++++++++++++
+ tests/main.h		     |	48 ++++++++++
+ 13 files changed, 957 insertions(+)
+
+commit d02ed4a7cef490e52473dff1984072105cf90f8a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Jan 16 19:36:29 2012 +0900
+
+    Add/Update APIs and implementation to support the wildcard in parser.
+
+ liblangtag/Makefile.am | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 0ca75c6e95b1d489ab6744eae1faeb01951e37c1
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Jan 16 19:36:06 2012 +0900
+
+    Add/Update APIs and implementation to support the wildcard in parser.
+
+ liblangtag/lt-tag-private.h |	65 +++++
+ liblangtag/lt-tag.c	     | 579
+ +++++++++++++++++++++++++++-----------------
+ liblangtag/lt-tag.h	     |	37 +--
+ 3 files changed, 440 insertions(+), 241 deletions(-)
+
+commit fa93fedc5e14552a56a0c3d54d50b1af134fa7cb
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Jan 16 19:34:19 2012 +0900
+
+    Fix a build fail.
+
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 08a1894883db1867a2ae14e96909660645bfbb73
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Jan 16 19:30:05 2012 +0900
+
+    wildcard support for comparison.
+
+ liblangtag/lt-lang.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+commit eabee51fcdb93faa75e98db0cf8994415cd43fd1
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Mon Jan 16 16:19:02 2012 +0900
+
+    Add a wildcard entry for lang
+
+ liblangtag/lt-lang-db.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit 822eeeb96467da86c54a449e80d118c86f746a06
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 13 21:13:10 2012 +0900
+
+    Add APIs to compare langtag
+
+ liblangtag/lt-tag.c | 219
+ +++++++++++++++++++++++++++++++++++++++++++++++++++-
+ liblangtag/lt-tag.h |	25 +++---
+ tests/tag.c	     |	 7 ++
+ 3 files changed, 240 insertions(+), 11 deletions(-)
+
+commit fce9380a29eba0f5f6053b32c1356dd255278124
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 13 21:11:46 2012 +0900
+
+    Add a wildcard entry and an empty entry for easier matching
+
+ liblangtag/lt-extlang-db.c | 14 ++++++++++++++
+ liblangtag/lt-region-db.c  | 21 ++++++++++++++-------
+ liblangtag/lt-script-db.c  | 14 ++++++++++++++
+ liblangtag/lt-variant-db.c | 14 ++++++++++++++
+ 4 files changed, 56 insertions(+), 7 deletions(-)
+
+commit 011198a69bcb6cf0ea98426c438081f4292ea8bb
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 13 21:10:34 2012 +0900
+
+    Allow a null pointer for comparison
+
+ liblangtag/lt-extlang.c | 12 +++++++++---
+ liblangtag/lt-region.c  | 12 +++++++++---
+ liblangtag/lt-script.c  | 12 +++++++++---
+ liblangtag/lt-variant.c | 12 +++++++++---
+ 4 files changed, 36 insertions(+), 12 deletions(-)
+
+commit f33f0ff07a37a49c735a9644ce9010b40a8cf04a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 13 17:11:29 2012 +0900
+
+    Add a compare functions
+
+ liblangtag/lt-extlang.c       | 13 +++++++++++++
+ liblangtag/lt-extlang.h       |  2 ++
+ liblangtag/lt-grandfathered.c | 13 +++++++++++++
+ liblangtag/lt-grandfathered.h |  2 ++
+ liblangtag/lt-lang.c	       | 13 +++++++++++++
+ liblangtag/lt-lang.h	       |  2 ++
+ liblangtag/lt-region.c        | 13 +++++++++++++
+ liblangtag/lt-region.h        |  2 ++
+ liblangtag/lt-script.c        | 13 +++++++++++++
+ liblangtag/lt-script.h        |  2 ++
+ liblangtag/lt-variant.c       | 13 +++++++++++++
+ liblangtag/lt-variant.h       |  2 ++
+ 12 files changed, 90 insertions(+)
+
+commit 9c8cb6f58e8948b62373c53928d2bea47fb66999
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 13 16:52:42 2012 +0900
+
+    error checking
+
+ tests/tag.c | 23 ++++++++++++-----------
+ 1 file changed, 12 insertions(+), 11 deletions(-)
+
+commit 9838a5799703580b573b13107f18f204ce5dd8bb
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 13 16:52:26 2012 +0900
+
+    detect duplicate variants in tag.
+
+ liblangtag/lt-tag.c | 23 +++++++++++++++++++----
+ 1 file changed, 19 insertions(+), 4 deletions(-)
+
+commit 65fc037d3a5fb70ab76c969d1c84746fab2ed88d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 13 15:02:14 2012 +0900
+
+    update
+
+ .gitignore | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 7139490c419da470ba91723c1998e5b40e80df8a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 13 15:01:52 2012 +0900
+
+    update to deal with the missing fields
+
+ liblangtag/lt-extlang-db.c	       | 49 ++++++++++++++++++++++-----
+ liblangtag/lt-extlang-private.h       |  4 +++
+ liblangtag/lt-extlang.c	       | 64
+ +++++++++++++++++++++++++++++++++++
+ liblangtag/lt-extlang.h	       |  2 ++
+ liblangtag/lt-grandfathered-db.c      | 32 ++++++++++++++----
+ liblangtag/lt-grandfathered-private.h | 12 ++++---
+ liblangtag/lt-grandfathered.c	       | 52 ++++++++++++++++++++++++++--
+ liblangtag/lt-grandfathered.h	       | 12 ++++---
+ liblangtag/lt-lang-db.c	       | 39 +++++++++++++++++----
+ liblangtag/lt-region-db.c	       | 33 ++++++++++++++----
+ liblangtag/lt-region-private.h        | 12 ++++---
+ liblangtag/lt-region.c		       | 51 ++++++++++++++++++++++++++--
+ liblangtag/lt-region.h		       | 12 ++++---
+ liblangtag/lt-script-db.c	       | 11 ++++--
+ liblangtag/lt-tag.c		       | 33 +++++++++++++-----
+ liblangtag/lt-variant-db.c	       | 33 ++++++++++++++----
+ liblangtag/lt-variant-private.h       | 16 +++++----
+ liblangtag/lt-variant.c	       | 43 +++++++++++++++++++++++
+ liblangtag/lt-variant.h	       | 14 ++++----
+ 19 files changed, 442 insertions(+), 82 deletions(-)
+
+commit 2333d3b29dfc2c16c9f6e49e20aac3ab67f334d9
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 13 14:58:49 2012 +0900
+
+    Use own xml files to ensure every fields are available
+
+ data/Makefile.am |  31 +++++++++-
+ data/reg2xml.c   | 180
+ +++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 208 insertions(+), 3 deletions(-)
+
+commit b59cae3c7a98543cfcdf287f8dd6261577ef2fab
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Jan 12 20:12:19 2012 +0900
+
+    Fix to deal with more tokens for extension and privateuse.
+
+ liblangtag/lt-tag.c | 38 +++++++++++++++++++++++++++++++-------
+ 1 file changed, 31 insertions(+), 7 deletions(-)
+
+commit 7b124653aa41a9fb10c5c98fb837dbcf88edfbd6
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Jan 12 19:42:11 2012 +0900
+
+    Dump the detailed data.
+    Fix to allow multiple variants and extensions
+
+ liblangtag/lt-extlang.c       |  21 ++++++
+ liblangtag/lt-extlang.h       |   1 +
+ liblangtag/lt-grandfathered.c |   8 ++
+ liblangtag/lt-grandfathered.h |   1 +
+ liblangtag/lt-lang.c	       |  49 +++++++++++++
+ liblangtag/lt-lang.h	       |   1 +
+ liblangtag/lt-region.c        |   8 ++
+ liblangtag/lt-region.h        |   1 +
+ liblangtag/lt-script.c        |   8 ++
+ liblangtag/lt-script.h        |   1 +
+ liblangtag/lt-tag.c	       | 166
+ +++++++++++++++++++++++++++++-------------
+ liblangtag/lt-variant.c       |  27 +++++++
+ liblangtag/lt-variant.h       |   1 +
+ 13 files changed, 242 insertions(+), 51 deletions(-)
+
+commit ee46ae08a15a499f75dba9d3cbe2e3126e6046aa
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Jan 12 12:12:57 2012 +0900
+
+    Add lt_tag_canonicalize
+
+ liblangtag/lt-lang.c |  2 --
+ liblangtag/lt-tag.c  | 71
+ +++++++++++++++++++++++++++++++++++++++++++++++++---
+ liblangtag/lt-tag.h  |  2 ++
+ tests/tag.c	      |  7 ++++++
+ 4 files changed, 77 insertions(+), 5 deletions(-)
+
+commit 198db3f889c93ccca10d2ddc91497d212d08857a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Jan 12 10:31:40 2012 +0900
+
+    use the first entry for description
+
+ liblangtag/lt-extlang-db.c	  | 5 ++---
+ liblangtag/lt-grandfathered-db.c | 5 ++---
+ liblangtag/lt-region-db.c	  | 5 ++---
+ liblangtag/lt-variant-db.c	  | 5 ++---
+ 4 files changed, 8 insertions(+), 12 deletions(-)
+
+commit ad8e4a6da472facfc7aa1e0d3f406e09d41c50a4
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Jan 12 10:30:56 2012 +0900
+
+    get rid of iso-codes deps
+
+ configure.ac			|  13 --
+ liblangtag/lt-database.c	|  15 +-
+ liblangtag/lt-lang-db.c	| 415
+ ++++++++++++-----------------------------
+ liblangtag/lt-lang-db.h	|  39 +---
+ liblangtag/lt-lang-private.h	|  28 ++-
+ liblangtag/lt-lang.c		| 236 ++++++++++++-----------
+ liblangtag/lt-lang.h		|  26 +--
+ liblangtag/lt-script-db.c	| 148 +++++++--------
+ liblangtag/lt-script-private.h |   6 +-
+ liblangtag/lt-script.c		|  67 ++-----
+ liblangtag/lt-script.h		|   3 +-
+ liblangtag/lt-tag.c		|  16 +-
+ tests/lang-db.c		|  26 +--
+ tests/script-db.c		|  18 +-
+ 14 files changed, 370 insertions(+), 686 deletions(-)
+
+commit f6e80da3ce5ff914e2e14fb6687a78235042a2da
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 11 19:51:06 2012 +0900
+
+    Add langtag.h
+
+ liblangtag/langtag.h		  | 30 ++++++++++++++++++++++++++++++
+ liblangtag/lt-database.h	  |  4 ++++
+ liblangtag/lt-extlang-db.h	  |  4 ++++
+ liblangtag/lt-extlang.h	  |  4 ++++
+ liblangtag/lt-grandfathered-db.h |  4 ++++
+ liblangtag/lt-grandfathered.h	  |  4 ++++
+ liblangtag/lt-lang-db.h	  |  4 ++++
+ liblangtag/lt-lang.h		  |  4 ++++
+ liblangtag/lt-region-db.h	  |  4 ++++
+ liblangtag/lt-region.h		  |  4 ++++
+ liblangtag/lt-script-db.h	  |  4 ++++
+ liblangtag/lt-script.h		  |  4 ++++
+ liblangtag/lt-tag.h		  |  4 ++++
+ liblangtag/lt-variant-db.h	  |  4 ++++
+ liblangtag/lt-variant.h	  |  4 ++++
+ tests/extlang-db.c		  |  2 +-
+ tests/grandfathered-db.c	  |  2 +-
+ tests/lang-db.c		  |  2 +-
+ tests/region-db.c		  |  2 +-
+ tests/script-db.c		  |  2 +-
+ tests/tag.c			  |  3 +--
+ tests/variant-db.c		  |  2 +-
+ 22 files changed, 93 insertions(+), 8 deletions(-)
+
+commit 6c5fdca713d99f0220b2dbed350959838369a778
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 11 19:44:45 2012 +0900
+
+    Add gobject-introspection support
+
+ Makefile.am			 |   2 +-
+ configure.ac			 |   7 +-
+ liblangtag-gobject/Makefile.am  | 174
+ ++++++++++++++++++++++++++++++++++++++++
+ liblangtag-gobject/gengir.sh	 |  74 +++++++++++++++++
+ liblangtag-gobject/lt-gobject.c |  55 +++++++++++++
+ liblangtag-gobject/lt-gobject.h |  60 ++++++++++++++
+ 6 files changed, 368 insertions(+), 4 deletions(-)
+
+commit 438fa04b8bd353e3b73f8c67a6eac6dd87bd51a1
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 11 19:43:22 2012 +0900
+
+    cleanup
+
+ liblangtag/lt-region-db.h | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 20bd63a15a141a3e6b50b6cfab99bb23bce70052
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 11 18:06:48 2012 +0900
+
+    cleanup
+
+ liblangtag/Makefile.am		  |   3 -
+ liblangtag/lt-division-private.h |  47 ------------
+ liblangtag/lt-division.c	  | 151
+ ---------------------------------------
+ liblangtag/lt-division.h	  |  41 -----------
+ 4 files changed, 242 deletions(-)
+
+commit ca77eff34c78f87a71f08ab771a3efee3643363b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 11 16:43:23 2012 +0900
+
+    Add langtag handler
+
+ liblangtag/lt-tag.c | 141
+ +++++++++++++++++++++++++++++++++++++++++-----------
+ 1 file changed, 113 insertions(+), 28 deletions(-)
+
+commit 74c4429cadc72789026629fd95a94d800ce90891
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 11 16:38:11 2012 +0900
+
+    fix to lookup with the case-insensitive
+
+ liblangtag/lt-extlang-db.c	  | 6 +++++-
+ liblangtag/lt-grandfathered-db.c | 5 ++++-
+ liblangtag/lt-region-db.c	  | 6 +++++-
+ liblangtag/lt-variant-db.c	  | 6 +++++-
+ 4 files changed, 19 insertions(+), 4 deletions(-)
+
+commit 146fbd065f0f0f08a655d06495cdea88393825a8
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 11 16:25:08 2012 +0900
+
+    Support multiple prefixes
+
+ liblangtag/lt-variant-db.c	 | 41
+ ++++++++---------------------------------
+ liblangtag/lt-variant-private.h |  2 +-
+ liblangtag/lt-variant.c	 | 28 ++++++++++++++++++++--------
+ liblangtag/lt-variant.h	 |  2 +-
+ tests/variant-db.c		 |  6 +++++-
+ 5 files changed, 35 insertions(+), 44 deletions(-)
+
+commit 41d11b5ccd52c420c8d03138bc2817765c4ab27b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 11 16:24:13 2012 +0900
+
+    Fix a memory leak
+
+ liblangtag/lt-region-db.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 969e400cb72ca3720b0f951d15218c235261098a
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 11 14:43:46 2012 +0900
+
+    Use the origin from IANA registry for region code instead of
+    iso-codes.
+
+ liblangtag/lt-region-db.c	| 523
+ ++++++-----------------------------------
+ liblangtag/lt-region-db.h	|  20 +-
+ liblangtag/lt-region-private.h |  21 +-
+ liblangtag/lt-region.c		| 147 ++----------
+ liblangtag/lt-region.h		|  20 +-
+ tests/region-db.c		|  57 +----
+ 6 files changed, 111 insertions(+), 677 deletions(-)
+
+commit 4d2acdb7d9c63f9a50fb0dbc74d9045b065f95b1
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 11 14:41:17 2012 +0900
+
+    Add grandfathered database handler
+
+ liblangtag/Makefile.am		       |   7 +-
+ liblangtag/lt-database.c	       |  14 +-
+ liblangtag/lt-database.h	       |  16 +-
+ liblangtag/lt-grandfathered-db.c      | 235 ++++++++++++++
+ liblangtag/lt-grandfathered-db.h      |  41 +++
+ liblangtag/lt-grandfathered-private.h |  38 +++
+ liblangtag/lt-grandfathered.c	       | 108 +++++++
+ liblangtag/lt-grandfathered.h	       |  39 +++
+ liblangtag/lt-tag.c		       | 591
+ ++++++++++++++++++++++++++++++++++
+ liblangtag/lt-tag.h		       |  44 +++
+ tests/Makefile.am		       |   5 +
+ tests/grandfathered-db.c	       |  54 ++++
+ tests/tag.c			       |  56 ++++
+ 13 files changed, 1235 insertions(+), 13 deletions(-)
+
+commit fecc6d84f8cfc19ed30cac746b39d64c05213e3c
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 6 18:39:32 2012 +0900
+
+    nullify when finalizing
+
+ liblangtag/lt-database.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+commit 0a41d4009ad4352a3acc8a6a2b9a7eb3a7d42476
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 6 18:39:01 2012 +0900
+
+    Fix memory leaks
+
+ liblangtag/lt-extlang-db.c |  3 +++
+ liblangtag/lt-variant-db.c | 33 ++++++++++++++++++++++++++++++++-
+ 2 files changed, 35 insertions(+), 1 deletion(-)
+
+commit 884b12514af40c51be133ad430cf33b538ee9b9d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 6 18:38:25 2012 +0900
+
+    Add APIs to nullify a pointer when unreferencing
+
+ liblangtag/lt-mem.c | 29 +++++++++++++++++++++++++++++
+ liblangtag/lt-mem.h | 25 +++++++++++++++----------
+ 2 files changed, 44 insertions(+), 10 deletions(-)
+
+commit 1ff3eb306d5d1e9593a467d0108217ffdc937eee
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 6 17:08:59 2012 +0900
+
+    Add convenience functions to deal with the langtag database.
+
+ liblangtag/Makefile.am   |  2 ++
+ liblangtag/lt-database.c | 84
+ ++++++++++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-database.h | 44 +++++++++++++++++++++++++
+ 3 files changed, 130 insertions(+)
+
+commit 1af77b14139fa8f0e10940cdabf2992725728011
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 6 16:01:00 2012 +0900
+
+    Add variant database handler
+
+ liblangtag/Makefile.am		 |   5 +
+ liblangtag/lt-variant-db.c	 | 237
+ ++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-variant-db.h	 |  41 +++++++
+ liblangtag/lt-variant-private.h |  40 +++++++
+ liblangtag/lt-variant.c	 | 131 ++++++++++++++++++++++
+ liblangtag/lt-variant.h	 |  40 +++++++
+ tests/Makefile.am		 |   5 +
+ tests/variant-db.c		 |  55 ++++++++++
+ 8 files changed, 554 insertions(+)
+
+commit 0a78793fa84eeedc94efe2cab1af4e7e7c6bd7a6
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 6 15:36:20 2012 +0900
+
+    Add extlang database handler
+
+ .gitignore			 |   1 +
+ Makefile.am			 |   2 +-
+ configure.ac			 |   1 +
+ data/Makefile.am		 |  29 +++++
+ liblangtag/Makefile.am		 |  23 +++-
+ liblangtag/lt-error.h		 |   3 +
+ liblangtag/lt-extlang-db.c	 | 237
+ ++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-extlang-db.h	 |  41 +++++++
+ liblangtag/lt-extlang-private.h |  40 +++++++
+ liblangtag/lt-extlang.c	 | 131 ++++++++++++++++++++++
+ liblangtag/lt-extlang.h	 |  40 +++++++
+ tests/Makefile.am		 |  10 ++
+ tests/extlang-db.c		 |  55 ++++++++++
+ 13 files changed, 606 insertions(+), 7 deletions(-)
+
+commit b2f6c1d3b5f2b3d23c9cfcf0bccba0e1f1500a00
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 6 12:08:00 2012 +0900
+
+    utilities functions
+
+ liblangtag/lt-utils.c | 49
+ +++++++++++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-utils.h | 34 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 83 insertions(+)
+
+commit 74e78cbef20760802a95e02559e49b3bb63e2e5d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 6 12:07:34 2012 +0900
+
+    Add an API to obtain the modifier
+
+ liblangtag/lt-script.c | 34 ++++++++++++++++++++++++++++++++++
+ liblangtag/lt-script.h | 11 ++++++-----
+ 2 files changed, 40 insertions(+), 5 deletions(-)
+
+commit 57ffe6c481b1828c0ee9cbf33e642751f432615b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 6 12:07:03 2012 +0900
+
+    Add an API to obtain the shortest code for region
+
+ liblangtag/lt-region.h | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+commit 9959e32f40c9ed9ace332b827e5b2b291372458c
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 6 12:06:55 2012 +0900
+
+    Add an API to obtain the shortest code for region
+
+ liblangtag/lt-region.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit 9d6c017b1333416a2dc900d1ed549de020222ec1
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Fri Jan 6 12:06:15 2012 +0900
+
+    allow the case-insensitive lookup
+
+ liblangtag/lt-lang-db.c   | 30 +++++++++++++++++++++---------
+ liblangtag/lt-region-db.c | 28 ++++++++++++++++++++--------
+ liblangtag/lt-script-db.c | 17 ++++++++++++-----
+ 3 files changed, 53 insertions(+), 22 deletions(-)
+
+commit dd10ae0369cf2c8c0c9a15f8b0790d0dc51fb93d
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Thu Jan 5 13:02:03 2012 +0900
+
+    Add an API to obtain the shortest code for lang
+
+ liblangtag/lt-lang.c | 18 ++++++++++++++++++
+ liblangtag/lt-lang.h | 11 ++++++-----
+ 2 files changed, 24 insertions(+), 5 deletions(-)
+
+commit 0b039dddb400bce2461f4fd70b86de1f66736ff3
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 4 21:57:12 2012 +0900
+
+    Fix a glib error on unref when no objects added for reference
+
+ liblangtag/lt-mem.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit be6a35bd1875892a72cab9da5359cd5dc693e327
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 4 20:58:36 2012 +0900
+
+    trivial fix
+
+ liblangtag/lt-lang-private.h	| 2 +-
+ liblangtag/lt-lang.c		| 1 -
+ liblangtag/lt-region.c		| 1 -
+ liblangtag/lt-script-private.h | 2 +-
+ liblangtag/lt-script.c		| 1 -
+ 5 files changed, 2 insertions(+), 5 deletions(-)
+
+commit c1b3771db24087b0a070a2d2aea40aa5c11bb16f
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 4 20:56:09 2012 +0900
+
+    Export the internal database structure class for region and division
+
+ liblangtag/Makefile.am		  |   6 +
+ liblangtag/lt-division-private.h |  47 +++
+ liblangtag/lt-division.c	  | 151 +++++++
+ liblangtag/lt-division.h	  |  41 ++
+ liblangtag/lt-region-db.c	  | 607 +++++++++++++++++++++++++++
+ liblangtag/lt-region-db.h	  |  52 +++
+ liblangtag/lt-region-private.h   |  49 +++
+ liblangtag/lt-region.c		  | 866
+ ++++-----------------------------------
+ liblangtag/lt-region.h		  |  39 +-
+ tests/Makefile.am		  |   6 +-
+ tests/region-db.c		  | 101 +++++
+ tests/region.c			  |  83 ----
+ 12 files changed, 1141 insertions(+), 907 deletions(-)
+
+commit 04709da8092fb28afb00ce520ae070b99914ea77
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 4 18:34:13 2012 +0900
+
+    trivial fix
+
+ liblangtag/lt-script-db.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 9ab5f7ad91ccf4dbd9008165d78a8681ccaaf7f1
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 4 18:21:15 2012 +0900
+
+    Export the internal database structure class for script
+
+ liblangtag/Makefile.am		|   5 +-
+ liblangtag/lt-script-db.c	| 243 ++++++++++++++++++++++++++++++++
+ liblangtag/lt-script-db.h	|  42 ++++++
+ liblangtag/lt-script-private.h |  38 +++++
+ liblangtag/lt-script.c		| 308
+ +++++------------------------------------
+ liblangtag/lt-script.h		|  15 +-
+ tests/Makefile.am		|   6 +-
+ tests/script-db.c		|  62 +++++++++
+ tests/script.c			|  56 --------
+ 9 files changed, 432 insertions(+), 343 deletions(-)
+
+commit 5c81a43eab91a0ae1e41cd67cfc6f021d5534e5b
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 4 18:14:14 2012 +0900
+
+    Fix a typo
+
+ liblangtag/lt-lang-db.c      |  4 ++--
+ liblangtag/lt-lang-db.h      | 10 +++++-----
+ liblangtag/lt-lang-private.h |  2 +-
+ liblangtag/lt-lang.c	      |  2 +-
+ liblangtag/lt-lang.h	      |  2 +-
+ 5 files changed, 10 insertions(+), 10 deletions(-)
+
+commit 55c7a0161796cd1b5db3de6fad59fe4c2ecea0c4
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 4 17:46:19 2012 +0900
+
+    export the internal database structure class
+
+ liblangtag/Makefile.am       |   3 +
+ liblangtag/lt-lang-db.c      | 289
+ +++++++++----------------------------------
+ liblangtag/lt-lang-db.h      |  29 ++---
+ liblangtag/lt-lang-private.h |  48 +++++++
+ liblangtag/lt-lang.c	      | 200 ++++++++++++++++++++++++++++++
+ liblangtag/lt-lang.h	      |  51 ++++++++
+ tests/lang-db.c	      |  21 +++-
+ 7 files changed, 387 insertions(+), 254 deletions(-)
+
+commit 945fa0ce494982915d02e44e776ce2f4b34e0845
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 4 17:05:10 2012 +0900
+
+    rename APIs for langdb
+
+ liblangtag/Makefile.am  |   4 +-
+ liblangtag/lt-lang-db.c | 599
+ ++++++++++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-lang-db.h |  81 +++++++
+ liblangtag/lt-lang.c	 | 599
+ ------------------------------------------------
+ liblangtag/lt-lang.h	 |  81 -------
+ tests/Makefile.am	 |   6 +-
+ tests/lang-db.c	 |  57 +++++
+ tests/lang.c		 |  57 -----
+ 8 files changed, 742 insertions(+), 742 deletions(-)
+
+commit 28ff8b5194c8a5595d642472fdf7123a0b015233
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 4 17:04:55 2012 +0900
+
+    update
+
+ tests/region.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 6009fc329222abff0f536625f2526e1a5c172491
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 4 16:00:46 2012 +0900
+
+    Add region database handler
+
+ liblangtag/Makefile.am |   2 +
+ liblangtag/lt-region.c | 921
+ +++++++++++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-region.h |  71 ++++
+ tests/Makefile.am	|   5 +
+ tests/region.c		|  83 +++++
+ 5 files changed, 1082 insertions(+)
+
+commit 72028b6203e65e361fb65920f277b07d99bb0907
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Jan 4 12:46:02 2012 +0900
+
+    trivial update
+
+ liblangtag/lt-error.c	| 2 +-
+ liblangtag/lt-error.h	| 2 +-
+ liblangtag/lt-lang.c	| 2 +-
+ liblangtag/lt-lang.h	| 2 +-
+ liblangtag/lt-mem.c	| 2 +-
+ liblangtag/lt-mem.h	| 2 +-
+ liblangtag/lt-script.c | 2 +-
+ liblangtag/lt-script.h | 2 +-
+ 8 files changed, 8 insertions(+), 8 deletions(-)
+
+commit f87d65933a033c3e25ca453461d0cf541d9e1bab
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Dec 28 17:54:56 2011 +0900
+
+    fix a typo
+
+ configure.ac | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit fa2c708c3596ad8fe1b72b39d92126a8083a97b9
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Wed Dec 28 14:16:32 2011 +0900
+
+    Add script database handler
+
+ liblangtag/Makefile.am |   2 +
+ liblangtag/lt-script.c | 374
+ +++++++++++++++++++++++++++++++++++++++++++++++++
+ liblangtag/lt-script.h |  45 ++++++
+ tests/Makefile.am	|   5 +
+ tests/script.c		|  56 ++++++++
+ 5 files changed, 482 insertions(+)
+
+commit 2c43f4ec493416718c82a7a5824e85d0a330ab66
+Author: Akira TAGOH <akira@tagoh.org>
+Date:	Tue Dec 27 21:52:18 2011 +0900
+
+    Initial commit
+
+ .gitignore			      |  62 ++++
+ AUTHORS			      |   1 +
+ COPYING			      | 165 ++++++++++
+ ChangeLog			      |   0
+ INSTALL			      | 365 +++++++++++++++++++++
+ Makefile.am			      |  63 ++++
+ NEWS				      |   0
+ README				      |   2 +
+ configure.ac			      | 135 ++++++++
+ liblangtag-gobject-uninstalled.pc.in |   6 +
+ liblangtag-gobject.pc.in	      |  10 +
+ liblangtag-uninstalled.pc.in	      |   6 +
+ liblangtag.pc.in		      |  10 +
+ liblangtag/Makefile.am		      |  92 ++++++
+ liblangtag/lt-error.c		      |  40 +++
+ liblangtag/lt-error.h		      |  46 +++
+ liblangtag/lt-lang.c		      | 599
+ +++++++++++++++++++++++++++++++++++
+ liblangtag/lt-lang.h		      |  81 +++++
+ liblangtag/lt-mem.c		      | 125 ++++++++
+ liblangtag/lt-mem.h		      |  52 +++
+ m4macros/.no_files		      |   0
+ requires			      |   3 +
+ tests/Makefile.am		      |  45 +++
+ tests/lang.c			      |  57 ++++
+ 24 files changed, 1965 insertions(+)

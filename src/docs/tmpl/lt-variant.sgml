@@ -1,0 +1,108 @@
+<!-- ##### SECTION Title ##### -->
+lt-variant
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### FUNCTION lt_variant_compare ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_variant_dump ##### -->
+<para>
+
+</para>
+
+@variant: 
+
+
+<!-- ##### FUNCTION lt_variant_get_better_tag ##### -->
+<para>
+
+</para>
+
+@variant: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_variant_get_name ##### -->
+<para>
+
+</para>
+
+@variant: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_variant_get_preferred_tag ##### -->
+<para>
+
+</para>
+
+@variant: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_variant_get_prefix ##### -->
+<para>
+
+</para>
+
+@variant: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_variant_get_tag ##### -->
+<para>
+
+</para>
+
+@variant: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_variant_ref ##### -->
+<para>
+
+</para>
+
+@variant: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_variant_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION lt_variant_unref ##### -->
+<para>
+
+</para>
+
+@variant: 
+
+

@@ -1,0 +1,64 @@
+<!-- ##### SECTION Title ##### -->
+lt-redundant-db
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### FUNCTION lt_redundant_db_lookup ##### -->
+<para>
+
+</para>
+
+@redundantdb: 
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_redundant_db_new ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_redundant_db_ref ##### -->
+<para>
+
+</para>
+
+@redundantdb: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_redundant_db_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION lt_redundant_db_unref ##### -->
+<para>
+
+</para>
+
+@redundantdb: 
+
+

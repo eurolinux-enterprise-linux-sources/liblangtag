@@ -1,0 +1,71 @@
+liblangtag
+=============
+
+An interface library to access tags for identifying languages
+
+Features
+===========
+- several subtag registry database supports:
+  - language
+  - extlang
+  - script
+  - region
+  - variant
+  - extension
+  - grandfathered
+  - redundant
+- handling of the language tags
+  - parser
+  - matching
+  - canonicalizing
+
+Requirements
+===============
+
+- libxml2
+- GObject Introspection (if you like)
+
+Licensing
+============
+This library is free software; you can redistribute it
+and/or modify it under the terms of either:
+
+  a) the GNU Lesser General Public License as published by
+  the Free Software Foundation; either version 3 of the
+  License, or (at your option) any later version.
+
+  b) the Mozilla Public License, v. 2.0.
+
+This library is distributed in the hope that it will be
+useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE.  See either the GNU Lesser General Public License
+or the Mozilla Public License for more details.
+
+You should have received a copy of the GNU Lesser General
+Public License along with this library in the file named
+"COPYING". If not, see http://www.gnu.org/licenses/.
+
+You should have received a copy of the Mozilla Public
+License with this library, in the file named
+"COPYING.MPL". If not, you can obtain one at
+http://mozilla.org/MPL/2.0/.
+
+Unicode Common Locale Data Repository (CLDR) is licensed under
+the Unicode Terms of Use. see http://www.unicode.org/copyright.html
+
+References
+=============
+
+- RFC4647 - Matching of Language Tags
+  http://www.ietf.org/rfc/rfc4647.txt
+- RFC5646 - Tags for Identifying Languages
+  http://www.ietf.org/rfc/rfc5646.txt
+- RFC6067 - BCP 47 Extension U
+  http://www.ietf.org/rfc/rfc6067.txt
+- RFC6497 - BCP 47 Extension T
+  http://www.ietf.org/rfc/rfc6497.txt
+- Unicode Locale Data Markup Language
+  http://unicode.org/reports/tr35/
+- Unicode Locale Extension for BCP 47 in Unicode Common Locale Data Repository
+  http://cldr.unicode.org/index/bcp47-extension

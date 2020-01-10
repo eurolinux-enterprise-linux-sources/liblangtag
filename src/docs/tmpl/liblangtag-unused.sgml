@@ -1,0 +1,131 @@
+<!-- ##### SECTION ./tmpl/lt-iter-private.sgml:Image ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/lt-iter-private.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/lt-iter-private.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/lt-iter-private.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/lt-iter-private.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/lt-iter-private.sgml:Title ##### -->
+lt-iter-private
+
+
+<!-- ##### SECTION ./tmpl/lt-lock.sgml:Image ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/lt-lock.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/lt-lock.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/lt-lock.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/lt-lock.sgml:Stability_Level ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/lt-lock.sgml:Title ##### -->
+lt-lock
+
+
+<!-- ##### MACRO LT_ITER_TMPL_INIT ##### -->
+<para>
+
+</para>
+
+@_instance_: 
+@_prefix_: 
+
+<!-- ##### MACRO LT_LOCK ##### -->
+<para>
+
+</para>
+
+@v: 
+
+<!-- ##### MACRO LT_LOCK_DEFINE ##### -->
+<para>
+
+</para>
+
+@v: 
+
+<!-- ##### MACRO LT_LOCK_DEFINE_STATIC ##### -->
+<para>
+
+</para>
+
+@v: 
+
+<!-- ##### MACRO LT_LOCK_NAME ##### -->
+<para>
+
+</para>
+
+@v: 
+
+<!-- ##### MACRO LT_UNLOCK ##### -->
+<para>
+
+</para>
+
+@v: 
+
+<!-- ##### USER_FUNCTION lt_iter_fini_func_t ##### -->
+<para>
+
+</para>
+
+@iter: 
+
+<!-- ##### USER_FUNCTION lt_iter_init_func_t ##### -->
+<para>
+
+</para>
+
+@tmpl: 
+@Returns: 
+
+<!-- ##### USER_FUNCTION lt_iter_next_func_t ##### -->
+<para>
+
+</para>
+
+@iter: 
+@key: 
+@value: 
+@Returns: 
+
+<!-- ##### FUNCTION lt_iter_tmpl_init ##### -->
+<para>
+
+</para>
+
+@tmpl: 
+

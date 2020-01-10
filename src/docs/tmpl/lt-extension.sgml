@@ -1,0 +1,90 @@
+<!-- ##### SECTION Title ##### -->
+lt-extension
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### FUNCTION lt_extension_compare ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_extension_dump ##### -->
+<para>
+
+</para>
+
+@extension: 
+
+
+<!-- ##### FUNCTION lt_extension_get_canonicalized_tag ##### -->
+<para>
+
+</para>
+
+@extension: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_extension_get_tag ##### -->
+<para>
+
+</para>
+
+@extension: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_extension_ref ##### -->
+<para>
+
+</para>
+
+@extension: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_extension_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION lt_extension_truncate ##### -->
+<para>
+
+</para>
+
+@extension: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_extension_unref ##### -->
+<para>
+
+</para>
+
+@extension: 
+
+

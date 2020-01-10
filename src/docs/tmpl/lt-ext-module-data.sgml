@@ -1,0 +1,56 @@
+<!-- ##### SECTION Title ##### -->
+lt-ext-module-data
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### FUNCTION lt_ext_module_data_new ##### -->
+<para>
+
+</para>
+
+@size: 
+@finalizer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_ext_module_data_ref ##### -->
+<para>
+
+</para>
+
+@data: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_ext_module_data_t ##### -->
+<para>
+
+</para>
+
+@dummy: 
+
+<!-- ##### FUNCTION lt_ext_module_data_unref ##### -->
+<para>
+
+</para>
+
+@data: 
+
+

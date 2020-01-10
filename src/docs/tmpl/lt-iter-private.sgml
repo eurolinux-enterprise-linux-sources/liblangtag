@@ -1,0 +1,80 @@
+<!-- ##### SECTION Title ##### -->
+lt-iter-private
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### MACRO LT_ITER_TMPL_INIT ##### -->
+<para>
+
+</para>
+
+@_instance_: 
+@_prefix_: 
+
+
+<!-- ##### USER_FUNCTION lt_iter_fini_func_t ##### -->
+<para>
+
+</para>
+
+@iter: 
+
+
+<!-- ##### USER_FUNCTION lt_iter_init_func_t ##### -->
+<para>
+
+</para>
+
+@tmpl: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION lt_iter_next_func_t ##### -->
+<para>
+
+</para>
+
+@iter: 
+@key: 
+@value: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_iter_tmpl_init ##### -->
+<para>
+
+</para>
+
+@tmpl: 
+
+
+<!-- ##### STRUCT lt_iter_tmpl_t ##### -->
+<para>
+
+</para>
+
+@parent: 
+@magic_code: 
+@init: 
+@fini: 
+@next: 
+

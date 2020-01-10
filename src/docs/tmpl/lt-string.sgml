@@ -1,0 +1,151 @@
+<!-- ##### SECTION Title ##### -->
+lt-string
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### FUNCTION lt_string_append ##### -->
+<para>
+
+</para>
+
+@string: 
+@str: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_append_c ##### -->
+<para>
+
+</para>
+
+@string: 
+@c: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_append_filename ##### -->
+<para>
+
+</para>
+
+@string: 
+@path: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_at ##### -->
+<para>
+
+</para>
+
+@string: 
+@pos: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_clear ##### -->
+<para>
+
+</para>
+
+@string: 
+
+
+<!-- ##### FUNCTION lt_string_free ##### -->
+<para>
+
+</para>
+
+@string: 
+@free_segment: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_length ##### -->
+<para>
+
+</para>
+
+@string: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_new ##### -->
+<para>
+
+</para>
+
+@string: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_ref ##### -->
+<para>
+
+</para>
+
+@string: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_replace_c ##### -->
+<para>
+
+</para>
+
+@string: 
+@pos: 
+@c: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_string_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION lt_string_truncate ##### -->
+<para>
+
+</para>
+
+@string: 
+@len: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_unref ##### -->
+<para>
+
+</para>
+
+@string: 
+
+
+<!-- ##### FUNCTION lt_string_value ##### -->
+<para>
+
+</para>
+
+@string: 
+@Returns: 
+
+

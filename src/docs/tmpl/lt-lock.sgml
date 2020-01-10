@@ -1,0 +1,62 @@
+<!-- ##### SECTION Title ##### -->
+lt-lock
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### MACRO LT_LOCK ##### -->
+<para>
+
+</para>
+
+@v: 
+
+
+<!-- ##### MACRO LT_LOCK_DEFINE ##### -->
+<para>
+
+</para>
+
+@v: 
+
+
+<!-- ##### MACRO LT_LOCK_DEFINE_STATIC ##### -->
+<para>
+
+</para>
+
+@v: 
+
+
+<!-- ##### MACRO LT_LOCK_NAME ##### -->
+<para>
+
+</para>
+
+@v: 
+
+
+<!-- ##### MACRO LT_UNLOCK ##### -->
+<para>
+
+</para>
+
+@v: 
+
+

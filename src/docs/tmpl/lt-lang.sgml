@@ -1,0 +1,126 @@
+<!-- ##### SECTION Title ##### -->
+lt-lang
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### FUNCTION lt_lang_compare ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_lang_dump ##### -->
+<para>
+
+</para>
+
+@lang: 
+
+
+<!-- ##### FUNCTION lt_lang_get_better_tag ##### -->
+<para>
+
+</para>
+
+@lang: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_lang_get_macro_language ##### -->
+<para>
+
+</para>
+
+@lang: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_lang_get_name ##### -->
+<para>
+
+</para>
+
+@lang: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_lang_get_preferred_tag ##### -->
+<para>
+
+</para>
+
+@lang: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_lang_get_scope ##### -->
+<para>
+
+</para>
+
+@lang: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_lang_get_suppress_script ##### -->
+<para>
+
+</para>
+
+@lang: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_lang_get_tag ##### -->
+<para>
+
+</para>
+
+@lang: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_lang_ref ##### -->
+<para>
+
+</para>
+
+@lang: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_lang_t ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION lt_lang_unref ##### -->
+<para>
+
+</para>
+
+@lang: 
+
+
