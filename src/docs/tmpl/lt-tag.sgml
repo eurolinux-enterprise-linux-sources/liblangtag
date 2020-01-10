@@ -20,183 +20,6 @@ lt-tag
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_tag_canonicalize ##### -->
-<para>
-
-</para>
-
-@tag: 
-@error: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_clear ##### -->
-<para>
-
-</para>
-
-@tag: 
-
-
-<!-- ##### FUNCTION lt_tag_compare ##### -->
-<para>
-
-</para>
-
-@v1: 
-@v2: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_convert_from_locale ##### -->
-<para>
-
-</para>
-
-@error: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_convert_from_locale_string ##### -->
-<para>
-
-</para>
-
-@locale: 
-@error: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_convert_to_locale ##### -->
-<para>
-
-</para>
-
-@tag: 
-@error: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_copy ##### -->
-<para>
-
-</para>
-
-@tag: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_dump ##### -->
-<para>
-
-</para>
-
-@tag: 
-
-
-<!-- ##### FUNCTION lt_tag_get_extension ##### -->
-<para>
-
-</para>
-
-@tag: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_get_extlang ##### -->
-<para>
-
-</para>
-
-@tag: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_get_grandfathered ##### -->
-<para>
-
-</para>
-
-@tag: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_get_language ##### -->
-<para>
-
-</para>
-
-@tag: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_get_privateuse ##### -->
-<para>
-
-</para>
-
-@tag: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_get_region ##### -->
-<para>
-
-</para>
-
-@tag: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_get_script ##### -->
-<para>
-
-</para>
-
-@tag: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_get_string ##### -->
-<para>
-
-</para>
-
-@tag: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_get_variants ##### -->
-<para>
-
-</para>
-
-@tag: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_lookup ##### -->
-<para>
-
-</para>
-
-@tag: 
-@pattern: 
-@error: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_tag_match ##### -->
-<para>
-
-</para>
-
-@v1: 
-@v2: 
-@error: 
-@Returns: 
-
-
 <!-- ##### FUNCTION lt_tag_new ##### -->
 <para>
 
@@ -204,6 +27,23 @@ lt-tag
 
 @void: 
 @Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_ref ##### -->
+<para>
+
+</para>
+
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_unref ##### -->
+<para>
+
+</para>
+
+@tag: 
 
 
 <!-- ##### FUNCTION lt_tag_parse ##### -->
@@ -228,28 +68,20 @@ lt-tag
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_tag_ref ##### -->
+<!-- ##### FUNCTION lt_tag_clear ##### -->
 <para>
 
 </para>
 
 @tag: 
-@Returns: 
 
 
-<!-- ##### STRUCT lt_tag_t ##### -->
-<para>
-
-</para>
-
-
-<!-- ##### FUNCTION lt_tag_transform ##### -->
+<!-- ##### FUNCTION lt_tag_copy ##### -->
 <para>
 
 </para>
 
 @tag: 
-@error: 
 @Returns: 
 
 
@@ -263,11 +95,189 @@ lt-tag
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_tag_unref ##### -->
+<!-- ##### FUNCTION lt_tag_get_string ##### -->
 <para>
 
 </para>
 
 @tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_canonicalize ##### -->
+<para>
+
+</para>
+
+@tag: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_canonicalize_in_extlang_form ##### -->
+<para>
+
+</para>
+
+@tag: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_convert_to_locale ##### -->
+<para>
+
+</para>
+
+@tag: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_convert_from_locale ##### -->
+<para>
+
+</para>
+
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_convert_from_locale_string ##### -->
+<para>
+
+</para>
+
+@locale: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_dump ##### -->
+<para>
+
+</para>
+
+@tag: 
+
+
+<!-- ##### FUNCTION lt_tag_compare ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_match ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_lookup ##### -->
+<para>
+
+</para>
+
+@tag: 
+@pattern: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_transform ##### -->
+<para>
+
+</para>
+
+@tag: 
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_get_language ##### -->
+<para>
+
+</para>
+
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_get_extlang ##### -->
+<para>
+
+</para>
+
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_get_script ##### -->
+<para>
+
+</para>
+
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_get_region ##### -->
+<para>
+
+</para>
+
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_get_variants ##### -->
+<para>
+
+</para>
+
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_get_extension ##### -->
+<para>
+
+</para>
+
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_get_privateuse ##### -->
+<para>
+
+</para>
+
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_tag_get_grandfathered ##### -->
+<para>
+
+</para>
+
+@tag: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_tag_t ##### -->
+<para>
+
+</para>
 
 

@@ -20,16 +20,6 @@ lt-grandfathered-db
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_grandfathered_db_lookup ##### -->
-<para>
-
-</para>
-
-@grandfathereddb: 
-@tag: 
-@Returns: 
-
-
 <!-- ##### FUNCTION lt_grandfathered_db_new ##### -->
 <para>
 
@@ -48,17 +38,27 @@ lt-grandfathered-db
 @Returns: 
 
 
-<!-- ##### STRUCT lt_grandfathered_db_t ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### FUNCTION lt_grandfathered_db_unref ##### -->
 <para>
 
 </para>
 
 @grandfathereddb: 
+
+
+<!-- ##### FUNCTION lt_grandfathered_db_lookup ##### -->
+<para>
+
+</para>
+
+@grandfathereddb: 
+@tag: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_grandfathered_db_t ##### -->
+<para>
+
+</para>
 
 

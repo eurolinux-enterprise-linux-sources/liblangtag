@@ -20,16 +20,6 @@ lt-region-db
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_region_db_lookup ##### -->
-<para>
-
-</para>
-
-@regiondb: 
-@language_or_code: 
-@Returns: 
-
-
 <!-- ##### FUNCTION lt_region_db_new ##### -->
 <para>
 
@@ -48,17 +38,27 @@ lt-region-db
 @Returns: 
 
 
-<!-- ##### STRUCT lt_region_db_t ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### FUNCTION lt_region_db_unref ##### -->
 <para>
 
 </para>
 
 @regiondb: 
+
+
+<!-- ##### FUNCTION lt_region_db_lookup ##### -->
+<para>
+
+</para>
+
+@regiondb: 
+@language_or_code: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_region_db_t ##### -->
+<para>
+
+</para>
 
 

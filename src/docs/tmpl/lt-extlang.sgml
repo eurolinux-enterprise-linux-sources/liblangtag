@@ -20,25 +20,7 @@ lt-extlang
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_extlang_compare ##### -->
-<para>
-
-</para>
-
-@v1: 
-@v2: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_extlang_dump ##### -->
-<para>
-
-</para>
-
-@extlang: 
-
-
-<!-- ##### FUNCTION lt_extlang_get_macro_language ##### -->
+<!-- ##### FUNCTION lt_extlang_ref ##### -->
 <para>
 
 </para>
@@ -47,7 +29,15 @@ lt-extlang
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_extlang_get_name ##### -->
+<!-- ##### FUNCTION lt_extlang_unref ##### -->
+<para>
+
+</para>
+
+@extlang: 
+
+
+<!-- ##### FUNCTION lt_extlang_get_tag ##### -->
 <para>
 
 </para>
@@ -65,6 +55,24 @@ lt-extlang
 @Returns: 
 
 
+<!-- ##### FUNCTION lt_extlang_get_name ##### -->
+<para>
+
+</para>
+
+@extlang: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_extlang_get_macro_language ##### -->
+<para>
+
+</para>
+
+@extlang: 
+@Returns: 
+
+
 <!-- ##### FUNCTION lt_extlang_get_prefix ##### -->
 <para>
 
@@ -74,21 +82,21 @@ lt-extlang
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_extlang_get_tag ##### -->
+<!-- ##### FUNCTION lt_extlang_dump ##### -->
 <para>
 
 </para>
 
 @extlang: 
-@Returns: 
 
 
-<!-- ##### FUNCTION lt_extlang_ref ##### -->
+<!-- ##### FUNCTION lt_extlang_compare ##### -->
 <para>
 
 </para>
 
-@extlang: 
+@v1: 
+@v2: 
 @Returns: 
 
 
@@ -96,13 +104,5 @@ lt-extlang
 <para>
 
 </para>
-
-
-<!-- ##### FUNCTION lt_extlang_unref ##### -->
-<para>
-
-</para>
-
-@extlang: 
 
 

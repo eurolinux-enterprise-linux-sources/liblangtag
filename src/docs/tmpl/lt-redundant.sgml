@@ -20,17 +20,16 @@ lt-redundant
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_redundant_compare ##### -->
+<!-- ##### FUNCTION lt_redundant_ref ##### -->
 <para>
 
 </para>
 
-@v1: 
-@v2: 
+@redundant: 
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_redundant_dump ##### -->
+<!-- ##### FUNCTION lt_redundant_unref ##### -->
 <para>
 
 </para>
@@ -39,24 +38,6 @@ lt-redundant
 
 
 <!-- ##### FUNCTION lt_redundant_get_better_tag ##### -->
-<para>
-
-</para>
-
-@redundant: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_redundant_get_name ##### -->
-<para>
-
-</para>
-
-@redundant: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_redundant_get_preferred_tag ##### -->
 <para>
 
 </para>
@@ -74,7 +55,7 @@ lt-redundant
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_redundant_ref ##### -->
+<!-- ##### FUNCTION lt_redundant_get_preferred_tag ##### -->
 <para>
 
 </para>
@@ -83,17 +64,36 @@ lt-redundant
 @Returns: 
 
 
-<!-- ##### STRUCT lt_redundant_t ##### -->
-<para>
-
-</para>
-
-
-<!-- ##### FUNCTION lt_redundant_unref ##### -->
+<!-- ##### FUNCTION lt_redundant_get_name ##### -->
 <para>
 
 </para>
 
 @redundant: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_redundant_dump ##### -->
+<para>
+
+</para>
+
+@redundant: 
+
+
+<!-- ##### FUNCTION lt_redundant_compare ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_redundant_t ##### -->
+<para>
+
+</para>
 
 

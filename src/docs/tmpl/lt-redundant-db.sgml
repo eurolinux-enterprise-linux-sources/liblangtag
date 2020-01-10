@@ -20,16 +20,6 @@ lt-redundant-db
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_redundant_db_lookup ##### -->
-<para>
-
-</para>
-
-@redundantdb: 
-@tag: 
-@Returns: 
-
-
 <!-- ##### FUNCTION lt_redundant_db_new ##### -->
 <para>
 
@@ -48,17 +38,27 @@ lt-redundant-db
 @Returns: 
 
 
-<!-- ##### STRUCT lt_redundant_db_t ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### FUNCTION lt_redundant_db_unref ##### -->
 <para>
 
 </para>
 
 @redundantdb: 
+
+
+<!-- ##### FUNCTION lt_redundant_db_lookup ##### -->
+<para>
+
+</para>
+
+@redundantdb: 
+@tag: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_redundant_db_t ##### -->
+<para>
+
+</para>
 
 

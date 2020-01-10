@@ -20,6 +20,13 @@ lt-ext-module-data
 <!-- ##### SECTION Image ##### -->
 
 
+<!-- ##### STRUCT lt_ext_module_data_t ##### -->
+<para>
+
+</para>
+
+@dummy: 
+
 <!-- ##### FUNCTION lt_ext_module_data_new ##### -->
 <para>
 
@@ -38,13 +45,6 @@ lt-ext-module-data
 @data: 
 @Returns: 
 
-
-<!-- ##### STRUCT lt_ext_module_data_t ##### -->
-<para>
-
-</para>
-
-@dummy: 
 
 <!-- ##### FUNCTION lt_ext_module_data_unref ##### -->
 <para>

@@ -128,6 +128,14 @@ typedef char * (* LtExtModuleGetTagFunc)   (LtExtModuleData *data);
  */
 typedef LtBool (* LtExtModuleValidateFunc)  (LtExtModuleData *data);
 
+/* For some yet unknown reason the MSVC compiler does not like the const
+ * typedef'ed function pointers in the _LtExtModuleFuncs struct below. */
+#ifdef _MSC_VER
+#define LT_CONST_DECL
+#else
+#define LT_CONST_DECL const
+#endif
+
 /**
  * LtExtModuleFuncs:
  * @get_singleton: A callback function to obtain the singleton character
@@ -144,12 +152,12 @@ typedef LtBool (* LtExtModuleValidateFunc)  (LtExtModuleData *data);
  * and #LtExtModule and extend features.
  */
 struct _LtExtModuleFuncs {
-	const LtExtModuleSingletonFunc get_singleton;
-	const LtExtModuleDataNewFunc  create_data;
-	const LtExtModulePrecheckFunc  precheck_tag;
-	const LtExtModuleParseFunc     parse_tag;
-	const LtExtModuleGetTagFunc   get_tag;
-	const LtExtModuleValidateFunc  validate_tag;
+	LT_CONST_DECL LtExtModuleSingletonFunc get_singleton;
+	LT_CONST_DECL LtExtModuleDataNewFunc  create_data;
+	LT_CONST_DECL LtExtModulePrecheckFunc  precheck_tag;
+	LT_CONST_DECL LtExtModuleParseFunc     parse_tag;
+	LT_CONST_DECL LtExtModuleGetTagFunc   get_tag;
+	LT_CONST_DECL LtExtModuleValidateFunc  validate_tag;
 };
 
 

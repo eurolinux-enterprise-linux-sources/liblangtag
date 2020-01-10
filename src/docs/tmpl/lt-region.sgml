@@ -20,31 +20,21 @@ lt-region
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_region_compare ##### -->
-<para>
-
-</para>
-
-@v1: 
-@v2: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_region_dump ##### -->
-<para>
-
-</para>
-
-@region: 
-
-
-<!-- ##### FUNCTION lt_region_get_better_tag ##### -->
+<!-- ##### FUNCTION lt_region_ref ##### -->
 <para>
 
 </para>
 
 @region: 
 @Returns: 
+
+
+<!-- ##### FUNCTION lt_region_unref ##### -->
+<para>
+
+</para>
+
+@region: 
 
 
 <!-- ##### FUNCTION lt_region_get_name ##### -->
@@ -56,7 +46,7 @@ lt-region
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_region_get_preferred_tag ##### -->
+<!-- ##### FUNCTION lt_region_get_better_tag ##### -->
 <para>
 
 </para>
@@ -74,7 +64,7 @@ lt-region
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_region_ref ##### -->
+<!-- ##### FUNCTION lt_region_get_preferred_tag ##### -->
 <para>
 
 </para>
@@ -83,17 +73,27 @@ lt-region
 @Returns: 
 
 
-<!-- ##### STRUCT lt_region_t ##### -->
-<para>
-
-</para>
-
-
-<!-- ##### FUNCTION lt_region_unref ##### -->
+<!-- ##### FUNCTION lt_region_dump ##### -->
 <para>
 
 </para>
 
 @region: 
+
+
+<!-- ##### FUNCTION lt_region_compare ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_region_t ##### -->
+<para>
+
+</para>
 
 

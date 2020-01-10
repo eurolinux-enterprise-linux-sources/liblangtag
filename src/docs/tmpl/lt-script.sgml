@@ -20,17 +20,7 @@ lt-script
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_script_compare ##### -->
-<para>
-
-</para>
-
-@v1: 
-@v2: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_script_convert_to_modifier ##### -->
+<!-- ##### FUNCTION lt_script_ref ##### -->
 <para>
 
 </para>
@@ -39,7 +29,7 @@ lt-script
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_script_dump ##### -->
+<!-- ##### FUNCTION lt_script_unref ##### -->
 <para>
 
 </para>
@@ -65,7 +55,15 @@ lt-script
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_script_ref ##### -->
+<!-- ##### FUNCTION lt_script_dump ##### -->
+<para>
+
+</para>
+
+@script: 
+
+
+<!-- ##### FUNCTION lt_script_convert_to_modifier ##### -->
 <para>
 
 </para>
@@ -74,17 +72,19 @@ lt-script
 @Returns: 
 
 
+<!-- ##### FUNCTION lt_script_compare ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
 <!-- ##### STRUCT lt_script_t ##### -->
 <para>
 
 </para>
-
-
-<!-- ##### FUNCTION lt_script_unref ##### -->
-<para>
-
-</para>
-
-@script: 
 
 

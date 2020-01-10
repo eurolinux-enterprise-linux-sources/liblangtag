@@ -1,3 +1,66 @@
+0.5.3 -> 0.5.4
+=================
+Akira TAGOH (5):
+      Fix the module build on NetBSD (fixed issue#7)
+      Fix format
+      Add date property to language-subtag-registry.xml
+      Get rid of the extra space in case word-wrapping
+      Remove the language subtag registry file on dist
+
+0.5.2 -> 0.5.3
+=================
+Akira TAGOH (7):
+      add a script to prepare a release
+      Fix non-literal format string issues (fixed issue#5)
+      Fix typo
+      Update autotools macro
+      Merged in erAck/liblangtag/0.5.x (pull request #7)
+      Fix autoconf warning, warning: AC_COMPILE_IFELSE was called before AC_USE_SYSTEM_EXTENSIONS
+      separately canonicalize into the canonical form and the extlang form
+
+Eike Rathke (2):
+      Merged tagoh/liblangtag/0.5.x into 0.5.x
+      resolves #6, include last record in language-subtag-registry.xml
+
+0.5.1 -> 0.5.2
+=================
+Akira TAGOH (6):
+      Replace AM_CONFIG_HEADER with AC_CONFIG_HEADERS
+      Merge commit '8532462c5354b66848e387a7d435ca5dadbf768c' into 0.5.x
+      Merged in juikim/liblangtag/0.5.x (pull request #3)
+      Use AM_CPPFLAGS instead of INCLUDES
+      Merged in erAck/liblangtag/0.5.x-libreoffice (pull request #4)
+      Fix duplicate definition of EXTRA_DIST
+
+David Tardon (10):
+      fix automake error
+      coverity: free the iter, not _pointer_ to it
+      coverity: check if error is non-null before using it
+      coverity: check return value of malloc
+      coverity: returning ptr as const is meaningless
+      coverity: free string in case of error
+      coverity: close file handle
+      coverity: check ptr before it is used
+      coverity: check ptr before it is used
+      coverity: check ptr before it is used
+
+Eike Rathke (11):
+      check return value of C99 vsnprintf()
+      check for MSVC defined ssize_t
+      MSVC-32 has _snprintf() instead of snprintf()
+      MSVC has _strtoui64() instead of strtoull()
+      variable declarations need to be at beginning of scope
+      undefined HAVE_SYS_PARAM_H
+      automatically appending dir separator does not work on Windows
+      check for HAVE_UNISTD_H
+      do not specify a document encoding to avoid garbage conversion
+      MSVC does not like const typedef'ed function pointers
+      Revert "do not specify a document encoding to avoid garbage conversion"
+
+Jung-uk Kim (2):
+      Use awk(1) instead of sed(1) to fix build on *BSD.
+      Fix duplicate typedef introduced in 57c47aa.
+
 0.5.0 -> 0.5.1
 =================
 * Fix ABI breakage.

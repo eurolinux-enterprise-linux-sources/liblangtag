@@ -33,11 +33,11 @@ struct _lt_trie_t {
 	lt_iter_tmpl_t  parent;
 	lt_trie_node_t *root;
 };
-typedef struct _lt_trie_iter_t {
+struct _lt_trie_iter_t {
 	lt_iter_t    parent;
 	lt_list_t   *stack;
 	lt_string_t *pos_str;
-} lt_trie_iter_t;
+};
 
 /*< private >*/
 static lt_trie_node_t *
@@ -139,7 +139,7 @@ lt_trie_node_remove(lt_trie_node_t *node,
 	return lt_trie_node_remove(node->node[index_], node, key + 1);
 }
 
-static const lt_pointer_t
+static lt_pointer_t
 lt_trie_node_lookup(lt_trie_node_t *node,
 		    const char     *key)
 {
@@ -356,7 +356,7 @@ lt_trie_keys(lt_trie_t *trie)
 		retval = lt_list_append(retval, key, free);
 	}
 
-	lt_iter_finish((lt_iter_t *)&iter);
+	lt_iter_finish((lt_iter_t *)iter);
 
 	return retval;
 }

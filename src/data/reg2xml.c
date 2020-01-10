@@ -48,6 +48,7 @@ _parse(const char *filename,
 	FILE *fp;
 	char buffer[1024], *range = NULL, *begin = NULL, *end = NULL;
 	lt_bool_t in_entry = FALSE;
+	lt_bool_t file_end = FALSE;
 	xmlNodePtr ent = NULL;
 
 	if ((fp = fopen(filename, "rb")) == NULL) {
@@ -56,10 +57,13 @@ _parse(const char *filename,
 	}
 	while (1) {
 		fgets(buffer, 1024, fp);
-		if (feof(fp))
-			break;
+		if (feof(fp)) {
+			if (!in_entry)
+				break;
+			file_end = TRUE;
+		}
 		_drop_crlf(buffer);
-		if (lt_strcmp0(buffer, "%%") == 0) {
+		if (lt_strcmp0(buffer, "%%") == 0 || file_end) {
 			if (in_entry) {
 				if (ent) {
 					if (range) {
@@ -102,9 +106,13 @@ _parse(const char *filename,
 				ent = NULL;
 				range = NULL;
 			}
-			in_entry = TRUE;
+			in_entry = !file_end;
 		} else {
 			if (!in_entry) {
+				if (strncmp(buffer, "File-Date: ", 11) == 0) {
+					printf("%s\n", &buffer[11]);
+					xmlNewProp(root, (const xmlChar *)"date", (const xmlChar *)&buffer[11]);
+				}
 				/* ignore it */
 				continue;
 			}
@@ -130,23 +138,26 @@ _parse(const char *filename,
 					len = strlen(buffer);
 					fgets(&buffer[len], 1024 - len, fp);
 					if (buffer[len] == ' ') {
-						size_t l, i;
+						size_t l, i, offset = 1;
 
 						_drop_crlf(&buffer[len]);
 						l = strlen(&buffer[len]);
-						for (i = 1; i < l; i++) {
+						if (buffer[len - 1] == '-')
+							offset--;
+						for (i = offset; i < l; i++) {
 							if (buffer[len + i] != ' ')
 								break;
 						}
-						if (i > 1) {
-							memmove(&buffer[len + 1], &buffer[len + i], l - i);
-							buffer[len + l - i + 1] = 0;
+						if (i > offset) {
+							memmove(&buffer[len + offset], &buffer[len + i], l - i);
+							buffer[len + l - i + offset] = 0;
 						}
 						goto multiline;
 					} else {
 						buffer[len] = 0;
 						if (fsetpos(fp, &pos) == -1) {
 							lt_critical("Unable to parse mutliple line");
+							fclose(fp);
 							return FALSE;
 						}
 					}
@@ -177,6 +188,8 @@ _parse(const char *filename,
 			}
 		}
 	}
+
+	fclose(fp);
 
 	return TRUE;
 }

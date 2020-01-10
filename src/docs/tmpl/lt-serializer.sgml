@@ -1,0 +1,414 @@
+<!-- ##### SECTION Title ##### -->
+lt-serializer
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### MACRO LT_SERIALIZER_LSB ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO LT_SERIALIZER_MSB ##### -->
+<para>
+
+</para>
+
+
+
+<!-- ##### MACRO lt_serializer_serialize_uint8 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+
+
+<!-- ##### MACRO lt_serializer_serialize_int8 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+
+
+<!-- ##### MACRO lt_serializer_serialize_uint16 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+
+
+<!-- ##### MACRO lt_serializer_serialize_int16 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+
+
+<!-- ##### MACRO lt_serializer_serialize_uint32 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+
+
+<!-- ##### MACRO lt_serializer_serialize_int32 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+
+
+<!-- ##### MACRO lt_serializer_serialize_uint64 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+
+
+<!-- ##### MACRO lt_serializer_serialize_int64 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+
+
+<!-- ##### MACRO lt_serializer_deserialize_uint8 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+@_o_: 
+
+
+<!-- ##### MACRO lt_serializer_deserialize_int8 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+@_o_: 
+
+
+<!-- ##### MACRO lt_serializer_deserialize_uint16 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+@_o_: 
+
+
+<!-- ##### MACRO lt_serializer_deserialize_int16 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+@_o_: 
+
+
+<!-- ##### MACRO lt_serializer_deserialize_uint32 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+@_o_: 
+
+
+<!-- ##### MACRO lt_serializer_deserialize_int32 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+@_o_: 
+
+
+<!-- ##### MACRO lt_serializer_deserialize_uint64 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+@_o_: 
+
+
+<!-- ##### MACRO lt_serializer_deserialize_int64 ##### -->
+<para>
+
+</para>
+
+@_v_: 
+@_o_: 
+
+
+<!-- ##### MACRO LT_UINT16_SWAP_LE_BE ##### -->
+<para>
+
+</para>
+
+@_v_: 
+
+
+<!-- ##### MACRO LT_UINT32_SWAP_LE_BE ##### -->
+<para>
+
+</para>
+
+@_v_: 
+
+
+<!-- ##### MACRO LT_UINT64_SWAP_LE_BE ##### -->
+<para>
+
+</para>
+
+@_v_: 
+
+
+<!-- ##### ENUM lt_serializer_data_type_t ##### -->
+<para>
+
+</para>
+
+@LT_SERIALIZE_TYPE_UNKNOWN: 
+@LT_SERIALIZE_TYPE_INT8: 
+@LT_SERIALIZE_TYPE_INT16: 
+@LT_SERIALIZE_TYPE_INT32: 
+@LT_SERIALIZE_TYPE_INT64: 
+@LT_SERIALIZE_TYPE_STRING: 
+@LT_SERIALIZE_TYPE_TRIE: 
+@LT_SERIALIZE_TYPE_LIST: 
+@LT_SERIALIZE_TYPE_END: 
+
+<!-- ##### USER_FUNCTION lt_serializer_get_type_func_t ##### -->
+<para>
+
+</para>
+
+@serializer: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION lt_serializer_serialize_func_t ##### -->
+<para>
+
+</para>
+
+@serializer: 
+@data: 
+@retval: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION lt_serializer_deserialize_func_t ##### -->
+<para>
+
+</para>
+
+@serializer: 
+@data: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_serializer_funcs_t ##### -->
+<para>
+
+</para>
+
+@get_type: 
+@serialize: 
+@deserialize: 
+
+<!-- ##### STRUCT lt_serialized_data_t ##### -->
+<para>
+
+</para>
+
+@magic_code: 
+@byte_order: 
+@type: 
+@pad1: 
+@size: 
+@data: 
+
+<!-- ##### FUNCTION lt_serializer_get_byte_order ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_new ##### -->
+<para>
+
+</para>
+
+@funcs: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_ref ##### -->
+<para>
+
+</para>
+
+@serializer: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_unref ##### -->
+<para>
+
+</para>
+
+@serializer: 
+
+
+<!-- ##### FUNCTION lt_serializer_serialize ##### -->
+<para>
+
+</para>
+
+@serializer: 
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_deserialize ##### -->
+<para>
+
+</para>
+
+@serializer: 
+@data: 
+@size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_get_int8_serializer_funcs ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_get_uint8_serializer_funcs ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_get_int16_serializer_funcs ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_get_uint16_serializer_funcs ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_get_int32_serializer_funcs ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_get_uint32_serializer_funcs ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_get_int64_serializer_funcs ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_get_uint64_serializer_funcs ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_get_string_serializer_funcs ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_serializer_get_trie_serializer_funcs ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_serializer_t ##### -->
+<para>
+
+</para>
+
+

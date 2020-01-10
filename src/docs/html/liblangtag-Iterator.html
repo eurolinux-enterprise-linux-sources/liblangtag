@@ -8,7 +8,7 @@
 <link rel="up" href="Utilities.html" title="Utilities APIs">
 <link rel="prev" href="liblangtag-Error.html" title="Error">
 <link rel="next" href="liblangtag-Doubly-Linked-Lists.html" title="Doubly-Linked Lists">
-<meta name="generator" content="GTK-Doc V1.18 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.19 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -39,15 +39,15 @@
 <div class="refsynopsisdiv">
 <a name="liblangtag-Iterator.synopsis"></a><h2>Synopsis</h2>
 <pre class="synopsis">#define             <a class="link" href="liblangtag-Iterator.html#LT-ITER-INIT:CAPS" title="LT_ITER_INIT()">LT_ITER_INIT</a>                        (_obj_)
-<span class="returnvalue">void</span>                <a class="link" href="liblangtag-Iterator.html#lt-iter-finish" title="lt_iter_finish ()">lt_iter_finish</a>                      (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);
+<a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="returnvalue">lt_iter_t</span></a> *         <a class="link" href="liblangtag-Iterator.html#lt-iter-ref" title="lt_iter_ref ()">lt_iter_ref</a>                         (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="liblangtag-Iterator.html#lt-iter-unref" title="lt_iter_unref ()">lt_iter_unref</a>                       (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);
 <a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="returnvalue">lt_iter_t</span></a> *         <a class="link" href="liblangtag-Iterator.html#lt-iter-init" title="lt_iter_init ()">lt_iter_init</a>                        (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-tmpl-t" title="lt_iter_tmpl_t"><span class="type">lt_iter_tmpl_t</span></a> *tmpl</code></em>);
+<span class="returnvalue">void</span>                <a class="link" href="liblangtag-Iterator.html#lt-iter-finish" title="lt_iter_finish ()">lt_iter_finish</a>                      (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);
 <a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>           <a class="link" href="liblangtag-Iterator.html#lt-iter-next" title="lt_iter_next ()">lt_iter_next</a>                        (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>,
                                                          <em class="parameter"><code><a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-pointer-t" title="lt_pointer_t"><span class="type">lt_pointer_t</span></a> *key</code></em>,
                                                          <em class="parameter"><code><a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-pointer-t" title="lt_pointer_t"><span class="type">lt_pointer_t</span></a> *val</code></em>);
-<a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="returnvalue">lt_iter_t</span></a> *         <a class="link" href="liblangtag-Iterator.html#lt-iter-ref" title="lt_iter_ref ()">lt_iter_ref</a>                         (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);
-                    <a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t">lt_iter_t</a>;
                     <a class="link" href="liblangtag-Iterator.html#lt-iter-tmpl-t" title="lt_iter_tmpl_t">lt_iter_tmpl_t</a>;
-<span class="returnvalue">void</span>                <a class="link" href="liblangtag-Iterator.html#lt-iter-unref" title="lt_iter_unref ()">lt_iter_unref</a>                       (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);
+                    <a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t">lt_iter_t</a>;
 </pre>
 </div>
 <div class="refsect1">
@@ -86,10 +86,37 @@ This is a convenient macro to call <a class="link" href="liblangtag-Iterator.htm
 </div>
 <hr>
 <div class="refsect2">
-<a name="lt-iter-finish"></a><h3>lt_iter_finish ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                lt_iter_finish                      (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);</pre>
+<a name="lt-iter-ref"></a><h3>lt_iter_ref ()</h3>
+<pre class="programlisting"><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="returnvalue">lt_iter_t</span></a> *         lt_iter_ref                         (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);</pre>
 <p>
-Finalize the iterator and free its memory.
+Increases the reference count of <em class="parameter"><code>iter</code></em>.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>a <a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>the same <em class="parameter"><code>iter</code></em> object. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="lt-iter-unref"></a><h3>lt_iter_unref ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lt_iter_unref                       (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);</pre>
+<p>
+Decreases the reference count of <em class="parameter"><code>iter</code></em>. when its reference count
+drops to 0, the object is finalized (i.e. its memory is freed).
 </p>
 <div class="variablelist"><table border="0" class="variablelist">
 <colgroup>
@@ -162,6 +189,25 @@ when the iterator isn't needed anymore.
 </div>
 <hr>
 <div class="refsect2">
+<a name="lt-iter-finish"></a><h3>lt_iter_finish ()</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>                lt_iter_finish                      (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);</pre>
+<p>
+Finalize the iterator and free its memory.
+</p>
+<div class="variablelist"><table border="0" class="variablelist">
+<colgroup>
+<col align="left" valign="top">
+<col>
+</colgroup>
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
+<td>a <a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a>
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2">
 <a name="lt-iter-next"></a><h3>lt_iter_next ()</h3>
 <pre class="programlisting"><a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-bool-t" title="lt_bool_t"><span class="returnvalue">lt_bool_t</span></a>           lt_iter_next                        (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>,
                                                          <em class="parameter"><code><a class="link" href="liblangtag-Miscellaneous-Macros.html#lt-pointer-t" title="lt_pointer_t"><span class="type">lt_pointer_t</span></a> *key</code></em>,
@@ -203,29 +249,12 @@ has been reached.</td>
 </div>
 <hr>
 <div class="refsect2">
-<a name="lt-iter-ref"></a><h3>lt_iter_ref ()</h3>
-<pre class="programlisting"><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="returnvalue">lt_iter_t</span></a> *         lt_iter_ref                         (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);</pre>
+<a name="lt-iter-tmpl-t"></a><h3>lt_iter_tmpl_t</h3>
+<pre class="programlisting">typedef struct _lt_iter_tmpl_t lt_iter_tmpl_t;</pre>
 <p>
-Increases the reference count of <em class="parameter"><code>iter</code></em>.
+All the fields in the <span class="structname">lt_iter_tmpl_t</span>
+structure are private to the <a class="link" href="liblangtag-Iterator.html#lt-iter-tmpl-t" title="lt_iter_tmpl_t"><span class="type">lt_iter_tmpl_t</span></a> implementation.
 </p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody>
-<tr>
-<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a>
-</td>
-</tr>
-<tr>
-<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
-<td>the same <em class="parameter"><code>iter</code></em> object. <span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span>
-</td>
-</tr>
-</tbody>
-</table></div>
 </div>
 <hr>
 <div class="refsect2">
@@ -236,39 +265,10 @@ All the fields in the <span class="structname">lt_iter_t</span>
 structure are private to the <a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> implementation.
 </p>
 </div>
-<hr>
-<div class="refsect2">
-<a name="lt-iter-tmpl-t"></a><h3>lt_iter_tmpl_t</h3>
-<pre class="programlisting">typedef struct _lt_iter_tmpl_t lt_iter_tmpl_t;</pre>
-<p>
-All the fields in the <span class="structname">lt_iter_tmpl_t</span>
-structure are private to the <a class="link" href="liblangtag-Iterator.html#lt-iter-tmpl-t" title="lt_iter_tmpl_t"><span class="type">lt_iter_tmpl_t</span></a> implementation.
-</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="lt-iter-unref"></a><h3>lt_iter_unref ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>                lt_iter_unref                       (<em class="parameter"><code><a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a> *iter</code></em>);</pre>
-<p>
-Decreases the reference count of <em class="parameter"><code>iter</code></em>. when its reference count
-drops to 0, the object is finalized (i.e. its memory is freed).
-</p>
-<div class="variablelist"><table border="0" class="variablelist">
-<colgroup>
-<col align="left" valign="top">
-<col>
-</colgroup>
-<tbody><tr>
-<td><p><span class="term"><em class="parameter"><code>iter</code></em> :</span></p></td>
-<td>a <a class="link" href="liblangtag-Iterator.html#lt-iter-t" title="lt_iter_t"><span class="type">lt_iter_t</span></a>
-</td>
-</tr></tbody>
-</table></div>
-</div>
 </div>
 </div>
 <div class="footer">
 <hr>
-          Generated by GTK-Doc V1.18</div>
+          Generated by GTK-Doc V1.19</div>
 </body>
 </html>

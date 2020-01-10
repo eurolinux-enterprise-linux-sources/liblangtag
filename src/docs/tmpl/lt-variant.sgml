@@ -20,17 +20,16 @@ lt-variant
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_variant_compare ##### -->
+<!-- ##### FUNCTION lt_variant_ref ##### -->
 <para>
 
 </para>
 
-@v1: 
-@v2: 
+@variant: 
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_variant_dump ##### -->
+<!-- ##### FUNCTION lt_variant_unref ##### -->
 <para>
 
 </para>
@@ -39,33 +38,6 @@ lt-variant
 
 
 <!-- ##### FUNCTION lt_variant_get_better_tag ##### -->
-<para>
-
-</para>
-
-@variant: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_variant_get_name ##### -->
-<para>
-
-</para>
-
-@variant: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_variant_get_preferred_tag ##### -->
-<para>
-
-</para>
-
-@variant: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_variant_get_prefix ##### -->
 <para>
 
 </para>
@@ -83,7 +55,7 @@ lt-variant
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_variant_ref ##### -->
+<!-- ##### FUNCTION lt_variant_get_preferred_tag ##### -->
 <para>
 
 </para>
@@ -92,17 +64,45 @@ lt-variant
 @Returns: 
 
 
-<!-- ##### STRUCT lt_variant_t ##### -->
-<para>
-
-</para>
-
-
-<!-- ##### FUNCTION lt_variant_unref ##### -->
+<!-- ##### FUNCTION lt_variant_get_name ##### -->
 <para>
 
 </para>
 
 @variant: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_variant_get_prefix ##### -->
+<para>
+
+</para>
+
+@variant: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_variant_dump ##### -->
+<para>
+
+</para>
+
+@variant: 
+
+
+<!-- ##### FUNCTION lt_variant_compare ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_variant_t ##### -->
+<para>
+
+</para>
 
 

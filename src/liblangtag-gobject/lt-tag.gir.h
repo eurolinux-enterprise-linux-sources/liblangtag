@@ -39,46 +39,48 @@ LT_BEGIN_DECLS
 typedef struct _LtTag	LtTag;
 
 
-LtTag                 *lt_tag_new                       (void);
-LtTag                 *lt_tag_ref                       (LtTag        *tag);
-void                      lt_tag_unref                     (LtTag        *tag);
-LtBool                 lt_tag_parse                     (LtTag        *tag,
-                                                            const char      *tag_string,
-                                                            LtError     **error);
-LtBool                 lt_tag_parse_with_extra_token    (LtTag        *tag,
-                                                            const char      *tag_string,
-                                                            LtError     **error);
-void                      lt_tag_clear                     (LtTag        *tag);
-LtTag                 *lt_tag_copy                      (const LtTag  *tag);
-LtBool                 lt_tag_truncate                  (LtTag        *tag,
-                                                            LtError     **error);
-const char               *lt_tag_get_string                (LtTag        *tag);
-char                     *lt_tag_canonicalize              (LtTag        *tag,
-                                                            LtError     **error);
-char                     *lt_tag_convert_to_locale         (LtTag        *tag,
-                                                            LtError     **error);
-LtTag                 *lt_tag_convert_from_locale       (LtError     **error);
-LtTag                 *lt_tag_convert_from_locale_string(const char      *locale,
-                                                            LtError     **error);
-void                      lt_tag_dump                      (const LtTag  *tag);
-LtBool                 lt_tag_compare                   (const LtTag  *v1,
-                                                            const LtTag  *v2);
-LtBool                 lt_tag_match                     (const LtTag  *v1,
-                                                            const char      *v2,
-                                                            LtError     **error);
-char                     *lt_tag_lookup                    (const LtTag  *tag,
-                                                            const char      *pattern,
-                                                            LtError     **error);
-char                     *lt_tag_transform                 (LtTag        *tag,
-                                                            LtError     **error);
-const LtLang          *lt_tag_get_language              (const LtTag  *tag);
-const LtExtlang       *lt_tag_get_extlang               (const LtTag  *tag);
-const LtScript        *lt_tag_get_script                (const LtTag  *tag);
-const LtRegion        *lt_tag_get_region                (const LtTag  *tag);
-const LtList          *lt_tag_get_variants              (const LtTag  *tag);
-const LtExtension     *lt_tag_get_extension             (const LtTag  *tag);
-const LtString        *lt_tag_get_privateuse            (const LtTag  *tag);
-const LtGrandfathered *lt_tag_get_grandfathered         (const LtTag  *tag);
+LtTag                 *lt_tag_new                         (void);
+LtTag                 *lt_tag_ref                         (LtTag       *tag);
+void                      lt_tag_unref                       (LtTag       *tag);
+LtBool                 lt_tag_parse                       (LtTag       *tag,
+                                                              const char     *tag_string,
+                                                              LtError     **error);
+LtBool                 lt_tag_parse_with_extra_token      (LtTag       *tag,
+                                                              const char     *tag_string,
+                                                              LtError     **error);
+void                      lt_tag_clear                       (LtTag       *tag);
+LtTag                 *lt_tag_copy                        (const LtTag *tag);
+LtBool                 lt_tag_truncate                    (LtTag       *tag,
+                                                              LtError     **error);
+const char               *lt_tag_get_string                  (LtTag       *tag);
+char                     *lt_tag_canonicalize                (LtTag       *tag,
+                                                              LtError     **error);
+char                     *lt_tag_canonicalize_in_extlang_form(LtTag       *tag,
+                                                              LtError     **error);
+char                     *lt_tag_convert_to_locale           (LtTag       *tag,
+                                                              LtError     **error);
+LtTag                 *lt_tag_convert_from_locale         (LtError     **error);
+LtTag                 *lt_tag_convert_from_locale_string  (const char     *locale,
+                                                              LtError     **error);
+void                      lt_tag_dump                        (const LtTag *tag);
+LtBool                 lt_tag_compare                     (const LtTag *v1,
+                                                              const LtTag *v2);
+LtBool                 lt_tag_match                       (const LtTag *v1,
+                                                              const char     *v2,
+                                                              LtError     **error);
+char                     *lt_tag_lookup                      (const LtTag *tag,
+                                                              const char     *pattern,
+                                                              LtError     **error);
+char                     *lt_tag_transform                   (LtTag       *tag,
+                                                              LtError     **error);
+const LtLang          *lt_tag_get_language                (const LtTag *tag);
+const LtExtlang       *lt_tag_get_extlang                 (const LtTag *tag);
+const LtScript        *lt_tag_get_script                  (const LtTag *tag);
+const LtRegion        *lt_tag_get_region                  (const LtTag *tag);
+const LtList          *lt_tag_get_variants                (const LtTag *tag);
+const LtExtension     *lt_tag_get_extension               (const LtTag *tag);
+const LtString        *lt_tag_get_privateuse              (const LtTag *tag);
+const LtGrandfathered *lt_tag_get_grandfathered           (const LtTag *tag);
 
 LT_END_DECLS
 

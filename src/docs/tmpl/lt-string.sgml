@@ -20,47 +20,25 @@ lt-string
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_string_append ##### -->
+<!-- ##### FUNCTION lt_string_new ##### -->
 <para>
 
 </para>
 
 @string: 
-@str: 
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_string_append_c ##### -->
+<!-- ##### FUNCTION lt_string_ref ##### -->
 <para>
 
 </para>
 
 @string: 
-@c: 
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_string_append_filename ##### -->
-<para>
-
-</para>
-
-@string: 
-@path: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_string_at ##### -->
-<para>
-
-</para>
-
-@string: 
-@pos: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_string_clear ##### -->
+<!-- ##### FUNCTION lt_string_unref ##### -->
 <para>
 
 </para>
@@ -87,7 +65,7 @@ lt-string
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_string_new ##### -->
+<!-- ##### FUNCTION lt_string_value ##### -->
 <para>
 
 </para>
@@ -96,12 +74,51 @@ lt-string
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_string_ref ##### -->
+<!-- ##### FUNCTION lt_string_truncate ##### -->
 <para>
 
 </para>
 
 @string: 
+@len: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_clear ##### -->
+<para>
+
+</para>
+
+@string: 
+
+
+<!-- ##### FUNCTION lt_string_append_c ##### -->
+<para>
+
+</para>
+
+@string: 
+@c: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_append ##### -->
+<para>
+
+</para>
+
+@string: 
+@str: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_string_append_filename ##### -->
+<para>
+
+</para>
+
+@string: 
+@path: 
 @Returns: 
 
 
@@ -116,36 +133,19 @@ lt-string
 @Returns: 
 
 
+<!-- ##### FUNCTION lt_string_at ##### -->
+<para>
+
+</para>
+
+@string: 
+@pos: 
+@Returns: 
+
+
 <!-- ##### STRUCT lt_string_t ##### -->
 <para>
 
 </para>
-
-
-<!-- ##### FUNCTION lt_string_truncate ##### -->
-<para>
-
-</para>
-
-@string: 
-@len: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_string_unref ##### -->
-<para>
-
-</para>
-
-@string: 
-
-
-<!-- ##### FUNCTION lt_string_value ##### -->
-<para>
-
-</para>
-
-@string: 
-@Returns: 
 
 

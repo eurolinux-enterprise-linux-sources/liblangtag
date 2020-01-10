@@ -20,16 +20,6 @@ lt-variant-db
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_variant_db_lookup ##### -->
-<para>
-
-</para>
-
-@variantdb: 
-@subtag: 
-@Returns: 
-
-
 <!-- ##### FUNCTION lt_variant_db_new ##### -->
 <para>
 
@@ -48,17 +38,27 @@ lt-variant-db
 @Returns: 
 
 
-<!-- ##### STRUCT lt_variant_db_t ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### FUNCTION lt_variant_db_unref ##### -->
 <para>
 
 </para>
 
 @variantdb: 
+
+
+<!-- ##### FUNCTION lt_variant_db_lookup ##### -->
+<para>
+
+</para>
+
+@variantdb: 
+@subtag: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_variant_db_t ##### -->
+<para>
+
+</para>
 
 

@@ -20,6 +20,31 @@ lt-database
 <!-- ##### SECTION Image ##### -->
 
 
+<!-- ##### FUNCTION lt_db_set_datadir ##### -->
+<para>
+
+</para>
+
+@path: 
+
+
+<!-- ##### FUNCTION lt_db_get_datadir ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_db_initialize ##### -->
+<para>
+
+</para>
+
+@void: 
+
+
 <!-- ##### FUNCTION lt_db_finalize ##### -->
 <para>
 
@@ -28,7 +53,7 @@ lt-database
 @void: 
 
 
-<!-- ##### FUNCTION lt_db_get_datadir ##### -->
+<!-- ##### FUNCTION lt_db_get_lang ##### -->
 <para>
 
 </para>
@@ -46,25 +71,7 @@ lt-database
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_db_get_grandfathered ##### -->
-<para>
-
-</para>
-
-@void: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_db_get_lang ##### -->
-<para>
-
-</para>
-
-@void: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_db_get_redundant ##### -->
+<!-- ##### FUNCTION lt_db_get_script ##### -->
 <para>
 
 </para>
@@ -82,15 +89,6 @@ lt-database
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_db_get_script ##### -->
-<para>
-
-</para>
-
-@void: 
-@Returns: 
-
-
 <!-- ##### FUNCTION lt_db_get_variant ##### -->
 <para>
 
@@ -100,19 +98,21 @@ lt-database
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_db_initialize ##### -->
+<!-- ##### FUNCTION lt_db_get_grandfathered ##### -->
 <para>
 
 </para>
 
 @void: 
+@Returns: 
 
 
-<!-- ##### FUNCTION lt_db_set_datadir ##### -->
+<!-- ##### FUNCTION lt_db_get_redundant ##### -->
 <para>
 
 </para>
 
-@path: 
+@void: 
+@Returns: 
 
 

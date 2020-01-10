@@ -197,7 +197,7 @@ lt_xml_read_cldr_supplemental(lt_xml_t     *xml,
 		lt_string_append_filename(regfile,
 					  BUILDDIR, "data", "common", "supplemental",
 					  filename, NULL);
-		lt_info(lt_string_value(regfile));
+		lt_info("%s", lt_string_value(regfile));
 		if (stat(lt_string_value(regfile), &st) == -1) {
 			lt_string_clear(regfile);
 			lt_string_append_filename(regfile,
@@ -422,7 +422,7 @@ lt_xml_unref(lt_xml_t *xml)
 		lt_mem_unref(&xml->parent);
 }
 
-const xmlDocPtr
+xmlDocPtr
 lt_xml_get_subtag_registry(lt_xml_t *xml)
 {
 	lt_return_val_if_fail (xml != NULL, NULL);
@@ -430,7 +430,7 @@ lt_xml_get_subtag_registry(lt_xml_t *xml)
 	return xml->subtag_registry;
 }
 
-const xmlDocPtr
+xmlDocPtr
 lt_xml_get_cldr(lt_xml_t      *xml,
 		lt_xml_cldr_t  type)
 {

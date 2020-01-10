@@ -1,6 +1,6 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.62)
-AC_INIT([liblangtag], 0.5.1, [http://github.com/tagoh/liblangtag/issues])
+AC_INIT([liblangtag], 0.5.4, [http://github.com/tagoh/liblangtag/issues])
 
 . `dirname $0`/requires
 
@@ -14,19 +14,21 @@ m4_pattern_allow(^LT_.*_DECLS$)
 m4_pattern_allow(^LT_POINTER_.*$)
 
 AM_MAINTAINER_MODE
-AM_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4macros])
 
 AC_USE_SYSTEM_EXTENSIONS
 AC_PROG_CC
 AM_PROG_AR
-AC_PROG_LIBTOOL
 
 GNOME_COMPILE_WARNINGS
 
 GNOME_COMMON_INIT
 GNOME_DEBUG_CHECK
 GNOME_MAINTAINER_MODE_DEFINES
+
+LT_PREREQ([2.2])
+LT_INIT([disable-static win32-dll])
 
 dnl ======================================================================
 dnl Libraries versioning
@@ -49,9 +51,9 @@ dnl    then set CURRENT to the so number +1 and set AGE to 0.
 dnl
 
 dnl for liblangtag.la
-LT_CURRENT=3
+LT_CURRENT=4
 LT_REVISION=0
-LT_AGE=2
+LT_AGE=3
 
 AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)
@@ -323,14 +325,16 @@ if test "x$enable_modules" != "xno"; then
 		AC_MSG_ERROR(Unable to determine shared libreary suffix from libtool)
 	fi
 	use_modules=0
-	AC_CHECK_LIB([dl], [dlopen],
-		[AC_CHECK_LIB([dl], [dlsym], [MODULE_LIBS=-ldl; use_modules=1])])
+	
+	AC_CHECK_FUNC([dlopen], [use_modules=1],
+	  [AC_CHECK_LIB([dl], [dlopen],
+		  [AC_CHECK_LIB([dl], [dlsym], [MODULE_LIBS=-ldl; use_modules=1])])])
 
 	AC_SUBST(MODULE_LIBS)
 	AC_DEFINE_UNQUOTED(ENABLE_MODULE, $use_modules, [Use modules])
 	AC_DEFINE_UNQUOTED(LT_MODULE_SUFFIX, "$lt_module_suffix", [Shared library suffix])
 fi
-AM_CONDITIONAL(ENABLE_MODULE, test x$MODULE_LIBS != x)
+AM_CONDITIONAL(ENABLE_MODULE, test $use_modules = 1)
 
 dnl ======================================================================
 dnl options - rebuild-data

@@ -60,6 +60,8 @@ static lt_localealias_t __lt_localealias_tables[] = {
 	{"korean.euc", "ko_KR.eucKR"},
 	{"ko_KR", "ko_KR.eucKR"},
 	{"lithuanian", "lt_LT.ISO-8859-13"},
+	{"no_NO", "nb_NO.ISO-8859-1"},
+	{"no_NO.ISO-8859-1", "nb_NO.ISO-8859-1"},
 	{"norwegian", "nb_NO.ISO-8859-1"},
 	{"nynorsk", "nn_NO.ISO-8859-1"},
 	{"polish", "pl_PL.ISO-8859-2"},

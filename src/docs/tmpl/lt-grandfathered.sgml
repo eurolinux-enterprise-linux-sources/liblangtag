@@ -20,17 +20,16 @@ lt-grandfathered
 <!-- ##### SECTION Image ##### -->
 
 
-<!-- ##### FUNCTION lt_grandfathered_compare ##### -->
+<!-- ##### FUNCTION lt_grandfathered_ref ##### -->
 <para>
 
 </para>
 
-@v1: 
-@v2: 
+@grandfathered: 
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_grandfathered_dump ##### -->
+<!-- ##### FUNCTION lt_grandfathered_unref ##### -->
 <para>
 
 </para>
@@ -39,24 +38,6 @@ lt-grandfathered
 
 
 <!-- ##### FUNCTION lt_grandfathered_get_better_tag ##### -->
-<para>
-
-</para>
-
-@grandfathered: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_grandfathered_get_name ##### -->
-<para>
-
-</para>
-
-@grandfathered: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_grandfathered_get_preferred_tag ##### -->
 <para>
 
 </para>
@@ -74,7 +55,7 @@ lt-grandfathered
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_grandfathered_ref ##### -->
+<!-- ##### FUNCTION lt_grandfathered_get_preferred_tag ##### -->
 <para>
 
 </para>
@@ -83,17 +64,36 @@ lt-grandfathered
 @Returns: 
 
 
-<!-- ##### STRUCT lt_grandfathered_t ##### -->
-<para>
-
-</para>
-
-
-<!-- ##### FUNCTION lt_grandfathered_unref ##### -->
+<!-- ##### FUNCTION lt_grandfathered_get_name ##### -->
 <para>
 
 </para>
 
 @grandfathered: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_grandfathered_dump ##### -->
+<para>
+
+</para>
+
+@grandfathered: 
+
+
+<!-- ##### FUNCTION lt_grandfathered_compare ##### -->
+<para>
+
+</para>
+
+@v1: 
+@v2: 
+@Returns: 
+
+
+<!-- ##### STRUCT lt_grandfathered_t ##### -->
+<para>
+
+</para>
 
 

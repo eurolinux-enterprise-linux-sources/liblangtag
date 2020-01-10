@@ -28,7 +28,16 @@ lt-iter
 @_obj_: 
 
 
-<!-- ##### FUNCTION lt_iter_finish ##### -->
+<!-- ##### FUNCTION lt_iter_ref ##### -->
+<para>
+
+</para>
+
+@iter: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_iter_unref ##### -->
 <para>
 
 </para>
@@ -45,6 +54,14 @@ lt-iter
 @Returns: 
 
 
+<!-- ##### FUNCTION lt_iter_finish ##### -->
+<para>
+
+</para>
+
+@iter: 
+
+
 <!-- ##### FUNCTION lt_iter_next ##### -->
 <para>
 
@@ -56,32 +73,15 @@ lt-iter
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_iter_ref ##### -->
-<para>
-
-</para>
-
-@iter: 
-@Returns: 
-
-
-<!-- ##### STRUCT lt_iter_t ##### -->
-<para>
-
-</para>
-
-
 <!-- ##### STRUCT lt_iter_tmpl_t ##### -->
 <para>
 
 </para>
 
 
-<!-- ##### FUNCTION lt_iter_unref ##### -->
+<!-- ##### STRUCT lt_iter_t ##### -->
 <para>
 
 </para>
-
-@iter: 
 
 

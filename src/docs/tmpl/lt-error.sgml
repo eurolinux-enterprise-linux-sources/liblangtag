@@ -20,6 +20,58 @@ lt-error
 <!-- ##### SECTION Image ##### -->
 
 
+<!-- ##### ENUM lt_error_type_t ##### -->
+<para>
+
+</para>
+
+@LT_ERR_UNKNOWN: 
+@LT_ERR_SUCCESS: 
+@LT_ERR_OOM: 
+@LT_ERR_FAIL_ON_XML: 
+@LT_ERR_EOT: 
+@LT_ERR_FAIL_ON_SCANNER: 
+@LT_ERR_NO_TAG: 
+@LT_ERR_INVALID: 
+@LT_ERR_ANY: 
+
+<!-- ##### FUNCTION lt_error_new ##### -->
+<para>
+
+</para>
+
+@void: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_error_ref ##### -->
+<para>
+
+</para>
+
+@error: 
+@Returns: 
+
+
+<!-- ##### FUNCTION lt_error_unref ##### -->
+<para>
+
+</para>
+
+@error: 
+
+
+<!-- ##### FUNCTION lt_error_set ##### -->
+<para>
+
+</para>
+
+@error: 
+@type: 
+@message: 
+@Returns: 
+
+
 <!-- ##### FUNCTION lt_error_clear ##### -->
 <para>
 
@@ -38,15 +90,6 @@ lt-error
 @Returns: 
 
 
-<!-- ##### FUNCTION lt_error_new ##### -->
-<para>
-
-</para>
-
-@void: 
-@Returns: 
-
-
 <!-- ##### FUNCTION lt_error_print ##### -->
 <para>
 
@@ -56,52 +99,9 @@ lt-error
 @type: 
 
 
-<!-- ##### FUNCTION lt_error_ref ##### -->
-<para>
-
-</para>
-
-@error: 
-@Returns: 
-
-
-<!-- ##### FUNCTION lt_error_set ##### -->
-<para>
-
-</para>
-
-@error: 
-@type: 
-@message: 
-@Returns: 
-
-
 <!-- ##### STRUCT lt_error_t ##### -->
 <para>
 
 </para>
-
-
-<!-- ##### ENUM lt_error_type_t ##### -->
-<para>
-
-</para>
-
-@LT_ERR_UNKNOWN: 
-@LT_ERR_SUCCESS: 
-@LT_ERR_OOM: 
-@LT_ERR_FAIL_ON_XML: 
-@LT_ERR_EOT: 
-@LT_ERR_FAIL_ON_SCANNER: 
-@LT_ERR_NO_TAG: 
-@LT_ERR_INVALID: 
-@LT_ERR_ANY: 
-
-<!-- ##### FUNCTION lt_error_unref ##### -->
-<para>
-
-</para>
-
-@error: 
 
 
